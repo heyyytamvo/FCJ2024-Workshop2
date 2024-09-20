@@ -1,0 +1,47 @@
+---
+title : "Đặt vấn đề"
+date :  "`r Sys.Date()`" 
+weight : 1 
+chapter : false
+pre : " <b> 1. </b> "
+---
+### Tại sao là Microservice?
+
+Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.
+
+![ConnectPrivate](/FCJ2024-Workshop1/images/1.Intro/00problem.png) 
+
+Như bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc. 
+
+Tuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservice. Nôm na, Microservice sẽ chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới. 
+
+![ConnectPrivate](/FCJ2024-Workshop1/images/1.Intro/00problem.png) 
+
+Triển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc.). Ta có GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.
+
+### Tại sao là GitOps?
+
+### Tại sao là DevSecOps?
+
+DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:
+
+End user sẽ được cập nhật phiên bản mới nhất của sản phẩm một các nhanh chóng
+Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá.
+
+Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:
+
+- **SAST (Static Application Security Testing)**: thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.
+
+- **Image Scan và Secure IaC**: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).
+
+- **DAST (Dynamic Application Security Testing)**: thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)
+
+### Monitoring có cần thiết không?
+
+Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua web browser.
+
+Trong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:
+
+- **EC2**: 
+- **Elastic Kubernetes Service**: 
+
