@@ -16,15 +16,39 @@ Trong bài Workshop này, bạn đọc sẽ tìm hiểu cách thức tích hợp
 
 ### Kỳ vọng
 
-<!-- Sau khi triển khai ECS Cluster, end-user sẽ dùng Load Balancer Domain Name để truy cập đến được app của chúng ta. Application là một VLSM Solver, một bài toán kinh điển trong Networking. Bạn đọc có thể tham khảo sản phẩm đã được triển khai thông qua đường [Link này](http://vlsm.heyyytamvo.io.vn). Hoặc tham khảo source code tại:
+#### Kiến trúc hạ tầng Cloud
+Bên dưới là toàn bộ kiến trúc cho hạ tầng của chúng ta và các luồng traffic sau khi hoàn thành bài Workshop này
 
-+ BackEnd Repo: [Link](https://github.com/heyyytamvo/VLSM-Solver-BE)
-+ FrontEnd Repo: [Link](https://github.com/heyyytamvo/VLSM-Solver-FE)
+![ConnectPrivate](/images/Archi.gif)
 
-Toàn bộ Source Code cho Workshop này, bạn đọc có thể tham khảo tại [đây](https://github.com/heyyytamvo/AWS-DevOps/tree/main/ECS/AWS-FCJ-WORKSHOP). -->
+
+#### CI Pipeline
+CI Pipeline được mô tả như hình bên dưới
+
+![ConnectPrivate](/images/CI_Pipeline.gif)
+
+
+#### CD Pipeline
+CD Pipeline được mô tả như hình bên dưới
+
+![ConnectPrivate](/images/CD_Pipeline.gif)
+
+
+Toàn bộ Source Code cho Workshop này, bạn đọc có thể tham khảo:
+
++ Dev Repo (Nơi Dev Team sẽ làm việc): [Link](https://github.com/heyyytamvo/FCJ2024-WS2-DevRepo)
++ Ops Repo (Nơi Ops Team sẽ làm việc): [Link](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo)
+
 ### Nội dung
 
- <!-- 1. [Đặt vấn đề](1-introduce/)
- 2. [Các bước chuẩn bị](2-Prerequiste/)
- 3. [Kiểm tra Scaling](3-Scaling-Check/)
- 4. [Dọn dẹp tài nguyên](4-cleanup/) -->
+ 1. [Đặt vấn đề](1-introduce/)
+ 2. [Triển khai VPC, Jenkins, và SonarQube Server](2-Prerequiste/)
+ 3. [Triển khai Kubernetes Cluster](3-Scaling-Check/)
+ 4. [Triển khai CI/CD Pipeline](4-cleanup/)
+ 5. [Triển khai DevSecOps]()
+ 6. [Kiểm thử]()
+ 7. [Dọn dẹp tài nguyên]()
+
+{{% notice info %}}
+Tại mỗi phần, bạn đọc sẽ được hướng dẫn nên để Source Code ở Dev Repo hoặc Ops Repo
+{{% /notice %}}

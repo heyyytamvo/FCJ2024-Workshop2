@@ -1,0 +1,239 @@
+[
+{
+	"uri": "//localhost:1313/vi/5-devsecops/5.1-ops-repo/",
+	"title": "Cấu hình GitHub Repository (Ops Repo)",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Đặt vấn đề",
+	"tags": [],
+	"description": "",
+	"content": "Tại sao là Microservice? Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.\nNhư bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.\nTuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservice. Nôm na, Microservice sẽ chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.\nTriển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.\nTại sao là GitOps? Tại sao là DevSecOps? DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:\nEnd user sẽ được cập nhật phiên bản mới nhất của sản phẩm một cách nhanh chóng Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá. Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:\nSAST (Static Application Security Testing): thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.\nImage Scan và Secure IaC: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).\nDAST (Dynamic Application Security Testing): thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)\nMonitoring có cần thiết không? Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.\nTrong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:\nElastic Compute Service (EC2): Nơi ta sẽ host Jenkins Server, SonarQube Server. Chúng là một phần quan trọng trong CI/CD Pipeline của ta Elastic Kubernetes Service (EKS): Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS. Elastic Container Registry (ECR): Đóng vai trò như một \u0026ldquo;Private Docker Hub\u0026rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp. "
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/",
+	"title": "Tạo cặp Public và Private Key ở Local Machine",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Public và Private Key ở local machine Sử dụng ssh-keygen để tạo một cặp public và private key. Đặt tên chúng là EC2.\nssh-keygen -b 2048 -t rsa Bạn đọc cần thêm cặp key pair này vào file .gitignore\nTạo file Terraform/04-keypair.tf với cấu hình bên dưới:\n## Key pair resource \u0026#34;aws_key_pair\u0026#34; \u0026#34;EC2key\u0026#34; { key_name = var.ec2_key_name public_key = file(\u0026#34;${path.module}/EC2.pub\u0026#34;) } "
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.1-eks-role/",
+	"title": "Tạo Role cho EKS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/",
+	"title": "Tạo VPC, Internet Gateway, và NAT Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Folder Terraform, tạo các file Terraform/terraform.tfvars và Terraform/variables.tf. Các file này sẽ định nghĩa các cấu hình hạ tầng của ta.\nBạn đọc tham khảo tại đây Terraform/terraform.tfvars và Terraform/variables.tf\nTạo file Terraform/00-main.tf để định nghĩa AWS Provider.\nterraform { required_providers { aws = { source = \u0026#34;hashicorp/aws\u0026#34; version = \u0026#34;~\u0026gt; 5.0\u0026#34; } } required_version = \u0026#34;\u0026gt;= 1.2.0\u0026#34; } provider \u0026#34;aws\u0026#34; { region = \u0026#34;us-east-1\u0026#34; } Tạo VPC, Internet Gateway, và NAT Gateway Tạo file Terraform/01-vpc.tf để tạo VPC, Internet Gateway, và NAT Gateway.\nresource \u0026#34;aws_vpc\u0026#34; \u0026#34;main\u0026#34; { cidr_block = var.vpc_cidr enable_dns_hostnames = true enable_dns_support = true tags = { Name = var.vpc_name } } resource \u0026#34;aws_internet_gateway\u0026#34; \u0026#34;defaultIGW\u0026#34; { vpc_id = aws_vpc.main.id tags = { Name = \u0026#34;Internet Gateway\u0026#34; } } resource \u0026#34;aws_eip\u0026#34; \u0026#34;my_elastic_ip\u0026#34; { domain = \u0026#34;vpc\u0026#34; } # NAT Gateway resource \u0026#34;aws_nat_gateway\u0026#34; \u0026#34;my_nat_gtw\u0026#34; { allocation_id = aws_eip.my_elastic_ip.id subnet_id = values(aws_subnet.public_subnets)[0].id tags = { Name = \u0026#34;NAT Gateway\u0026#34; } } Như trên, ta cần tạo một Elastic IP Address và gán nó vào NAT Gateway của ta.\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.1-application/",
+	"title": "Tổng quan Application",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS Tổng quan Trong bài Workshop này, bạn đọc sẽ tìm hiểu cách thức tích hợp DevSecOps và ứng dụng GitOps vào CI/CD Pipeline cho một ứng dụng Microservice được triển khai trên Amazon Elastic Kubernetes (EKS). Bạn đọc sẽ bắt đầu việc triển khai hạ tầng trên AWS bằng Terraform, triển khai CI/CD Pipeline, và cuối cùng tích hợp các phương pháp bảo mật trong DevOps, hay còn gọi là DevSecOps.\nKỳ vọng Kiến trúc hạ tầng Cloud Bên dưới là toàn bộ kiến trúc cho hạ tầng của chúng ta và các luồng traffic sau khi hoàn thành bài Workshop này\nCI Pipeline CI Pipeline được mô tả như hình bên dưới\nCD Pipeline CD Pipeline được mô tả như hình bên dưới\nToàn bộ Source Code cho Workshop này, bạn đọc có thể tham khảo:\nDev Repo (Nơi Dev Team sẽ làm việc): Link Ops Repo (Nơi Ops Team sẽ làm việc): Link Nội dung Đặt vấn đề Triển khai VPC, Jenkins, và SonarQube Server Triển khai Kubernetes Cluster Triển khai CI/CD Pipeline Triển khai DevSecOps Kiểm thử Dọn dẹp tài nguyên Tại mỗi phần, bạn đọc sẽ được hướng dẫn nên để Source Code ở Dev Repo hoặc Ops Repo\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/",
+	"title": "Triển khai VPC",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Tạo VPC, Internet Gateway, và NAT Gateway Tạo Subnet và Subnet Association Chạy Terraform để triển khai hạ tầng Sau khi hoàn thành phần này, hình bên dưới sẽ là hạ tầng của chúng ta:\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.2-jenkins/",
+	"title": "Cấu hình Jenkins Server",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/5-devsecops/5.2-sonar/",
+	"title": "Cấu hình SonarQube Server",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/",
+	"title": "Tạo Jump Host",
+	"tags": [],
+	"description": "",
+	"content": "Thông qua Jump Host, ta sẽ tương tác với cụm K8s, điều này sẽ giảm nguy cơ cụm K8s của ta có thể được public accessed. Dùng private key mà ta đã tạo ở phần trước để truy cập Jump Host thông qua giao thức SSH. Nhưng trước hết, ta cần cài đặt các package cần thiết thông qua file Bash Script. Tạo file Terraform/jump_host_install.sh như bên dưới:\n#!/bin/bash sudo apt update -y # Install eksctl ARCH=amd64 PLATFORM=$(uname -s)_$ARCH curl -sLO \u0026#34;https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz\u0026#34; # (Optional) Verify checksum curl -sL \u0026#34;https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt\u0026#34; | grep $PLATFORM | sha256sum --check sudo tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp \u0026amp;\u0026amp; rm eksctl_$PLATFORM.tar.gz sudo mv /tmp/eksctl /usr/local/bin # Install kubectl curl -LO \u0026#34;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl\u0026#34; curl -LO \u0026#34;https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256\u0026#34; sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl # install aws-cli sudo apt install -y unzip curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update # install docker sudo apt-get install -y ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc echo \\ \u0026#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026amp;\u0026amp; echo \u0026#34;$VERSION_CODENAME\u0026#34;) stable\u0026#34; | \\ sudo tee /etc/apt/sources.list.d/docker.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 sudo chmod 700 get_helm.sh sudo bash get_helm.sh Vì phiên bản Jump Host hiện tại là Ubuntu 22.04, nếu bạn đọc có nhu cầu dùng khác bản 0S (Amazon Linux, etc.), bạn đọc cần cấu hình lại file Bash Script ở trên.\nKế tiếp, ta sẽ thiết lập cấu hình cho Jump Host. Tạo file Terraform/05-jump_host.tf như bên dưới:\n# Security Group for EC2 resource \u0026#34;aws_security_group\u0026#34; \u0026#34;JUMP_HOST_SG\u0026#34; { name = \u0026#34;JUMP_HOST_SG\u0026#34; description = \u0026#34;Allow SSH inbound and all outbound traffic\u0026#34; vpc_id = aws_vpc.main.id ingress = [ { from_port = -1 to_port = -1 protocol = \u0026#34;icmp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;], description = \u0026#34;Allow inbound ICMP Traffic\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = 22 to_port = 22 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 22\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false } ] egress { from_port = 0 to_port = 0 protocol = \u0026#34;-1\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] } tags = { Name = \u0026#34;JUMP_HOST SG\u0026#34; } } resource \u0026#34;aws_instance\u0026#34; \u0026#34;Jump_host\u0026#34; { ami = var.ec2_ami instance_type = var.ec2_instance_type key_name = aws_key_pair.EC2key.key_name monitoring = true subnet_id = values(aws_subnet.public_subnets)[0].id vpc_security_group_ids = [aws_security_group.JUMP_HOST_SG.id] associate_public_ip_address = true user_data = file(\u0026#34;${path.module}/jump_host_install.sh\u0026#34;) tags = { Terraform = \u0026#34;true\u0026#34; Environment = \u0026#34;dev\u0026#34; Name = \u0026#34;Jump Host\u0026#34; } root_block_device { volume_size = 30 } } "
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/",
+	"title": "Tạo Jump Host, Jenkins, và Sonarqube Server",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung Tạo cặp Public và Private Key ở Local Machine Tạo Jump Host Tạo Jenkins Server Tạo SonarQube Server Chạy Terraform để triển khai hạ tầng Sau khi hoàn thành phần này, hình bên dưới sẽ là hạ tầng của chúng ta:\n"
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.2-eks-worker-role/",
+	"title": "Tạo Role cho EKS Worker Node",
+	"tags": [],
+	"description": "",
+	"content": "Nội dung: Gửi 100.000 requests đến Load Balancer Gửi 1.000.000 requests đến Load Balancer Scale up Desired Task "
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/",
+	"title": "Tạo Subnet và Subnet Association",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Subnet Tạo file Terraform/02-subnet.tf để tạo subnet như bên dưới:\n// Public Subnet resource \u0026#34;aws_subnet\u0026#34; \u0026#34;public_subnets\u0026#34; { for_each = toset(var.vpc_public_subnets) vpc_id = aws_vpc.main.id cidr_block = each.value availability_zone = var.vpc_azs[index(var.vpc_public_subnets, each.value)] map_public_ip_on_launch = true tags = { Name = \u0026#34;Public Subnet ${index(var.vpc_public_subnets, each.value) + 1}\u0026#34; } } // Private Subnet resource \u0026#34;aws_subnet\u0026#34; \u0026#34;private_subnets\u0026#34; { for_each = toset(var.vpc_private_subnets) vpc_id = aws_vpc.main.id cidr_block = each.value availability_zone = var.vpc_azs[index(var.vpc_private_subnets, each.value)] tags = { Name = \u0026#34;Private Subnet ${index(var.vpc_private_subnets, each.value) + 1}\u0026#34; } } Route Table và Subnet Association Kế tiếp, ta sẽ tạo các Route Table, đồng thời associate Internet Gateway, NAT Gateway, và các Subnets. Tạo File Terraform/03-route_table.tf như bên dưới:\n// create public route table resource \u0026#34;aws_route_table\u0026#34; \u0026#34;public_route_table\u0026#34; { vpc_id = aws_vpc.main.id route { cidr_block = var.vpc_cidr gateway_id = \u0026#34;local\u0026#34; } route { cidr_block = \u0026#34;0.0.0.0/0\u0026#34; gateway_id = aws_internet_gateway.defaultIGW.id } tags = { Name = \u0026#34;Public Route Table\u0026#34; } } // create private route table resource \u0026#34;aws_route_table\u0026#34; \u0026#34;private_route_table\u0026#34; { vpc_id = aws_vpc.main.id tags = { Name = \u0026#34;Private Route Table\u0026#34; } } ## public subnet Association resource \u0026#34;aws_route_table_association\u0026#34; \u0026#34;public_subnets_associations\u0026#34; { for_each = aws_subnet.public_subnets subnet_id = each.value.id route_table_id = aws_route_table.public_route_table.id } ## private subnet Association resource \u0026#34;aws_route_table_association\u0026#34; \u0026#34;private_subnets_associations\u0026#34; { for_each = aws_subnet.private_subnets subnet_id = each.value.id route_table_id = aws_route_table.private_route_table.id } resource \u0026#34;aws_route\u0026#34; \u0026#34;route_nat_gw\u0026#34; { route_table_id = aws_route_table.private_route_table.id destination_cidr_block = \u0026#34;0.0.0.0/0\u0026#34; nat_gateway_id = aws_nat_gateway.my_nat_gtw.id timeouts { create = \u0026#34;5m\u0026#34; } } "
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/",
+	"title": "Triển khai VPC, Jenkins, và SonarQube Server",
+	"tags": [],
+	"description": "",
+	"content": "\rBạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này\nSource code tại phần này sẽ được triển khai tại Ops Repo\nTrong phần này, chúng ta sẽ triển khai một VPC với:\n3 Availability Zones 3 Public Subnets 3 Private Subnets 1 Internet Gateway 1 NAT Gateway 3 EC2, trong đó: 1 Jump Host để tương tác với cụm K8s ở private subnet 1 Jenkins Server để triển khai CI pipeline 1 SonarQube Server trong quy trình DevSecOps Nội dung Triển khai VPC Tạo Jump Host, Jenkins Server, và SonarQube Server "
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.3-dev-repo/",
+	"title": "Cấu hình GitHub Repository (Dev Repo)",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/5-devsecops/5.3-jenkins/",
+	"title": "Cấu hình Jenkins Server",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/",
+	"title": "Chạy Terraform để triển khai hạ tầng",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.3-eks-create/",
+	"title": "Tạo EKS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/",
+	"title": "Tạo Jenkins Server",
+	"tags": [],
+	"description": "",
+	"content": "Jenkins Server sẽ là nơi thực hiện hầu hết các Pipeline của chúng ta: CI Pipeline và Pipeline cho DevSecOps. Mỗi lần có một commit mới ở Dev Repo hoặc Ops Repo, Jenkins sẽ tự động chạy các pipeline dựa vào cách mà ta cấu hình.\nTạo File Terraform/jenkins_install.sh như bên dưới để cài đặt các package cần thiết cho Jenkins Server.\n#!/bin/bash sudo apt update -y # install docker sudo apt-get install -y ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc echo \\ \u0026#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026amp;\u0026amp; echo \u0026#34;$VERSION_CODENAME\u0026#34;) stable\u0026#34; | \\ sudo tee /etc/apt/sources.list.d/docker.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin # install aws-cli sudo apt install -y unzip curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update # install java and jenkins sudo apt install -y fontconfig openjdk-17-jre sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \\ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key echo \u0026#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]\u0026#34; \\ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \\ /etc/apt/sources.list.d/jenkins.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y jenkins sudo systemctl start jenkins # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:8080; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx sudo usermod -aG docker jenkins sudo systemctl restart jenkins sudo systemctl restart docker sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable Kế tiếp, ta sẽ thiết lập cấu hình cho Jenkins Server. Tạo file Terraform/05-jenkins_server.tf như bên dưới:\n# Security Group for EC2\rresource \u0026#34;aws_security_group\u0026#34; \u0026#34;JENKINS_SG\u0026#34; {\rname = \u0026#34;JENKINS_SG\u0026#34;\rdescription = \u0026#34;Allow HTTP inbound and all outbound traffic\u0026#34;\rvpc_id = aws_vpc.main.id\ringress = [\r{\rfrom_port = 80\rto_port = 80\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 80\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = -1\rto_port = -1\rprotocol = \u0026#34;icmp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;],\rdescription = \u0026#34;Allow inbound ICMP Traffic\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = 22\rto_port = 22\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 22\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r}\r]\regress {\rfrom_port = 0\rto_port = 0\rprotocol = \u0026#34;-1\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\r}\rtags = {\rName = \u0026#34;Jenkins Server SG\u0026#34;\r}\r}\rresource \u0026#34;aws_instance\u0026#34; \u0026#34;Jenkins_server\u0026#34; {\rami = var.ec2_ami\rinstance_type = var.ec2_instance_type\rkey_name = aws_key_pair.EC2key.key_name\rmonitoring = true\rsubnet_id = values(aws_subnet.public_subnets)[2].id\rvpc_security_group_ids = [aws_security_group.JENKINS_SG.id]\rassociate_public_ip_address = true\ruser_data = file(\u0026#34;${path.module}/jenkins_install.sh\u0026#34;)\rtags = {\rTerraform = \u0026#34;true\u0026#34;\rEnvironment = \u0026#34;dev\u0026#34;\rName = \u0026#34;Jenkins Server\u0026#34;\r}\rroot_block_device {\rvolume_size = 30\r}\r} "
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/",
+	"title": "Triển khai Kubernetes Cluster",
+	"tags": [],
+	"description": "",
+	"content": "Tại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính là nơi mà application sẽ được deployed. Thêm vào đó, ta cũng sẽ tạo Elastic Container Registry, nơi đây sẽ chứa các built image của chúng ta.\nKết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.\nNội dung Tạo Role cho EKS Cluster Tạo Role cho EKS Worker Node Tạo EKS Cluster Tạo EKS Worker Node Tạo Elastic Container Registry Chạy Terraform để triển khai hạ tầng "
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.4-argocd-autodeploy/",
+	"title": "Cấu hình ArgoCD và Automation Deployment",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/5-devsecops/5.4-trivy-owasp-zap/",
+	"title": "Cấu hình Trivy và OWASP ZAP",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.4-eks-worker-node-create/",
+	"title": "Tạo EKS Worker Node",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/",
+	"title": "Tạo SonarQube Server",
+	"tags": [],
+	"description": "",
+	"content": "SonarQube Server sẽ có nhiệm vụ kiểm thử Source Code của chúng ta. Bạn đọc có thể cùng host cả Jenkins và Sonar Server trên cùng một EC2 để tiết kiệm chi phí. Với bài workshop này, tôi sẽ tách biệt cả hai thành 2 EC2. Tạo file Terraform/sonarqube_install.sh như bên dưới:\n#!/bin/bash sudo apt update -y sudo apt install -y fontconfig openjdk-17-jre # Sonarqube sudo apt install curl ca-certificates sudo install -d /usr/share/postgresql-common/pgdg sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc sudo sh -c \u0026#39;echo \u0026#34;deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main\u0026#34; \u0026gt; /etc/apt/sources.list.d/pgdg.list\u0026#39; sudo apt update sudo apt install postgresql-15 -y sudo -i -u postgres bash \u0026lt;\u0026lt; EOF # Create the user and database, and set the password createuser sonar createdb sonar -O sonar psql -c \u0026#34;ALTER USER sonar WITH ENCRYPTED PASSWORD \u0026#39;your_password\u0026#39;;\u0026#34; EOF wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip sudo apt install -y unzip sudo unzip sonarqube-10.5.1.90531.zip sudo mv sonarqube-10.5.1.90531 /opt/sonarqube sudo adduser --system --no-create-home --group --disabled-login sonarqube sudo chown -R sonarqube:sonarqube /opt/sonarqube sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /opt/sonarqube/conf/sonar.properties sonar.jdbc.username=sonar sonar.jdbc.password=your_password sonar.jdbc.url=jdbc:postgresql://localhost/sonar EOF\u0026#39; sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /etc/systemd/system/sonarqube.service [Unit] Description=SonarQube service After=syslog.target network.target [Service] Type=forking ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop User=sonarqube Group=sonarqube Restart=always LimitNOFILE=65536 LimitNPROC=4096 [Install] WantedBy=multi-user.target EOF\u0026#39; sudo systemctl daemon-reload sudo systemctl start sonarqube sudo systemctl enable sonarqube # Update limits.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/security/limits.conf sonarqube - nofile 65536 sonarqube - nproc 4096 EOF\u0026#39; # Update sysctl.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/sysctl.conf vm.max_map_count=262144 EOF\u0026#39; sudo sysctl -p # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:9000; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx Kế tiếp, ta sẽ thiết lập cấu hình cho Sonar Server. Tạo file Terraform/05-sonar_server.tf như bên dưới:\n# Security Group for EC2 resource \u0026#34;aws_security_group\u0026#34; \u0026#34;SONAR_HOST_SG\u0026#34; { name = \u0026#34;SONAR_HOST_SG\u0026#34; description = \u0026#34;Allow SSH, HTTP inbound and all outbound traffic\u0026#34; vpc_id = aws_vpc.main.id ingress = [ { from_port = 80 to_port = 80 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 80\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = -1 to_port = -1 protocol = \u0026#34;icmp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;], description = \u0026#34;Allow inbound ICMP Traffic\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = 22 to_port = 22 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 22\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false } ] egress { from_port = 0 to_port = 0 protocol = \u0026#34;-1\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] } tags = { Name = \u0026#34;SONAR_HOST SG\u0026#34; } } resource \u0026#34;aws_instance\u0026#34; \u0026#34;Sonar_host\u0026#34; { ami = var.ec2_ami instance_type = var.ec2_instance_type key_name = aws_key_pair.EC2key.key_name monitoring = true subnet_id = values(aws_subnet.public_subnets)[1].id vpc_security_group_ids = [aws_security_group.SONAR_HOST_SG.id] associate_public_ip_address = true user_data = file(\u0026#34;${path.module}/sonarqube_install.sh\u0026#34;) tags = { Terraform = \u0026#34;true\u0026#34; Environment = \u0026#34;dev\u0026#34; Name = \u0026#34;Sonar Host\u0026#34; } root_block_device { volume_size = 30 } } "
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/",
+	"title": "Triển khai CI/CD Pipeline",
+	"tags": [],
+	"description": "",
+	"content": "Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:\nterraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.5-prometheus-grafana/",
+	"title": "Cấu hình Prometheus và Grafana",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/",
+	"title": "Chạy Terraform để triển khai hạ tầng",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.5-ecr/",
+	"title": "Tạo Elastic Container Registry",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+},
+{
+	"uri": "//localhost:1313/vi/5-devsecops/",
+	"title": "Triển khai DevSecOps",
+	"tags": [],
+	"description": "",
+	"content": "Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:\nterraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.6-efk/",
+	"title": "Cấu hình EFK Stack",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/3-eks/3.6-run-terraform/",
+	"title": "Tạo EKS Worker Node",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

@@ -1,5 +1,5 @@
 ---
-title : "Triển khai VPC và Jenkins, SonarQube Server"
+title : "Triển khai VPC, Jenkins, và SonarQube Server"
 date :  "`r Sys.Date()`" 
 weight : 2 
 chapter : false
@@ -8,6 +8,9 @@ pre : " <b> 2. </b> "
 
 {{% notice note %}}
 Bạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này
+{{% /notice %}}
+{{% notice info %}}
+Source code tại phần này sẽ được triển khai tại Ops Repo
 {{% /notice %}}
 
 
