@@ -11,7 +11,7 @@
 	"title": "Đặt vấn đề",
 	"tags": [],
 	"description": "",
-	"content": "Tại sao là Microservice? Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.\nNhư bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.\nTuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservice. Nôm na, Microservice sẽ chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.\nTriển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.\nTại sao là GitOps? Tại sao là DevSecOps? DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:\nEnd user sẽ được cập nhật phiên bản mới nhất của sản phẩm một cách nhanh chóng Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá. Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:\nSAST (Static Application Security Testing): thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.\nImage Scan và Secure IaC: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).\nDAST (Dynamic Application Security Testing): thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)\nMonitoring có cần thiết không? Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.\nTrong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:\nElastic Compute Service (EC2): Nơi ta sẽ host Jenkins Server, SonarQube Server. Chúng là một phần quan trọng trong CI/CD Pipeline của ta Elastic Kubernetes Service (EKS): Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS. Elastic Container Registry (ECR): Đóng vai trò như một \u0026ldquo;Private Docker Hub\u0026rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp. "
+	"content": "Tại sao là Microservices? Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.\nNhư bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và việc update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.\nTuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservices. Nôm na, Microservices là chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.\nTriển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.\nTại sao là GitOps? Tại sao là DevSecOps? DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:\nEnd user sẽ được cập nhật phiên bản mới nhất của sản phẩm một cách nhanh chóng Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá. Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:\nSAST (Static Application Security Testing): thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.\nImage Scan và Secure IaC: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).\nDAST (Dynamic Application Security Testing): thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)\nMonitoring có cần thiết không? Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.\nTrong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:\nElastic Compute Service (EC2): Nơi ta sẽ host Jenkins Server, SonarQube Server. Chúng là một phần quan trọng trong CI/CD Pipeline của ta Elastic Kubernetes Service (EKS): Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS. Elastic Container Registry (ECR): Đóng vai trò như một \u0026ldquo;Private Docker Hub\u0026rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp. Bạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này\n"
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/",
@@ -25,7 +25,7 @@
 	"title": "Tạo Role cho EKS Cluster",
 	"tags": [],
 	"description": "",
-	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+	"content": "Tạo file Terraform/06-eks_role.tf như bên dưới:\nresource \u0026#34;aws_iam_role\u0026#34; \u0026#34;ekse_role\u0026#34; { name = \u0026#34;eks-cluster\u0026#34; assume_role_policy = \u0026lt;\u0026lt;POLICY { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: { \u0026#34;Service\u0026#34;: \u0026#34;eks.amazonaws.com\u0026#34; }, \u0026#34;Action\u0026#34;: \u0026#34;sts:AssumeRole\u0026#34; } ] } POLICY } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;AmazonEKSClusterPolicy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKSClusterPolicy\u0026#34; role = aws_iam_role.ekse_role.name } "
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/",
@@ -39,7 +39,7 @@
 	"title": "Tổng quan Application",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Application của chúng ta là được triển khai theo kiến trúc Microservices với 3 Services chính:\nService API Gateway: Sẽ là nguồn nhận traffic (đến từ user) và chịu trách nhiệm điều hướng Order Service: Chịu trách nhiệm Write Database Info Service: Chịu trách nhiệm Read Database Tổng cộng ta sẽ có 3 API Endpoints:\ndomain.com/ domain.com/create-order domain.com/get-orders Traffic từ User sẽ luôn đi đến Customer API Gateway (là Load Balancer hoặc một Reverse Proxy) và được điều hướng đến Service API Gateway. Bên dưới là minh hoạ các luồng traffic cho 3 API Endpoints.\n"
 },
 {
 	"uri": "//localhost:1313/vi/",
@@ -60,7 +60,7 @@
 	"title": "Cấu hình Jenkins Server",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Cài đặt các Plugins và Tools cần thiết Truy cập Jenkins Server thông qua Domain Name của Jenkins Server EC2, ta sẽ được yêu cầu nhập Initial Password. Kết nối đến Jenkins Server thông qua giao thức SSH và thực hiện câu lệnh sau để lấy Initial Password:\nsudo cat /var/lib/jenkins/secrets/initialAdminPassword Thực hiện cài đặt các Suggested Plugins như hình dưới:\nTạo admin user như hình dưới:\nTại phần Dashboard \u0026gt; Manage Jenkins \u0026gt; Plugins, cài đặt các Plugins ở bên dưới:\nDocker Pipeline Amazon ECR SonarQube Scanner Tại phần Dashboard \u0026gt; Manage Jenkins \u0026gt; Tools, cài đặt SonarQube Scanner như hình bên dưới:\nThiết Lập Credentials Tại phần: Dashboard \u0026gt; Manage Jenkins \u0026gt; Credentials \u0026gt; System \u0026gt; Global credentials (unrestricted), tạo các credentials như hình bên dưới, trong đó:\náocd ácdc ácd cálc Thiết lập các CI Pipelines Thiết lập Pipeline cho Service API Gateway như hình bên dưới:\nTại phần Build Triggers, chọn GitHub hook trigger for GITScm polling như hình dưới:\nTại phần Pipeline, sửa như cấu hình bên dưới để kết nối đến GitHub Repository. Vì hiện tại Repository đang ở public, nên ta sẽ bỏ qua phần Credentials.\nThiết lập Branch main như hình bên dưới. Pipeline chỉ chạy khi có bất kỳ sự thay đổi nào ở branch main.\nỞ phần Script Path, sửa thành api-gateway/Jenkinsfile như hình dưới. Mỗi lần folder api-gateway thay đổi, Jenkins Server sẽ dựa vào file api-gateway/Jenkinsfile để bắt đầu chạy Pipeline.\nThiết lập Pipeline cho Info Service và Order Service cũng sẽ tương tự như trên. Tuy nhiên, tại phần Script Path ta sẽ thay đổi lần lượt thành info/Jenkinsfile và order/Jenkinsfile.\n"
 },
 {
 	"uri": "//localhost:1313/vi/5-devsecops/5.2-sonar/",
@@ -88,7 +88,7 @@
 	"title": "Tạo Role cho EKS Worker Node",
 	"tags": [],
 	"description": "",
-	"content": "Nội dung: Gửi 100.000 requests đến Load Balancer Gửi 1.000.000 requests đến Load Balancer Scale up Desired Task "
+	"content": "Tạo File Terraform/07-eks_roles_worker.tf như bên dưới:\nresource \u0026#34;aws_iam_role\u0026#34; \u0026#34;nodes\u0026#34; { name = \u0026#34;eks-node-group-nodes\u0026#34; assume_role_policy = jsonencode({ Statement = [{ Action = \u0026#34;sts:AssumeRole\u0026#34; Effect = \u0026#34;Allow\u0026#34; Principal = { Service = \u0026#34;ec2.amazonaws.com\u0026#34; } }] Version = \u0026#34;2012-10-17\u0026#34; }) } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEKSWorkerNodePolicy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy\u0026#34; role = aws_iam_role.nodes.name } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEKS_CNI_Policy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy\u0026#34; role = aws_iam_role.nodes.name } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEC2ContainerRegistryReadOnly\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly\u0026#34; role = aws_iam_role.nodes.name } "
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/",
@@ -102,14 +102,14 @@
 	"title": "Triển khai VPC, Jenkins, và SonarQube Server",
 	"tags": [],
 	"description": "",
-	"content": "\rBạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này\nSource code tại phần này sẽ được triển khai tại Ops Repo\nTrong phần này, chúng ta sẽ triển khai một VPC với:\n3 Availability Zones 3 Public Subnets 3 Private Subnets 1 Internet Gateway 1 NAT Gateway 3 EC2, trong đó: 1 Jump Host để tương tác với cụm K8s ở private subnet 1 Jenkins Server để triển khai CI pipeline 1 SonarQube Server trong quy trình DevSecOps Nội dung Triển khai VPC Tạo Jump Host, Jenkins Server, và SonarQube Server "
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTrong phần này, chúng ta sẽ triển khai một VPC với:\n3 Availability Zones 3 Public Subnets 3 Private Subnets 1 Internet Gateway 1 NAT Gateway 3 EC2, trong đó: 1 Jump Host để tương tác với cụm K8s ở private subnet 1 Jenkins Server để triển khai CI pipeline 1 SonarQube Server trong quy trình DevSecOps Nội dung Triển khai VPC Tạo Jump Host, Jenkins Server, và SonarQube Server "
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.3-dev-repo/",
 	"title": "Cấu hình GitHub Repository (Dev Repo)",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Dev Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkins File Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Dev Repo.\n"
 },
 {
 	"uri": "//localhost:1313/vi/5-devsecops/5.3-jenkins/",
@@ -130,7 +130,7 @@
 	"title": "Tạo EKS Cluster",
 	"tags": [],
 	"description": "",
-	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+	"content": "Tạo File Terraform/08-eks.tf như bên dưới:\nmodule \u0026#34;eks\u0026#34; { source = \u0026#34;terraform-aws-modules/eks/aws\u0026#34; cluster_name = var.cluster_name cluster_version = var.cluster_version vpc_id = aws_vpc.main.id subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] cluster_endpoint_public_access = true iam_role_arn = aws_iam_role.ekse_role.arn enable_cluster_creator_admin_permissions = true cluster_addons = { kube-proxy = { most_recent = true } vpc-cni = { most_recent = true } } control_plane_subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] tags = { Environment = \u0026#34;Development\u0026#34; } depends_on = [aws_iam_role_policy_attachment.AmazonEKSClusterPolicy] } "
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/",
@@ -144,14 +144,14 @@
 	"title": "Triển khai Kubernetes Cluster",
 	"tags": [],
 	"description": "",
-	"content": "Tại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính là nơi mà application sẽ được deployed. Thêm vào đó, ta cũng sẽ tạo Elastic Container Registry, nơi đây sẽ chứa các built image của chúng ta.\nKết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.\nNội dung Tạo Role cho EKS Cluster Tạo Role cho EKS Worker Node Tạo EKS Cluster Tạo EKS Worker Node Tạo Elastic Container Registry Chạy Terraform để triển khai hạ tầng "
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính là nơi mà application sẽ được deployed. Thêm vào đó, ta cũng sẽ tạo Elastic Container Registry, nơi đây sẽ chứa các built image của chúng ta.\nKết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.\nNội dung Tạo Role cho EKS Cluster Tạo Role cho EKS Worker Node Tạo EKS Cluster Tạo EKS Worker Node Tạo Elastic Container Registry Chạy Terraform để triển khai hạ tầng "
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.4-argocd-autodeploy/",
-	"title": "Cấu hình ArgoCD và Automation Deployment",
+	"title": "Cấu hình Argo CD",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTại Ops Repository, tạo Folder argocd với các files tại đây. Sơ qua, với các File như hình dưới, Argo CD sẽ đựơc deployed trong namespace argocd:\n"
 },
 {
 	"uri": "//localhost:1313/vi/5-devsecops/5.4-trivy-owasp-zap/",
@@ -165,7 +165,7 @@
 	"title": "Tạo EKS Worker Node",
 	"tags": [],
 	"description": "",
-	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+	"content": "Tạo File Terraform/09-eks_worker_nodes.tf như bên dưới:\nresource \u0026#34;aws_eks_node_group\u0026#34; \u0026#34;my_nodes\u0026#34; { cluster_name = var.cluster_name node_group_name = \u0026#34;ClusterNode\u0026#34; node_role_arn = aws_iam_role.nodes.arn subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] capacity_type = \u0026#34;ON_DEMAND\u0026#34; instance_types = [var.ec2_instance_type] scaling_config { desired_size = 3 max_size = 4 min_size = 2 } update_config { max_unavailable = 1 } labels = { role = \u0026#34;general\u0026#34; } depends_on = [ aws_iam_role_policy_attachment.nodes_AmazonEKSWorkerNodePolicy, aws_iam_role_policy_attachment.nodes_AmazonEKS_CNI_Policy, aws_iam_role_policy_attachment.nodes_AmazonEC2ContainerRegistryReadOnly, module.eks.cluster_id ] } "
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/",
@@ -179,14 +179,14 @@
 	"title": "Triển khai CI/CD Pipeline",
 	"tags": [],
 	"description": "",
-	"content": "Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:\nterraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
+	"content": "\rSource code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo\nTại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.\nNội dung Tổng quan Application Cấu hình Jenkins Server Cấu hình GitHub Repository (Dev Repo) Cấu hình ArgoCD và Automation Deployment Cấu hình Prometheus và Grafana Cấu hình EFK Stack "
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.5-prometheus-grafana/",
 	"title": "Cấu hình Prometheus và Grafana",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTại Ops Repository, tạo Folder monitoring với các files tại đây. Sơ qua, với các File như hình dưới, Grafana sẽ được sẽ được deployed trong namespace monitoring:\nTa sẽ triển khai Prometheus ở phần Bash Scripting, hiện tại, đây chỉ là những file cấu hình và chúng chưa được deploy lên K8s.\n"
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/",
@@ -200,7 +200,7 @@
 	"title": "Tạo Elastic Container Registry",
 	"tags": [],
 	"description": "",
-	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+	"content": "Tạo File Terraform/10-ecr như bên dưới:\nresource \u0026#34;aws_ecr_repository\u0026#34; \u0026#34;ECR\u0026#34; { name = \u0026#34;fcjws2\u0026#34; image_tag_mutability = \u0026#34;IMMUTABLE\u0026#34; image_scanning_configuration { scan_on_push = false } } "
 },
 {
 	"uri": "//localhost:1313/vi/5-devsecops/",
@@ -214,14 +214,28 @@
 	"title": "Cấu hình EFK Stack",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTại Ops Repository, tạo Folder EFK với các files tại đây. Sơ qua, với các File như hình dưới, EFK Stack sẽ được sẽ được deployed trong namespace efklog:\n"
 },
 {
 	"uri": "//localhost:1313/vi/3-eks/3.6-run-terraform/",
-	"title": "Tạo EKS Worker Node",
+	"title": "Chạy Terraform để triển khai hạ tầng",
 	"tags": [],
 	"description": "",
-	"content": "\nSSH Agent Forwading Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:\nssh-add EC2.pem Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Kiểm tra Scaling Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.\n"
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.7-bashscript/",
+	"title": "Bash Script cho Automation Deployment",
+	"tags": [],
+	"description": "",
+	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nChúng ta sẽ dùng bash script để tạo các stack Argo CD, Prometheus, Grafana, và EFK Stack. Tại Ops Repo, tạo file setup.sh như bên dưới.\n#!/bin/bash #set up argo cd kubectl apply -f argocd/namespace.yaml kubectl apply -f argocd/default.yaml -n argocd #set up efk stack kubectl apply -f EFK/. #set up Prometheus and Grafana kubectl create namespace monitoring helm repo add prometheus-community https://prometheus-community.github.io/helm-charts helm repo update helm install prometheus-operator prometheus-community/kube-prometheus-stack -n monitoring kubectl apply -f monitoring/grafana.yaml -n monitoring Bây giờ, Ops Repository của ta đã có hoàn chỉnh như hình:\nBây giờ, đẩy tất cả mọi thứ lên GitHub Repository với git push.\nFolder k8s sẽ không được đề cập ở đây, bạn đọc có thể tham khảo Source Code tại Ops Repository của tôi.\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-cicd/4.8-k8s/",
+	"title": "Triển khai K8s Cluster",
+	"tags": [],
+	"description": "",
+	"content": "Dùng Console Management, tại phần EC2 \u0026gt; Security Group, ta cần sửa Security Group cho EKS Control Plane sao cho EKS Control Plane sẽ chấp nhận traffic đến từ Jump Host ở Port 443.\nBây giờ, dùng private key để kết nối đến Jump Host thông qua giao thức SSH. Sau đó, tại Jump Host, ta cần thiết lập AWS Credentials để có thể truy cập Cluster.\nDùng Environment Variable để đảm bảo rằng khi kết thúc phiên làm việc, AWS Credentials sẽ không còn lưu tại Jump Host\nexport AWS_ACCESS_KEY_ID=\u0026lt;your-access-id\u0026gt; \\ export AWS_SECRET_ACCESS_KEY=\u0026lt;your-secret\u0026gt; \\ export AWS_DEFAULT_REGION=\u0026lt;your-deployed-region\u0026gt; "
 },
 {
 	"uri": "//localhost:1313/vi/categories/",

@@ -6,14 +6,17 @@ chapter : false
 pre : " <b> 4. </b> "
 ---
 
+{{% notice info %}}
+Source code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo
+{{% /notice %}}
 
-Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:
+Tại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.
 
-```sh
-terraform destroy
-```
+### Nội dung
 
-Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
-
+- [Tổng quan Application](3.1-connect-bastion/) 
+- [Cấu hình Jenkins Server](3.2-scaling-check/) 
+- [Cấu hình GitHub Repository (Dev Repo)](3.2-scaling-check/) 
+- [Cấu hình ArgoCD và Automation Deployment](3.2-scaling-check/) 
+- [Cấu hình Prometheus và Grafana](3.2-scaling-check/) 
+- [Cấu hình EFK Stack](3.2-scaling-check/) 

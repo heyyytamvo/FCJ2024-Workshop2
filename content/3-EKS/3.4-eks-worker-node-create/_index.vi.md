@@ -6,27 +6,38 @@ chapter : false
 pre : " <b> 3.4. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+Tạo File `Terraform/09-eks_worker_nodes.tf` như bên dưới:
 
-Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:
+```tf
+resource "aws_eks_node_group" "my_nodes" {
+  cluster_name    = var.cluster_name
+  node_group_name = "ClusterNode"
+  node_role_arn   = aws_iam_role.nodes.arn
 
-```sh
-ssh-add EC2.pem
+  subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id]
+
+  capacity_type  = "ON_DEMAND"
+  instance_types = [var.ec2_instance_type]
+
+  scaling_config {
+    desired_size = 3
+    max_size     = 4
+    min_size     = 2
+  }
+
+  update_config {
+    max_unavailable = 1
+  }
+
+  labels = {
+    role = "general"
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.nodes_AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.nodes_AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.nodes_AmazonEC2ContainerRegistryReadOnly,
+    module.eks.cluster_id
+  ]
+}
 ```
-
-Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:
-
-```
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
-
-Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Kiểm tra Scaling
-
-Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.

@@ -6,3 +6,14 @@ chapter : false
 pre : " <b> 4.5. </b> "
 ---
 
+{{% notice info %}}
+Source code tại phần này sẽ được triển khai tại Ops Repo
+{{% /notice %}}
+
+Tại Ops Repository, tạo Folder `monitoring` với các files tại [đây](). Sơ qua, với các File như hình dưới, Grafana sẽ được sẽ được deployed trong namespace `monitoring`:
+
+![ConnectPrivate](/images/4-cicd/4.5-prometheus-grafana/grafana.png)
+
+{{% notice note %}}
+Ta sẽ triển khai Prometheus ở phần Bash Scripting, hiện tại, đây chỉ là những file cấu hình và chúng chưa được deploy lên K8s.
+{{% /notice %}}

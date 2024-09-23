@@ -12,21 +12,21 @@
     <title>Cấu hình Jenkins Server :: Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1726930750" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1726930750" rel="stylesheet">
-    <link href="/css/hybrid.css?1726930750" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1726930750" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1726930750" rel="stylesheet">
-    <link href="/css/auto-complete.css?1726930750" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1726930750" rel="stylesheet">
-    <link href="/css/theme.css?1726930750" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1726930750" rel="stylesheet">
+    <link href="/css/nucleus.css?1727099759" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727099759" rel="stylesheet">
+    <link href="/css/hybrid.css?1727099759" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727099759" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727099759" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727099759" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727099759" rel="stylesheet">
+    <link href="/css/theme.css?1727099759" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727099759" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1726930750" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727099759" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1726930750"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727099759"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1726930750"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1726930750"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727099759"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727099759"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1726930750"></script>
+<script type="text/javascript" src="/js/search.js?1727099759"></script>
 
     
   </div>
@@ -621,13 +621,13 @@
  
   
     
-    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Tạo EKS Worker Node" class="dd-item 
+    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Chạy Terraform để triển khai hạ tầng" class="dd-item 
         
         
         
         ">
       <a href="/vi/3-eks/3.6-run-terraform/">
-           <b> 3.4. </b> Tạo EKS Worker Node
+           <b> 3.5. </b> Chạy Terraform để triển khai hạ tầng
           
             <i class="fas fa-check read-icon"></i>
           
@@ -771,13 +771,13 @@
  
   
     
-    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình ArgoCD và Automation Deployment" class="dd-item 
+    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình Argo CD" class="dd-item 
         
         
         
         ">
       <a href="/vi/4-cicd/4.4-argocd-autodeploy/">
-           <b> 4.4. </b> Cấu hình ArgoCD và Automation Deployment
+           <b> 4.4. </b> Cấu hình Argo CD
           
             <i class="fas fa-check read-icon"></i>
           
@@ -834,6 +834,62 @@
         ">
       <a href="/vi/4-cicd/4.6-efk/">
            <b> 4.6. </b> Cấu hình EFK Stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.7-bashscript/" title="Bash Script cho Automation Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.7-bashscript/">
+           <b> 4.7. </b> Bash Script cho Automation Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.8-k8s/" title="Triển khai K8s Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.8-k8s/">
+           <b> 4.8. </b> Triển khai K8s Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1155,7 +1211,17 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cài-đặt-các-plugins-và-tools-cần-thiết">Cài đặt các Plugins và Tools cần thiết</a></li>
+        <li><a href="#thiết-lập-credentials">Thiết Lập Credentials</a></li>
+        <li><a href="#thiết-lập-các-ci-pipelines">Thiết lập các CI Pipelines</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1179,7 +1245,44 @@
 
 
 
-	
+	<h3 id="cài-đặt-các-plugins-và-tools-cần-thiết">Cài đặt các Plugins và Tools cần thiết</h3>
+<p>Truy cập Jenkins Server thông qua Domain Name của Jenkins Server EC2, ta sẽ được yêu cầu nhập Initial Password. Kết nối đến Jenkins Server thông qua giao thức SSH và thực hiện câu lệnh sau để lấy Initial Password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</span></span></code></pre></div><p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/0_Jenkins.png"></p>
+<p>Thực hiện cài đặt các Suggested Plugins như hình dưới:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/1_Jenkins.png"></p>
+<p>Tạo admin user như hình dưới:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/2_Jenkins.png"></p>
+<p>Tại phần <code>Dashboard &gt; Manage Jenkins &gt; Plugins</code>, cài đặt các Plugins ở bên dưới:</p>
+<ul>
+<li>Docker Pipeline</li>
+<li>Amazon ECR</li>
+<li>SonarQube Scanner</li>
+</ul>
+<p>Tại phần <code>Dashboard &gt; Manage Jenkins &gt; Tools</code>, cài đặt <strong>SonarQube Scanner</strong> như hình bên dưới:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/3_Jenkins.png"></p>
+<h3 id="thiết-lập-credentials">Thiết Lập Credentials</h3>
+<p>Tại phần: <code>Dashboard &gt; Manage Jenkins &gt; Credentials &gt; System &gt; Global credentials (unrestricted)</code>, tạo các credentials như hình bên dưới, trong đó:</p>
+<ul>
+<li>áocd</li>
+<li>ácdc</li>
+<li>ácd</li>
+<li>cálc</li>
+</ul>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/4_Jenkins.png"></p>
+<h3 id="thiết-lập-các-ci-pipelines">Thiết lập các CI Pipelines</h3>
+<p>Thiết lập Pipeline cho <code>Service API Gateway</code> như hình bên dưới:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/5_Jenkins.png"></p>
+<p>Tại phần Build Triggers, chọn <strong>GitHub hook trigger for GITScm polling</strong> như hình dưới:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/6_Jenkins.png"></p>
+<p>Tại phần Pipeline, sửa như cấu hình bên dưới để kết nối đến GitHub Repository. Vì hiện tại Repository đang ở public, nên ta sẽ bỏ qua phần Credentials.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/7_Jenkins.png"></p>
+<p>Thiết lập Branch <strong>main</strong> như hình bên dưới. Pipeline chỉ chạy khi có bất kỳ sự thay đổi nào ở branch <strong>main</strong>.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/8_Jenkins.png"></p>
+<p>Ở phần <strong>Script Path</strong>, sửa thành <code>api-gateway/Jenkinsfile</code> như hình dưới. Mỗi lần folder <code>api-gateway</code> thay đổi, Jenkins Server sẽ dựa vào file <code>api-gateway/Jenkinsfile</code> để bắt đầu chạy Pipeline.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/9_Jenkins.png"></p>
+<p>Thiết lập Pipeline cho <code>Info Service</code> và <code>Order Service</code> cũng sẽ tương tự như trên. Tuy nhiên, tại phần <strong>Script Path</strong> ta sẽ thay đổi lần lượt thành <code>info/Jenkinsfile</code> và <code>order/Jenkinsfile</code>.</p>
+
 
 
 
@@ -1648,6 +1751,38 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1755,19 +1890,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1726930750"></script>
-    <script src="/js/perfect-scrollbar.min.js?1726930750"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1726930750"></script>
-    <script src="/js/jquery.sticky.js?1726930750"></script>
-    <script src="/js/featherlight.min.js?1726930750"></script>
-    <script src="/js/highlight.pack.js?1726930750"></script>
+    <script src="/js/clipboard.min.js?1727099759"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727099759"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727099759"></script>
+    <script src="/js/jquery.sticky.js?1727099759"></script>
+    <script src="/js/featherlight.min.js?1727099759"></script>
+    <script src="/js/highlight.pack.js?1727099759"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1726930750"></script>
-    <script src="/js/learn.js?1726930750"></script>
-    <script src="/js/hugo-learn.js?1726930750"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727099759"></script>
+    <script src="/js/learn.js?1727099759"></script>
+    <script src="/js/hugo-learn.js?1727099759"></script>
 
-    <link href="/mermaid/mermaid.css?1726930750" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1726930750"></script>
+    <link href="/mermaid/mermaid.css?1727099759" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727099759"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

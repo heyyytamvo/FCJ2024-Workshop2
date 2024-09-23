@@ -12,21 +12,21 @@
     <title>Tạo EKS Worker Node :: Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1726930750" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1726930750" rel="stylesheet">
-    <link href="/css/hybrid.css?1726930750" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1726930750" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1726930750" rel="stylesheet">
-    <link href="/css/auto-complete.css?1726930750" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1726930750" rel="stylesheet">
-    <link href="/css/theme.css?1726930750" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1726930750" rel="stylesheet">
+    <link href="/css/nucleus.css?1727080069" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727080069" rel="stylesheet">
+    <link href="/css/hybrid.css?1727080069" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727080069" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727080069" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727080069" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727080069" rel="stylesheet">
+    <link href="/css/theme.css?1727080069" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727080069" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1726930750" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727080069" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1726930750"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727080069"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1726930750"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1726930750"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727080069"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727080069"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1726930750"></script>
+<script type="text/javascript" src="/js/search.js?1727080069"></script>
 
     
   </div>
@@ -621,13 +621,13 @@
  
   
     
-    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Tạo EKS Worker Node" class="dd-item 
+    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Chạy Terraform để triển khai hạ tầng" class="dd-item 
         
         
         
         ">
       <a href="/vi/3-eks/3.6-run-terraform/">
-           <b> 3.4. </b> Tạo EKS Worker Node
+           <b> 3.5. </b> Chạy Terraform để triển khai hạ tầng
           
             <i class="fas fa-check read-icon"></i>
           
@@ -771,13 +771,13 @@
  
   
     
-    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình ArgoCD và Automation Deployment" class="dd-item 
+    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình Argo CD" class="dd-item 
         
         
         
         ">
       <a href="/vi/4-cicd/4.4-argocd-autodeploy/">
-           <b> 4.4. </b> Cấu hình ArgoCD và Automation Deployment
+           <b> 4.4. </b> Cấu hình Argo CD
           
             <i class="fas fa-check read-icon"></i>
           
@@ -834,6 +834,62 @@
         ">
       <a href="/vi/4-cicd/4.6-efk/">
            <b> 4.6. </b> Cấu hình EFK Stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.7-bashscript/" title="Bash Script cho Automation Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.7-bashscript/">
+           <b> 4.7. </b> Bash Script cho Automation Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.8-k8s/" title="Triển khai K8s Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.8-k8s/">
+           <b> 4.8. </b> Triển khai K8s Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1155,16 +1211,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#ssh-agent-forwading">SSH Agent Forwading</a></li>
-        <li><a href="#kiểm-tra-scaling">Kiểm tra Scaling</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -1188,17 +1235,39 @@
 
 
 
-	<p><img alt="SSMPublicinstance" src="/images/arc-log.png"></p>
-<h3 id="ssh-agent-forwading">SSH Agent Forwading</h3>
-<p>Như Architecture ở trên, ta có thể kết nối đến những EC2 Cluster thông qua Bastion Host. Tuy nhiên, ta không hề mong muốn Bastion Host chứa Private Key. Và thế là ta dùng SSH Agent Forwarding. Tại folder có chứa public key mà ta vừa tạo ở phần trước, thực hiện câu lệnh:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-add EC2.pem
-</span></span></code></pre></div><p>Sau đó ta có thể kết nối với Bastion Host thông qua câu lệnh:</p>
-<pre tabindex="0"><code>ssh -A ubuntu@&lt;your-bastion-host-public-IP&gt;
-</code></pre><p>Giờ ta đã kết nối thành công với Bastion Host. Giờ ta có thể kết nối đến EC2 Cluster thông qua câu lệnh sau:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh ec2-user@&lt;your-EC2Cluster-private-IP&gt;
-</span></span></code></pre></div><h3 id="kiểm-tra-scaling">Kiểm tra Scaling</h3>
-<p>Quay trở lại với Bastion Host, ta sẽ dùng Bastion Host để kiểm tra độ Scaling của các EC2 Cluster. Tất nhiên đây không phải là chức năng chính của Bastion Host, nhưng vì thuận tiện nên bạn đọc có thể dùng Bastion Host để gởi request đến Load Balancer và kiểm tra độ Scaling của EC2 Cluster.</p>
-
+	<p>Tạo File <code>Terraform/09-eks_worker_nodes.tf</code> như bên dưới:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_eks_node_group&#34;</span> <span style="color:#e6db74">&#34;my_nodes&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cluster_name</span>    = var.<span style="color:#a6e22e">cluster_name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">node_group_name</span> = <span style="color:#e6db74">&#34;ClusterNode&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">node_role_arn</span>   = <span style="color:#a6e22e">aws_iam_role</span>.<span style="color:#a6e22e">nodes</span>.<span style="color:#a6e22e">arn</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_ids</span> = [<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">subnet</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">private_subnets</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">subnet</span>.<span style="color:#a6e22e">id</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">capacity_type</span>  = <span style="color:#e6db74">&#34;ON_DEMAND&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">instance_types</span> = [var.<span style="color:#a6e22e">ec2_instance_type</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">scaling_config</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">desired_size</span> = <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">max_size</span>     = <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">min_size</span>     = <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">update_config</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">max_unavailable</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labels</span> = {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">role</span> = <span style="color:#e6db74">&#34;general&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">depends_on</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aws_iam_role_policy_attachment</span>.<span style="color:#a6e22e">nodes_AmazonEKSWorkerNodePolicy</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aws_iam_role_policy_attachment</span>.<span style="color:#a6e22e">nodes_AmazonEKS_CNI_Policy</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aws_iam_role_policy_attachment</span>.<span style="color:#a6e22e">nodes_AmazonEC2ContainerRegistryReadOnly</span>,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">    module</span>.<span style="color:#a6e22e">eks</span>.<span style="color:#a6e22e">cluster_id</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
 
 
 
@@ -1667,6 +1736,38 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1774,19 +1875,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1726930750"></script>
-    <script src="/js/perfect-scrollbar.min.js?1726930750"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1726930750"></script>
-    <script src="/js/jquery.sticky.js?1726930750"></script>
-    <script src="/js/featherlight.min.js?1726930750"></script>
-    <script src="/js/highlight.pack.js?1726930750"></script>
+    <script src="/js/clipboard.min.js?1727080069"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727080069"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727080069"></script>
+    <script src="/js/jquery.sticky.js?1727080069"></script>
+    <script src="/js/featherlight.min.js?1727080069"></script>
+    <script src="/js/highlight.pack.js?1727080069"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1726930750"></script>
-    <script src="/js/learn.js?1726930750"></script>
-    <script src="/js/hugo-learn.js?1726930750"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727080069"></script>
+    <script src="/js/learn.js?1727080069"></script>
+    <script src="/js/hugo-learn.js?1727080069"></script>
 
-    <link href="/mermaid/mermaid.css?1726930750" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1726930750"></script>
+    <link href="/mermaid/mermaid.css?1727080069" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727080069"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

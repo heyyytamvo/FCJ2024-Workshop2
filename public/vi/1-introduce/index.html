@@ -12,21 +12,21 @@
     <title>Đặt vấn đề :: Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1726934335" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1726934335" rel="stylesheet">
-    <link href="/css/hybrid.css?1726934335" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1726934335" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1726934335" rel="stylesheet">
-    <link href="/css/auto-complete.css?1726934335" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1726934335" rel="stylesheet">
-    <link href="/css/theme.css?1726934335" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1726934335" rel="stylesheet">
+    <link href="/css/nucleus.css?1727099758" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727099758" rel="stylesheet">
+    <link href="/css/hybrid.css?1727099758" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727099758" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727099758" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727099758" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727099758" rel="stylesheet">
+    <link href="/css/theme.css?1727099758" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727099758" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1726934335" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727099758" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1726934335"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727099758"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1726934335"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1726934335"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727099758"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727099758"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1726934335"></script>
+<script type="text/javascript" src="/js/search.js?1727099758"></script>
 
     
   </div>
@@ -621,13 +621,13 @@
  
   
     
-    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Tạo EKS Worker Node" class="dd-item 
+    <li data-nav-id="/vi/3-eks/3.6-run-terraform/" title="Chạy Terraform để triển khai hạ tầng" class="dd-item 
         
         
         
         ">
       <a href="/vi/3-eks/3.6-run-terraform/">
-           <b> 3.4. </b> Tạo EKS Worker Node
+           <b> 3.5. </b> Chạy Terraform để triển khai hạ tầng
           
             <i class="fas fa-check read-icon"></i>
           
@@ -771,13 +771,13 @@
  
   
     
-    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình ArgoCD và Automation Deployment" class="dd-item 
+    <li data-nav-id="/vi/4-cicd/4.4-argocd-autodeploy/" title="Cấu hình Argo CD" class="dd-item 
         
         
         
         ">
       <a href="/vi/4-cicd/4.4-argocd-autodeploy/">
-           <b> 4.4. </b> Cấu hình ArgoCD và Automation Deployment
+           <b> 4.4. </b> Cấu hình Argo CD
           
             <i class="fas fa-check read-icon"></i>
           
@@ -834,6 +834,62 @@
         ">
       <a href="/vi/4-cicd/4.6-efk/">
            <b> 4.6. </b> Cấu hình EFK Stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.7-bashscript/" title="Bash Script cho Automation Deployment" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.7-bashscript/">
+           <b> 4.7. </b> Bash Script cho Automation Deployment
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/4-cicd/4.8-k8s/" title="Triển khai K8s Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/4-cicd/4.8-k8s/">
+           <b> 4.8. </b> Triển khai K8s Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1153,7 +1209,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#tại-sao-là-microservice">Tại sao là Microservice?</a></li>
+        <li><a href="#tại-sao-là-microservices">Tại sao là Microservices?</a></li>
         <li><a href="#tại-sao-là-gitops">Tại sao là GitOps?</a></li>
         <li><a href="#tại-sao-là-devsecops">Tại sao là DevSecOps?</a></li>
         <li><a href="#monitoring-có-cần-thiết-không">Monitoring có cần thiết không?</a></li>
@@ -1184,11 +1240,11 @@
 
 
 
-	<h3 id="tại-sao-là-microservice">Tại sao là Microservice?</h3>
+	<h3 id="tại-sao-là-microservices">Tại sao là Microservices?</h3>
 <p>Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.</p>
 <p><img alt="ConnectPrivate" src="/images/1.Intro/mono.gif"></p>
-<p>Như bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.</p>
-<p>Tuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservice. Nôm na, Microservice sẽ chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.</p>
+<p>Như bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và việc update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.</p>
+<p>Tuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservices. Nôm na, Microservices là chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.</p>
 <p><img alt="ConnectPrivate" src="/images/1.Intro/Micro.gif"></p>
 <p>Triển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.</p>
 <h3 id="tại-sao-là-gitops">Tại sao là GitOps?</h3>
@@ -1210,6 +1266,7 @@
 <p><strong>DAST (Dynamic Application Security Testing)</strong>: thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)</p>
 </li>
 </ul>
+<p><img alt="ConnectPrivate" src="/images/1.Intro/DevSecOps.gif"></p>
 <h3 id="monitoring-có-cần-thiết-không">Monitoring có cần thiết không?</h3>
 <p>Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.</p>
 <p><img alt="ConnectPrivate" src="/images/1.Intro/Monitor.gif"></p>
@@ -1219,6 +1276,10 @@
 <li><strong>Elastic Kubernetes Service (EKS)</strong>: Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS.</li>
 <li><strong>Elastic Container Registry (ECR)</strong>: Đóng vai trò như một &ldquo;<em>Private Docker Hub</em>&rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp.</li>
 </ul>
+
+<div class="notices note" ><p>Bạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này</p>
+</div>
+
 
 
 
@@ -1681,6 +1742,38 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1788,19 +1881,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1726934335"></script>
-    <script src="/js/perfect-scrollbar.min.js?1726934335"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1726934335"></script>
-    <script src="/js/jquery.sticky.js?1726934335"></script>
-    <script src="/js/featherlight.min.js?1726934335"></script>
-    <script src="/js/highlight.pack.js?1726934335"></script>
+    <script src="/js/clipboard.min.js?1727099758"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727099758"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727099758"></script>
+    <script src="/js/jquery.sticky.js?1727099758"></script>
+    <script src="/js/featherlight.min.js?1727099758"></script>
+    <script src="/js/highlight.pack.js?1727099758"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1726934335"></script>
-    <script src="/js/learn.js?1726934335"></script>
-    <script src="/js/hugo-learn.js?1726934335"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727099758"></script>
+    <script src="/js/learn.js?1727099758"></script>
+    <script src="/js/hugo-learn.js?1727099758"></script>
 
-    <link href="/mermaid/mermaid.css?1726934335" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1726934335"></script>
+    <link href="/mermaid/mermaid.css?1727099758" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727099758"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -5,6 +5,9 @@ weight : 3
 chapter : false
 pre : " <b> 3. </b> "
 ---
+{{% notice info %}}
+Source code tại phần này sẽ được triển khai tại Ops Repo
+{{% /notice %}}
 
 Tại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính là nơi mà application sẽ được deployed. Thêm vào đó, ta cũng sẽ tạo Elastic Container Registry, nơi đây sẽ chứa các built image của chúng ta.
 
