@@ -46,3 +46,11 @@ cd FCJ2024-WS2-OpsRepo
 chmod +x setup.sh
 source setup.sh
 ```
+
+Nếu bạn đọc truy cập phần `EC2 > Load Balancers`, ta sẽ có tổng cộng 3 Load Balancers, mỗi DNS sẽ đưa ta đến:
+
+- Argo CD Web 
+- Grafana Web
+- Kibana Web
+
+![ConnectPrivate](/images/4-cicd/4.8-k8s/3ELB.png)

@@ -1,5 +1,5 @@
 ---
-title : "Triển khai CI/CD Pipeline"
+title : "Chuẩn bị CI/CD Pipeline"
 date :  "`r Sys.Date()`" 
 weight : 4 
 chapter : false

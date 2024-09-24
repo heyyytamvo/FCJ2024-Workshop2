@@ -122,40 +122,112 @@
                 href="//localhost:1313/4-cicd/4.6-efk/"
                 />
   </url><url>
-    <loc>//localhost:1313/5-devsecops/5.2-sonar/</loc>
+    <loc>//localhost:1313/4-cicd/4.7-bashscript/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-devsecops/5.2-sonar/"
+                href="//localhost:1313/vi/4-cicd/4.7-bashscript/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-devsecops/5.2-sonar/"
+                href="//localhost:1313/4-cicd/4.7-bashscript/"
                 />
   </url><url>
-    <loc>//localhost:1313/5-devsecops/5.3-jenkins/</loc>
+    <loc>//localhost:1313/4-cicd/4.8-k8s/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-devsecops/5.3-jenkins/"
+                href="//localhost:1313/vi/4-cicd/4.8-k8s/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-devsecops/5.3-jenkins/"
+                href="//localhost:1313/4-cicd/4.8-k8s/"
                 />
   </url><url>
-    <loc>//localhost:1313/5-devsecops/5.4-trivy-owasp-zap/</loc>
+    <loc>//localhost:1313/5-finish-monitoring/5.2-efk/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-devsecops/5.4-trivy-owasp-zap/"
+                href="//localhost:1313/vi/5-finish-monitoring/5.2-efk/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-devsecops/5.4-trivy-owasp-zap/"
+                href="//localhost:1313/5-finish-monitoring/5.2-efk/"
+                />
+  </url><url>
+    <loc>//localhost:1313/6-devsecops/6.2-sonar/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/6-devsecops/6.2-sonar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/6-devsecops/6.2-sonar/"
+                />
+  </url><url>
+    <loc>//localhost:1313/6-devsecops/6.3-jenkins/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/6-devsecops/6.3-jenkins/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/6-devsecops/6.3-jenkins/"
+                />
+  </url><url>
+    <loc>//localhost:1313/6-devsecops/6.4-trivy-owasp-zap/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/6-devsecops/6.4-trivy-owasp-zap/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/6-devsecops/6.4-trivy-owasp-zap/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/6.2-sonar/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/6.2-sonar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/6.2-sonar/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/6.3-jenkins/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/6.3-jenkins/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/6.3-jenkins/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/6.4-trivy-owasp-zap/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/6.4-trivy-owasp-zap/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/6.4-trivy-owasp-zap/"
                 />
   </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/</loc>
@@ -326,16 +398,40 @@
                 href="//localhost:1313/4-cicd/"
                 />
   </url><url>
-    <loc>//localhost:1313/5-devsecops/</loc>
+    <loc>//localhost:1313/5-finish-monitoring/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-devsecops/"
+                href="//localhost:1313/vi/5-finish-monitoring/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-devsecops/"
+                href="//localhost:1313/5-finish-monitoring/"
+                />
+  </url><url>
+    <loc>//localhost:1313/6-devsecops/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/6-devsecops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/6-devsecops/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/"
                 />
   </url><url>
     <loc>//localhost:1313/4-cicd/4.1-application/</loc>
@@ -350,16 +446,40 @@
                 href="//localhost:1313/4-cicd/4.1-application/"
                 />
   </url><url>
-    <loc>//localhost:1313/5-devsecops/5.1-ops-repo/</loc>
+    <loc>//localhost:1313/5-finish-monitoring/5.1-prome-grafana/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/5-devsecops/5.1-ops-repo/"
+                href="//localhost:1313/vi/5-finish-monitoring/5.1-prome-grafana/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/5-devsecops/5.1-ops-repo/"
+                href="//localhost:1313/5-finish-monitoring/5.1-prome-grafana/"
+                />
+  </url><url>
+    <loc>//localhost:1313/6-devsecops/6.1-ops-repo/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/6-devsecops/6.1-ops-repo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/6-devsecops/6.1-ops-repo/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/7.1-ci-pipeline/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/7.1-ci-pipeline/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/7.1-ci-pipeline/"
                 />
   </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/</loc>
