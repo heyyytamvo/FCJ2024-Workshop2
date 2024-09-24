@@ -8,9 +8,10 @@ pre : " <b> 7.1. </b> "
 
 ### Thiết lập Webhook
 
-Tại phần `Settings -> Webhooks` ở Ops Repository, chọn phần '**Add Webhooks**’ với setting ở bên dưới:
+Ở Dev Repository, đẩy code lên Github Repository để trigger Jenkins Pipeline:
 
-![ConnectPrivate](/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline0.png)
+
 
 ### Viết Jenkins File
 
