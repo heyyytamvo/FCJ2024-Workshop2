@@ -12,6 +12,6 @@ Tại phần `Settings -> Webhooks` ở Ops Repository, chọn phần '**Add Web
 
 ![ConnectPrivate](/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
 
-### Viết Jenkins File
+### Viết Jenkinsfile
 
 Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại [Ops Repo]().

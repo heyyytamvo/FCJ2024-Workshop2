@@ -1,5 +1,5 @@
 ---
-title : "Argo CD và Auto Deployment"
+title : "Application Deployment"
 date :  "`r Sys.Date()`" 
 weight : 7 
 chapter : false
@@ -7,7 +7,6 @@ pre : " <b> 7. </b> "
 ---
 
 
-Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:
 
 ```sh
 terraform destroy

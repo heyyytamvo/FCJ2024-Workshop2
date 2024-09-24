@@ -11,7 +11,7 @@
 	"title": "Chạy CI Pipeline",
 	"tags": [],
 	"description": "",
-	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Ops Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkins File Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Ops Repo.\n"
+	"content": "Trigger CI Pipeline Ở Dev Repository, đẩy code lên Github Repository để trigger Jenkins Pipeline:\nQuay trở về Jenkins Server, bạn đọc có thể thấy tổng cộng có 3 pipeline đang chạy.\nSau một lúc, CI Pipeline đã chạy hoàn thành như bên dưới:\nKiểm tra Image ở Private Registry Ở remote Dev Repository, ta thấy lần cuối một commit được đẩy lên có ID d966430 như bên dưới:\nKiểm tra ở AWS Elastic Container Registry, bạn đọc sẽ thấy ta có tổng cộng 3 Image được tagged theo commit ID:\nBây giờ, ta đã sẵn sàng dùng Argo CD để triển khai Automation Deployment.\n"
 },
 {
 	"uri": "//localhost:1313/vi/1-introduce/",
@@ -70,6 +70,13 @@
 	"content": "Nội dung Tạo VPC, Internet Gateway, và NAT Gateway Tạo Subnet và Subnet Association Chạy Terraform để triển khai hạ tầng Sau khi hoàn thành phần này, hình bên dưới sẽ là hạ tầng của chúng ta:\n"
 },
 {
+	"uri": "//localhost:1313/vi/7-argocd-autodeploy/7.2-ops-repo-update/",
+	"title": "Cập nhật Ops Repository",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
 	"uri": "//localhost:1313/vi/4-cicd/4.2-jenkins/",
 	"title": "Cấu hình Jenkins Server",
 	"tags": [],
@@ -78,13 +85,6 @@
 },
 {
 	"uri": "//localhost:1313/vi/6-devsecops/6.2-sonar/",
-	"title": "Cấu hình SonarQube Server",
-	"tags": [],
-	"description": "",
-	"content": "Đăng nhập vào SonarQube Server Truy cập SonarQube Server thông qua EC2 DNS, bạn đọc đăng nhập vào SonarQube Server với tài khoản và mật khẩu là admin như hình bên dưới:\nTạo Local Project Tạo Local Project như hình bên dưới:\nĐặt tên Local Project là microservice như bên dưới:\nThiết lập Sonar File ở Dev Repository Tại Dev Repository, tạo file sonar-project.properties như bên dưới:\nsonar.projectKey=microservice Tạo Token để truy cập SonarQube Server Tại mục Administration \u0026gt; Security \u0026gt; Users, với user admin, tạo một Token cho Admin như hình bên dưới.\nĐây không phải là Best Practice vì chúng ta đang trao quyền admin cho Jenkins Server.\n"
-},
-{
-	"uri": "//localhost:1313/vi/7-argocd-autodeploy/6.2-sonar/",
 	"title": "Cấu hình SonarQube Server",
 	"tags": [],
 	"description": "",
@@ -133,6 +133,13 @@
 	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTrong phần này, chúng ta sẽ triển khai một VPC với:\n3 Availability Zones 3 Public Subnets 3 Private Subnets 1 Internet Gateway 1 NAT Gateway 3 EC2, trong đó: 1 Jump Host để tương tác với cụm K8s ở private subnet 1 Jenkins Server để triển khai CI pipeline 1 SonarQube Server trong quy trình DevSecOps Nội dung Triển khai VPC Tạo Jump Host, Jenkins Server, và SonarQube Server "
 },
 {
+	"uri": "//localhost:1313/vi/7-argocd-autodeploy/7.3-argocd/",
+	"title": "Auto Deployment với Argo CD",
+	"tags": [],
+	"description": "",
+	"content": "Tại mục EC2 \u0026gt; Load Balancers, dùng DNS của Argo CD để truy cập đến trang web của Argo CD. Bạn đọc sẽ được yêu cầu đăng nhập với tài khoản là admin và Initial Password. Để lấy được Initial Password của Argo CD, bạn đọc thực hiện câu lệnh sau tại Jump Host (hãy chắc chắn rằng Jump Host có credentials để tương tác với K8s Cluster):\nkubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\u0026#34;{.data.password}\u0026#34; | base64 -d Kết nối đến Ops Repository Sau khi đăng nhập, tại phần Settings \u0026gt; Repositories, kết nối đến Ops Repository với cấu hình bên dưới:\nApplication Deployment Tại phần Applications, tạo một application mới với cấu hình bên dưới:\nKiểm tra Sau khi Create Application, Argo CD sẽ tự động deploy các application pods vào K8s Cluster của ta như hình bên dưới:\nTrở lại AWS Console Management, tại phần EC2 \u0026gt; Load Balancers, ta sẽ thấy có một Load Balancer mới được deployed (trước đó có 3 Load Balancers), đó chính là đường dẫn đến Production của ta.\n"
+},
+{
 	"uri": "//localhost:1313/vi/4-cicd/4.3-dev-repo/",
 	"title": "Cấu hình GitHub Repository (Dev Repo)",
 	"tags": [],
@@ -141,13 +148,6 @@
 },
 {
 	"uri": "//localhost:1313/vi/6-devsecops/6.3-jenkins/",
-	"title": "Cấu hình Jenkins Server",
-	"tags": [],
-	"description": "",
-	"content": "Quay trở về Jenkins Server, tại phần Credentials, thêm vào một credential cho Sonar với Token mà ta lấy được ở phần trước. Tạo một credential như hình dưới:\nTại phần Dashboard \u0026gt; Manage Jenkins \u0026gt; System, ở mục SonarQube servers, thêm vào cấu hình bên dưới:\n"
-},
-{
-	"uri": "//localhost:1313/vi/7-argocd-autodeploy/6.3-jenkins/",
 	"title": "Cấu hình Jenkins Server",
 	"tags": [],
 	"description": "",
@@ -196,13 +196,6 @@
 	"content": "Trivy và OWASP ZAP đã được cài đặt ở Jenkins Server, thông qua file Terraform/jenkins_install.sh ở Ops Repository, bạn đọc có thể thấy chúng đã được cài đặt:\n... sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable "
 },
 {
-	"uri": "//localhost:1313/vi/7-argocd-autodeploy/6.4-trivy-owasp-zap/",
-	"title": "Cấu hình Trivy và OWASP ZAP",
-	"tags": [],
-	"description": "",
-	"content": "Trivy và OWASP ZAP đã được cài đặt ở Jenkins Server, thông qua file Terraform/jenkins_install.sh ở Ops Repository, bạn đọc có thể thấy chúng đã được cài đặt:\n... sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable "
-},
-{
 	"uri": "//localhost:1313/vi/4-cicd/",
 	"title": "Chuẩn bị CI/CD Pipeline",
 	"tags": [],
@@ -222,6 +215,13 @@
 	"tags": [],
 	"description": "",
 	"content": "SonarQube Server sẽ có nhiệm vụ kiểm thử Source Code của chúng ta. Bạn đọc có thể cùng host cả Jenkins và Sonar Server trên cùng một EC2 để tiết kiệm chi phí. Với bài workshop này, tôi sẽ tách biệt cả hai thành 2 EC2. Tạo file Terraform/sonarqube_install.sh như bên dưới:\n#!/bin/bash sudo apt update -y sudo apt install -y fontconfig openjdk-17-jre # Sonarqube sudo apt install curl ca-certificates sudo install -d /usr/share/postgresql-common/pgdg sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc sudo sh -c \u0026#39;echo \u0026#34;deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main\u0026#34; \u0026gt; /etc/apt/sources.list.d/pgdg.list\u0026#39; sudo apt update sudo apt install postgresql-15 -y sudo -i -u postgres bash \u0026lt;\u0026lt; EOF # Create the user and database, and set the password createuser sonar createdb sonar -O sonar psql -c \u0026#34;ALTER USER sonar WITH ENCRYPTED PASSWORD \u0026#39;your_password\u0026#39;;\u0026#34; EOF wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip sudo apt install -y unzip sudo unzip sonarqube-10.5.1.90531.zip sudo mv sonarqube-10.5.1.90531 /opt/sonarqube sudo adduser --system --no-create-home --group --disabled-login sonarqube sudo chown -R sonarqube:sonarqube /opt/sonarqube sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /opt/sonarqube/conf/sonar.properties sonar.jdbc.username=sonar sonar.jdbc.password=your_password sonar.jdbc.url=jdbc:postgresql://localhost/sonar EOF\u0026#39; sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /etc/systemd/system/sonarqube.service [Unit] Description=SonarQube service After=syslog.target network.target [Service] Type=forking ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop User=sonarqube Group=sonarqube Restart=always LimitNOFILE=65536 LimitNPROC=4096 [Install] WantedBy=multi-user.target EOF\u0026#39; sudo systemctl daemon-reload sudo systemctl start sonarqube sudo systemctl enable sonarqube # Update limits.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/security/limits.conf sonarqube - nofile 65536 sonarqube - nproc 4096 EOF\u0026#39; # Update sysctl.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/sysctl.conf vm.max_map_count=262144 EOF\u0026#39; sudo sysctl -p # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:9000; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx Kế tiếp, ta sẽ thiết lập cấu hình cho Sonar Server. Tạo file Terraform/05-sonar_server.tf như bên dưới:\n# Security Group for EC2 resource \u0026#34;aws_security_group\u0026#34; \u0026#34;SONAR_HOST_SG\u0026#34; { name = \u0026#34;SONAR_HOST_SG\u0026#34; description = \u0026#34;Allow SSH, HTTP inbound and all outbound traffic\u0026#34; vpc_id = aws_vpc.main.id ingress = [ { from_port = 80 to_port = 80 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 80\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = -1 to_port = -1 protocol = \u0026#34;icmp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;], description = \u0026#34;Allow inbound ICMP Traffic\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = 22 to_port = 22 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 22\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false } ] egress { from_port = 0 to_port = 0 protocol = \u0026#34;-1\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] } tags = { Name = \u0026#34;SONAR_HOST SG\u0026#34; } } resource \u0026#34;aws_instance\u0026#34; \u0026#34;Sonar_host\u0026#34; { ami = var.ec2_ami instance_type = var.ec2_instance_type key_name = aws_key_pair.EC2key.key_name monitoring = true subnet_id = values(aws_subnet.public_subnets)[1].id vpc_security_group_ids = [aws_security_group.SONAR_HOST_SG.id] associate_public_ip_address = true user_data = file(\u0026#34;${path.module}/sonarqube_install.sh\u0026#34;) tags = { Terraform = \u0026#34;true\u0026#34; Environment = \u0026#34;dev\u0026#34; Name = \u0026#34;Sonar Host\u0026#34; } root_block_device { volume_size = 30 } } "
+},
+{
+	"uri": "//localhost:1313/vi/7-argocd-autodeploy/7.4-app-access/",
+	"title": "Truy cập Application",
+	"tags": [],
+	"description": "",
+	"content": "Truy cập Application Thông qua Load Balancer, truy cập Application của ta như hình bên dưới:\nThực hiện request đến Info Service, ta sẽ nhận được kết quả như bên dưới:\nDev Team Debug với EFK Stack Tại đường dẫn domain.com/get-orders, nếu thực hiện load nhiều lần, ta sẽ có lỗi như hình bên dưới:\nVấn đề đã xảy ra, chúng ta có bugs và cần fix sớm nhất có thể. Rất may là ta đã dùng EFK Stack để centralized các logs tại một nơi. Thông qua Kibana, Dev Team có thể biết được logs của các pods như bên dưới:\nĐây chính là do ta chưa implement các Queue để các Service giao tiếp với nhau khi chúng đang giao tiếp với cơ chế bất động bộ (asynchronous). Quả thật, triển khai một ứng dụng Microservices không hề dễ dàng.\n"
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.5-prometheus-grafana/",
@@ -274,10 +274,10 @@
 },
 {
 	"uri": "//localhost:1313/vi/7-argocd-autodeploy/",
-	"title": "Argo CD và Auto Deployment",
+	"title": "Application Deployment",
 	"tags": [],
 	"description": "",
-	"content": "Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:\nterraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
+	"content": "terraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.7-bashscript/",
