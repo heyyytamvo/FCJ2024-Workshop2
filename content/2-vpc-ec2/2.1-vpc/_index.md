@@ -6,12 +6,12 @@ chapter : false
 pre : " <b> 2.1 </b> "
 ---
 
-In this section, we will create a VPC with 2 private/public subnets, an Internet Gateway, and a NAT Gateway. Then, we launch a Bastion Host into public subnet 2.
+### Content
+  - [Create VPC, Internet Gateway, và NAT Gateway](2.1.1-createvpc/)
+  - [Create Subnet and Subnet Association](2.1.2-createsubnet/)
+  - [Run Terraform](2.1.2-createsubnet/)
 
-### Nội dung
-  - [Create VPC, Internet Gateway, and NAT Gateway](2.1.1-createvpc/)
-  - [Create Subnet](2.1.2-createsubnet/)
-  - [Subnet Association](2.1.3-subnetassociation/)
-  - [Create Public and Private Key](2.1.4-createkey/)
-  - [Create Bastion Host](2.1.5-createbastion/)
-  - [Execute Terraform](2.1.6-terraform-run/)
+
+After finishing this section, below is the architecture:
+
+![ConnectPrivate](/FCJ2024-Workshop1/images/1.Intro/00problem.png) 

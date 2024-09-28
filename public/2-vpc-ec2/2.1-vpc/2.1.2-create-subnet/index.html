@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Create Subnet :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
+    <title>Create Subnet and Subnet Association :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727494513" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727494513" rel="stylesheet">
-    <link href="/css/hybrid.css?1727494513" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727494513" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727494513" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727494513" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727494513" rel="stylesheet">
-    <link href="/css/theme.css?1727494513" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727494513" rel="stylesheet">
+    <link href="/css/nucleus.css?1727526690" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727526690" rel="stylesheet">
+    <link href="/css/hybrid.css?1727526690" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727526690" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727526690" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727526690" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727526690" rel="stylesheet">
+    <link href="/css/theme.css?1727526690" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727526690" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727494513" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727526690" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727494513"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727526690"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727494513"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727494513"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727526690"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727526690"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727494513"></script>
+<script type="text/javascript" src="/js/search.js?1727526690"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/" title="Preparation" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/" title="Deploy VPC, Jenkins, and SonarQube Server" class="dd-item 
         parent
         
         
         ">
       <a href="/2-vpc-ec2/">
-           <b> 2. </b> Preparation
+           <b> 2. </b> Deploy VPC, Jenkins, and SonarQube Server
           
             <i class="fas fa-check read-icon"></i>
           
@@ -198,13 +198,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet and Subnet Association" class="dd-item 
         
         active
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/">
-           <b> 2.1.2 </b> Create Subnet
+           <b> 2.1.2 </b> Create Subnet and Subnet Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -226,13 +226,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Subnet Association" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/">
-           <b> 2.1.3 </b> Subnet Association
+           <b> 2.1.3 </b> Run Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1624,7 +1624,7 @@
             
           
           
-            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Preparation</a> > <a href='/2-vpc-ec2/2.1-vpc/'>Create VPC and Bastion Host</a> > Create Subnet
+            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Deploy VPC, Jenkins, and SonarQube Server</a> > <a href='/2-vpc-ec2/2.1-vpc/'>Create VPC and Bastion Host</a> > Create Subnet and Subnet Association
           
         
           
@@ -1663,7 +1663,7 @@
           
             <h1>
               
-              Create Subnet
+              Create Subnet and Subnet Association
             </h1>
           
 
@@ -1671,57 +1671,86 @@
 
 
 
-	<h4 id="create-public-and-private-subnet">Create Public and Private subnet</h4>
-<p>Create <strong>subnet.tf</strong> with the configuration below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#75715e"># subnet.tf
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_subnet_1&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>              = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>          = var.<span style="color:#a6e22e">vpc_public_subnets</span>[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span>   = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#ae81ff">0</span>]
+	<h4 id="create-subnet">Create Subnet</h4>
+<p>Create file <code>Terraform/02-subnet.tf</code> to create subnets as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#75715e">// Public Subnet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_subnets&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for_each</span>                = toset(var.<span style="color:#a6e22e">vpc_public_subnets</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>                  = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>              = each.<span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span>       = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#a6e22e">index</span>(var.<span style="color:#a6e22e">vpc_public_subnets</span>, each.<span style="color:#a6e22e">value</span>)]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">map_public_ip_on_launch</span> = <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Public Subnet 1&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Public Subnet </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">index</span>(var.<span style="color:#a6e22e">vpc_public_subnets</span>, each.<span style="color:#a6e22e">value</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Private Subnet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;private_subnets&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for_each</span>          = toset(var.<span style="color:#a6e22e">vpc_private_subnets</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>            = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>        = each.<span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span> = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#a6e22e">index</span>(var.<span style="color:#a6e22e">vpc_private_subnets</span>, each.<span style="color:#a6e22e">value</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Private Subnet </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">index</span>(var.<span style="color:#a6e22e">vpc_private_subnets</span>, each.<span style="color:#a6e22e">value</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="route-table-and-subnet-association">Route Table and Subnet Association</h4>
+<p>Next, we will create Route Tables, then, we will associate Internet Gateway, NAT Gateway, and Subnets. Create file <code>Terraform/03-route_table.tf</code> as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#75715e">// create public route table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_route_table&#34;</span> <span style="color:#e6db74">&#34;public_route_table&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">route</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cidr_block</span> = var.<span style="color:#a6e22e">vpc_cidr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">gateway_id</span> = <span style="color:#e6db74">&#34;local&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">route</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cidr_block</span> = <span style="color:#e6db74">&#34;0.0.0.0/0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">gateway_id</span> = <span style="color:#a6e22e">aws_internet_gateway</span>.<span style="color:#a6e22e">defaultIGW</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Public Route Table&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// create private route table
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_route_table&#34;</span> <span style="color:#e6db74">&#34;private_route_table&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Private Route Table&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">## public subnet Association
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_route_table_association&#34;</span> <span style="color:#e6db74">&#34;public_subnets_associations&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for_each</span>       = <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public_subnets</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_id</span>      = each.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">route_table_id</span> = <span style="color:#a6e22e">aws_route_table</span>.<span style="color:#a6e22e">public_route_table</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">## private subnet Association
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_route_table_association&#34;</span> <span style="color:#e6db74">&#34;private_subnets_associations&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for_each</span>       = <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">private_subnets</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_id</span>      = each.<span style="color:#a6e22e">value</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">route_table_id</span> = <span style="color:#a6e22e">aws_route_table</span>.<span style="color:#a6e22e">private_route_table</span>.<span style="color:#a6e22e">id</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;public_subnet_2&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>              = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>          = var.<span style="color:#a6e22e">vpc_public_subnets</span>[<span style="color:#ae81ff">1</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span>   = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#ae81ff">1</span>]
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_route&#34;</span> <span style="color:#e6db74">&#34;route_nat_gw&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">route_table_id</span>         = <span style="color:#a6e22e">aws_route_table</span>.<span style="color:#a6e22e">private_route_table</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">destination_cidr_block</span> = <span style="color:#e6db74">&#34;0.0.0.0/0&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nat_gateway_id</span>         = <span style="color:#a6e22e">aws_nat_gateway</span>.<span style="color:#a6e22e">my_nat_gtw</span>.<span style="color:#a6e22e">id</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Public Subnet 2&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">timeouts</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">create</span> = <span style="color:#e6db74">&#34;5m&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;private_subnet_1&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>              = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>          = var.<span style="color:#a6e22e">vpc_private_subnets</span>[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span>   = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Private Subnet 1&#34;</span>
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_subnet&#34;</span> <span style="color:#e6db74">&#34;private_subnet_2&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span>              = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>          = var.<span style="color:#a6e22e">vpc_private_subnets</span>[<span style="color:#ae81ff">1</span>]
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">availability_zone</span>   = var.<span style="color:#a6e22e">vpc_azs</span>[<span style="color:#ae81ff">1</span>]
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Private Subnet 2&#34;</span>
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Finally, we have 4 subnets in total as below:</p>
-<ul>
-<li>Public Subnet 1 (CIDR Block: <strong>10.0.1.0/24</strong>)</li>
-<li>Private Subnet 1 (CIDR Block: <strong>10.0.3.0/24</strong>)</li>
-<li>Public Subnet 2 (CIDR Block: <strong>10.0.2.0/24</strong>)</li>
-<li>Private Subnet 2 (CIDR Block: <strong>10.0.4.0/24</strong>)</li>
-</ul>
-<p>Please follow this <a href="https://github.com/heyyytamvo/AWS-DevOps/blob/main/ECS/AWS-FCJ-WORKSHOP/terraform.tfvars">link</a> to check any defined variables</p>
-
+</span></span></code></pre></div>
 
 
 
@@ -2550,7 +2579,7 @@
 			<a class="nav nav-prev" href="/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/" title="Create VPC, Internet Gateway, and NAT Gateway"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Subnet Association" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2560,19 +2589,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727494513"></script>
-    <script src="/js/jquery.sticky.js?1727494513"></script>
-    <script src="/js/featherlight.min.js?1727494513"></script>
-    <script src="/js/highlight.pack.js?1727494513"></script>
+    <script src="/js/clipboard.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727526690"></script>
+    <script src="/js/jquery.sticky.js?1727526690"></script>
+    <script src="/js/featherlight.min.js?1727526690"></script>
+    <script src="/js/highlight.pack.js?1727526690"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727494513"></script>
-    <script src="/js/learn.js?1727494513"></script>
-    <script src="/js/hugo-learn.js?1727494513"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727526690"></script>
+    <script src="/js/learn.js?1727526690"></script>
+    <script src="/js/hugo-learn.js?1727526690"></script>
 
-    <link href="/mermaid/mermaid.css?1727494513" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727494513"></script>
+    <link href="/mermaid/mermaid.css?1727526690" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727526690"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

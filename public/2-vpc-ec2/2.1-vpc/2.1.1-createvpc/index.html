@@ -12,21 +12,21 @@
     <title>Create VPC, Internet Gateway, and NAT Gateway :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727494513" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727494513" rel="stylesheet">
-    <link href="/css/hybrid.css?1727494513" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727494513" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727494513" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727494513" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727494513" rel="stylesheet">
-    <link href="/css/theme.css?1727494513" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727494513" rel="stylesheet">
+    <link href="/css/nucleus.css?1727526690" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727526690" rel="stylesheet">
+    <link href="/css/hybrid.css?1727526690" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727526690" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727526690" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727526690" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727526690" rel="stylesheet">
+    <link href="/css/theme.css?1727526690" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727526690" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727494513" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727526690" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727494513"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727526690"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727494513"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727494513"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727526690"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727526690"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727494513"></script>
+<script type="text/javascript" src="/js/search.js?1727526690"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/" title="Preparation" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/" title="Deploy VPC, Jenkins, and SonarQube Server" class="dd-item 
         parent
         
         
         ">
       <a href="/2-vpc-ec2/">
-           <b> 2. </b> Preparation
+           <b> 2. </b> Deploy VPC, Jenkins, and SonarQube Server
           
             <i class="fas fa-check read-icon"></i>
           
@@ -198,13 +198,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet and Subnet Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/">
-           <b> 2.1.2 </b> Create Subnet
+           <b> 2.1.2 </b> Create Subnet and Subnet Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -226,13 +226,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Subnet Association" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/">
-           <b> 2.1.3 </b> Subnet Association
+           <b> 2.1.3 </b> Run Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1624,7 +1624,7 @@
             
           
           
-            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Preparation</a> > <a href='/2-vpc-ec2/2.1-vpc/'>Create VPC and Bastion Host</a> > Create VPC, Internet Gateway, and NAT Gateway
+            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Deploy VPC, Jenkins, and SonarQube Server</a> > <a href='/2-vpc-ec2/2.1-vpc/'>Create VPC and Bastion Host</a> > Create VPC, Internet Gateway, and NAT Gateway
           
         
           
@@ -1639,7 +1639,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1663,12 +1671,29 @@
 
 
 
-	<p>Creating <strong>vpc.tf</strong> with the configuration below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#75715e"># vpc.tf
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_vpc&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>                   = var.<span style="color:#a6e22e">vpc_cidr</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_dns_hostnames</span>         = <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_dns_support</span>           = <span style="color:#66d9ef">true</span>
+	<p>Creating a Folder <code>Terraform</code>, then, create files <code>Terraform/terraform.tfvars</code> and <code>Terraform/variables.tf</code>. These file will define our Infrastructure Configuration.</p>
+<p>Please refer to this file <a href="https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/blob/main/Terraform/terraform.tfvars"><code>Terraform/terraform.tfvars</code></a> and <a href="https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/blob/main/Terraform/variables.tf"><code>Terraform/variables.tf</code></a></p>
+<p>Create file <code>Terraform/00-main.tf</code> to define AWS Provider.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#a6e22e">terraform</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">required_providers</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aws</span> = {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span>  = <span style="color:#e6db74">&#34;hashicorp/aws&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">version</span> = <span style="color:#e6db74">&#34;~&gt; 5.0&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">required_version</span> = <span style="color:#e6db74">&#34;&gt;= 1.2.0&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">provider</span> <span style="color:#e6db74">&#34;aws&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">region</span> = <span style="color:#e6db74">&#34;us-east-1&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="create-vpc-internet-gateway-and-nat-gateway">Create VPC, Internet Gateway, and NAT Gateway</h4>
+<p>Create file <code>Terraform/01-vpc.tf</code> to create VPC, Internet Gateway, and NAT Gateway.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tf" data-lang="tf"><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_vpc&#34;</span> <span style="color:#e6db74">&#34;main&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cidr_block</span>           = var.<span style="color:#a6e22e">vpc_cidr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_dns_hostnames</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">enable_dns_support</span>   = <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = var.<span style="color:#a6e22e">vpc_name</span>
 </span></span><span style="display:flex;"><span>  }
@@ -1677,26 +1702,24 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_internet_gateway&#34;</span> <span style="color:#e6db74">&#34;defaultIGW&#34;</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vpc_id</span> = <span style="color:#a6e22e">aws_vpc</span>.<span style="color:#a6e22e">main</span>.<span style="color:#a6e22e">id</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span>     = <span style="color:#e6db74">&#34;Workshop 1 Internet Gateway&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;Internet Gateway&#34;</span>
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}<span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Elastic IP for NAT Gateway
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_eip&#34;</span> <span style="color:#e6db74">&#34;my_elastic_ip&#34;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domain</span>   = <span style="color:#e6db74">&#34;vpc&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_eip&#34;</span> <span style="color:#e6db74">&#34;my_elastic_ip&#34;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domain</span> = <span style="color:#e6db74">&#34;vpc&#34;</span>
 </span></span><span style="display:flex;"><span>}<span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># NAT Gateway
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">resource</span> <span style="color:#e6db74">&#34;aws_nat_gateway&#34;</span> <span style="color:#e6db74">&#34;my_nat_gtw&#34;</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">allocation_id</span> = <span style="color:#a6e22e">aws_eip</span>.<span style="color:#a6e22e">my_elastic_ip</span>.<span style="color:#a6e22e">id</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_id</span>     = <span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public_subnet_1</span>.<span style="color:#a6e22e">id</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">subnet_id</span>     = values(<span style="color:#a6e22e">aws_subnet</span>.<span style="color:#a6e22e">public_subnets</span>)[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tags</span> = {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;NAT Gateway&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>First, we create a VPC with a defined CIDR Block (Please follow this <a href="https://github.com/heyyytamvo/AWS-DevOps/blob/main/ECS/AWS-FCJ-WORKSHOP/terraform.tfvars">link</a> to check any defined variables). Then, we create an Internet Gateway and attach it to our VPC.</p>
-<p>Finally, an Elastic IP is created and attached to the NAT Gateway so that private instances can reach the internet.</p>
+</span></span></code></pre></div><p>We created an Elastic IP Address and attach it to the NAT Gateway</p>
 
 
 
@@ -2523,7 +2546,7 @@
 			<a class="nav nav-prev" href="/2-vpc-ec2/2.1-vpc/" title="Create VPC and Bastion Host"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet and Subnet Association" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2533,19 +2556,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727494513"></script>
-    <script src="/js/jquery.sticky.js?1727494513"></script>
-    <script src="/js/featherlight.min.js?1727494513"></script>
-    <script src="/js/highlight.pack.js?1727494513"></script>
+    <script src="/js/clipboard.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727526690"></script>
+    <script src="/js/jquery.sticky.js?1727526690"></script>
+    <script src="/js/featherlight.min.js?1727526690"></script>
+    <script src="/js/highlight.pack.js?1727526690"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727494513"></script>
-    <script src="/js/learn.js?1727494513"></script>
-    <script src="/js/hugo-learn.js?1727494513"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727526690"></script>
+    <script src="/js/learn.js?1727526690"></script>
+    <script src="/js/hugo-learn.js?1727526690"></script>
 
-    <link href="/mermaid/mermaid.css?1727494513" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727494513"></script>
+    <link href="/mermaid/mermaid.css?1727526690" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727526690"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

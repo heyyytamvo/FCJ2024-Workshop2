@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Preparation :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
+    <title>Deploy VPC, Jenkins, and SonarQube Server :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727494513" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727494513" rel="stylesheet">
-    <link href="/css/hybrid.css?1727494513" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727494513" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727494513" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727494513" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727494513" rel="stylesheet">
-    <link href="/css/theme.css?1727494513" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727494513" rel="stylesheet">
+    <link href="/css/nucleus.css?1727526690" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727526690" rel="stylesheet">
+    <link href="/css/hybrid.css?1727526690" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727526690" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727526690" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727526690" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727526690" rel="stylesheet">
+    <link href="/css/theme.css?1727526690" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727526690" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727494513" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727526690" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727494513"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727526690"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727494513"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727494513"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727526690"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727526690"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727494513"></script>
+<script type="text/javascript" src="/js/search.js?1727526690"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/" title="Preparation" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/" title="Deploy VPC, Jenkins, and SonarQube Server" class="dd-item 
         
         active
         
         ">
       <a href="/2-vpc-ec2/">
-           <b> 2. </b> Preparation
+           <b> 2. </b> Deploy VPC, Jenkins, and SonarQube Server
           
             <i class="fas fa-check read-icon"></i>
           
@@ -198,13 +198,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet and Subnet Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/">
-           <b> 2.1.2 </b> Create Subnet
+           <b> 2.1.2 </b> Create Subnet and Subnet Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -226,13 +226,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Subnet Association" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/">
-           <b> 2.1.3 </b> Subnet Association
+           <b> 2.1.3 </b> Run Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1616,7 +1616,7 @@
             
           
           
-            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > Preparation
+            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > Deploy VPC, Jenkins, and SonarQube Server
           
         
           
@@ -1651,7 +1651,7 @@
           
             <h1>
               
-              Preparation
+              Deploy VPC, Jenkins, and SonarQube Server
             </h1>
           
 
@@ -1660,14 +1660,28 @@
 
 
 	
-<div class="notices note" ><p>You need to install Terraform before going further in this workshop</p>
+<div class="notices info" ><p>We use Ops Repo in this section</p>
 </div>
 
-<p>Before creating an ECS Cluster, we create some required components such as VPC, Subnets, Internet Gateway, etc. Then, we will create an Auto Scaling Group for ECS EC2 (containers will run on these instances), a Load Balancer to distribute incoming traffic and an ECS Cluster</p>
+<p>Trong phần này, chúng ta sẽ triển khai một VPC với:</p>
+<ul>
+<li>3 Availability Zones</li>
+<li>3 Public Subnets</li>
+<li>3 Private Subnets</li>
+<li>1 Internet Gateway</li>
+<li>1 NAT Gateway</li>
+<li>3 EC2, where:
+<ul>
+<li>1 Jump Host for interacting with the Kubernetes Cluster</li>
+<li>1 Jenkins Server for CI pipeline</li>
+<li>1 SonarQube Server for DevSecOps Pipeline</li>
+</ul>
+</li>
+</ul>
 <h3 id="content">Content</h3>
 <ul>
-<li><a href="2.1-basic/">Create VPC and Bastion Host</a></li>
-<li><a href="2.2-createalb-asg-ecs/">Create Autoscaling Group, Load Balancer, and ECS Cluster</a></li>
+<li><a href="2.1-basic/">Create VPC</a></li>
+<li><a href="2.2-createalb-asg-ecs/">Create Jump Host, Jenkins Server, and SonarQube Server</a></li>
 </ul>
 
 
@@ -2503,19 +2517,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727494513"></script>
-    <script src="/js/jquery.sticky.js?1727494513"></script>
-    <script src="/js/featherlight.min.js?1727494513"></script>
-    <script src="/js/highlight.pack.js?1727494513"></script>
+    <script src="/js/clipboard.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727526690"></script>
+    <script src="/js/jquery.sticky.js?1727526690"></script>
+    <script src="/js/featherlight.min.js?1727526690"></script>
+    <script src="/js/highlight.pack.js?1727526690"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727494513"></script>
-    <script src="/js/learn.js?1727494513"></script>
-    <script src="/js/hugo-learn.js?1727494513"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727526690"></script>
+    <script src="/js/learn.js?1727526690"></script>
+    <script src="/js/hugo-learn.js?1727526690"></script>
 
-    <link href="/mermaid/mermaid.css?1727494513" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727494513"></script>
+    <link href="/mermaid/mermaid.css?1727526690" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727526690"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

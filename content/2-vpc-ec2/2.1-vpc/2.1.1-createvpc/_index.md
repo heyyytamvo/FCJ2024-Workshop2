@@ -7,14 +7,39 @@ pre : " <b> 2.1.1 </b> "
 ---
 
 
-Creating **vpc.tf** with the configuration below:
+Creating a Folder `Terraform`, then, create files `Terraform/terraform.tfvars` and `Terraform/variables.tf`. These file will define our Infrastructure Configuration.
+
+Please refer to this file [`Terraform/terraform.tfvars`](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/blob/main/Terraform/terraform.tfvars) and [`Terraform/variables.tf`](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/blob/main/Terraform/variables.tf)
+
+
+Create file `Terraform/00-main.tf` to define AWS Provider.
 
 ```tf
-# vpc.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  required_version = ">= 1.2.0"
+}
+
+provider "aws" {
+  region = "us-east-1"
+}
+```
+
+
+#### Create VPC, Internet Gateway, and NAT Gateway
+Create file `Terraform/01-vpc.tf` to create VPC, Internet Gateway, and NAT Gateway.
+
+```tf
 resource "aws_vpc" "main" {
-  cidr_block                   = var.vpc_cidr
-  enable_dns_hostnames         = true
-  enable_dns_support           = true
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
   tags = {
     Name = var.vpc_name
   }
@@ -23,19 +48,18 @@ resource "aws_vpc" "main" {
 resource "aws_internet_gateway" "defaultIGW" {
   vpc_id = aws_vpc.main.id
   tags = {
-    Name     = "Workshop 1 Internet Gateway"
+    Name = "Internet Gateway"
   }
 }
 
-# Elastic IP for NAT Gateway
 resource "aws_eip" "my_elastic_ip" {
-  domain   = "vpc"
+  domain = "vpc"
 }
 
 # NAT Gateway
 resource "aws_nat_gateway" "my_nat_gtw" {
   allocation_id = aws_eip.my_elastic_ip.id
-  subnet_id     = aws_subnet.public_subnet_1.id
+  subnet_id     = values(aws_subnet.public_subnets)[0].id
 
   tags = {
     Name = "NAT Gateway"
@@ -43,6 +67,4 @@ resource "aws_nat_gateway" "my_nat_gtw" {
 }
 ```
 
-First, we create a VPC with a defined CIDR Block (Please follow this [link](https://github.com/heyyytamvo/AWS-DevOps/blob/main/ECS/AWS-FCJ-WORKSHOP/terraform.tfvars) to check any defined variables). Then, we create an Internet Gateway and attach it to our VPC.
-
-Finally, an Elastic IP is created and attached to the NAT Gateway so that private instances can reach the internet.
+We created an Elastic IP Address and attach it to the NAT Gateway

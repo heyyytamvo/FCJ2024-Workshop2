@@ -12,21 +12,21 @@
     <title>Create VPC and Bastion Host :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727494513" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727494513" rel="stylesheet">
-    <link href="/css/hybrid.css?1727494513" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727494513" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727494513" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727494513" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727494513" rel="stylesheet">
-    <link href="/css/theme.css?1727494513" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727494513" rel="stylesheet">
+    <link href="/css/nucleus.css?1727526690" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727526690" rel="stylesheet">
+    <link href="/css/hybrid.css?1727526690" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727526690" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727526690" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727526690" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727526690" rel="stylesheet">
+    <link href="/css/theme.css?1727526690" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727526690" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727494513" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727526690" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727494513"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727526690"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727494513"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727494513"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727526690"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727526690"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727494513"></script>
+<script type="text/javascript" src="/js/search.js?1727526690"></script>
 
     
   </div>
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/" title="Preparation" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/" title="Deploy VPC, Jenkins, and SonarQube Server" class="dd-item 
         parent
         
         
         ">
       <a href="/2-vpc-ec2/">
-           <b> 2. </b> Preparation
+           <b> 2. </b> Deploy VPC, Jenkins, and SonarQube Server
           
             <i class="fas fa-check read-icon"></i>
           
@@ -198,13 +198,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/" title="Create Subnet and Subnet Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/">
-           <b> 2.1.2 </b> Create Subnet
+           <b> 2.1.2 </b> Create Subnet and Subnet Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -226,13 +226,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Subnet Association" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/">
-           <b> 2.1.3 </b> Subnet Association
+           <b> 2.1.3 </b> Run Association
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1620,7 +1620,7 @@
             
           
           
-            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Preparation</a> > Create VPC and Bastion Host
+            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/2-vpc-ec2/'>Deploy VPC, Jenkins, and SonarQube Server</a> > Create VPC and Bastion Host
           
         
           
@@ -1637,7 +1637,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#nôi-dung">Nội dung</a></li>
+        <li><a href="#content">Content</a></li>
       </ul>
     </li>
   </ul>
@@ -1665,16 +1665,14 @@
 
 
 
-	<p>In this section, we will create a VPC with 2 private/public subnets, an Internet Gateway, and a NAT Gateway. Then, we launch a Bastion Host into public subnet 2.</p>
-<h3 id="nôi-dung">Nội dung</h3>
+	<h3 id="content">Content</h3>
 <ul>
-<li><a href="/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/">Create VPC, Internet Gateway, and NAT Gateway</a></li>
-<li><a href="2.1.2-createsubnet/">Create Subnet</a></li>
-<li><a href="2.1.3-subnetassociation/">Subnet Association</a></li>
-<li><a href="2.1.4-createkey/">Create Public and Private Key</a></li>
-<li><a href="2.1.5-createbastion/">Create Bastion Host</a></li>
-<li><a href="2.1.6-terraform-run/">Execute Terraform</a></li>
+<li><a href="/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/">Create VPC, Internet Gateway, và NAT Gateway</a></li>
+<li><a href="2.1.2-createsubnet/">Create Subnet and Subnet Association</a></li>
+<li><a href="2.1.2-createsubnet/">Run Terraform</a></li>
 </ul>
+<p>After finishing this section, below is the architecture:</p>
+<p><img alt="ConnectPrivate" src="/FCJ2024-Workshop1/images/1.Intro/00problem.png"></p>
 
 
 
@@ -2497,7 +2495,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/2-vpc-ec2/" title="Preparation"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/2-vpc-ec2/" title="Deploy VPC, Jenkins, and SonarQube Server"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/" title="Create VPC, Internet Gateway, and NAT Gateway" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -2510,19 +2508,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727494513"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727494513"></script>
-    <script src="/js/jquery.sticky.js?1727494513"></script>
-    <script src="/js/featherlight.min.js?1727494513"></script>
-    <script src="/js/highlight.pack.js?1727494513"></script>
+    <script src="/js/clipboard.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727526690"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727526690"></script>
+    <script src="/js/jquery.sticky.js?1727526690"></script>
+    <script src="/js/featherlight.min.js?1727526690"></script>
+    <script src="/js/highlight.pack.js?1727526690"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727494513"></script>
-    <script src="/js/learn.js?1727494513"></script>
-    <script src="/js/hugo-learn.js?1727494513"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727526690"></script>
+    <script src="/js/learn.js?1727526690"></script>
+    <script src="/js/hugo-learn.js?1727526690"></script>
 
-    <link href="/mermaid/mermaid.css?1727494513" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727494513"></script>
+    <link href="/mermaid/mermaid.css?1727526690" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727526690"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
