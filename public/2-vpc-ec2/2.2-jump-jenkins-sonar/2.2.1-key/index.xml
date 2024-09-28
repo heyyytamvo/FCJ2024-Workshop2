@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Create Load Balancer and Target Group on Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
+    <title>Create Key Pair at Local Machine on Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
     <link>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/</link>
-    <description>Recent content in Create Load Balancer and Target Group on Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</description>
+    <description>Recent content in Create Key Pair at Local Machine on Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</description>
     <generator>Hugo</generator>
     <language>en</language>
     <atom:link href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/index.xml" rel="self" type="application/rss+xml" />

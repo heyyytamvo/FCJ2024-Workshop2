@@ -1,60 +1,96 @@
 ---
-title : "Create Template for EC2 belonging to ECS Cluster"
+title : "Create Jump Host"
 date :  "`r Sys.Date()`" 
 weight : 2 
 chapter : false
 pre : " <b> 2.2.2 </b> "
 ---
 
-### Create Security Group
 
-We need to create template for all EC2 belonging to the ECS Cluster. All container will run on these EC2 Instance. From now, let's call them EC2 Cluster. But first, we will create Security Group for EC2 Cluster
-Create **ecs_ec2.tf** with the configuration below:
+We will manipulate the Kubernetes Cluster via Jump Host. This implementation will reduce the chance of unauthorized accessing the Kubernetes Cluster. Using the Private Key that we created in the previous part, Ops Team can access the Jump Host via SSH Protocol. But first, we need to prepare all necessary packages by using Bash Script. Creating file `Terraform/jump_host_install.sh` as below:
+
+```sh
+#!/bin/bash
+sudo apt update -y
+# Install eksctl
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+
+# (Optional) Verify checksum
+curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+
+sudo tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+# Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# install aws-cli
+sudo apt install -y unzip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+
+# install docker 
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+
+sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+sudo chmod 700 get_helm.sh
+sudo bash get_helm.sh
+```
+
+Next, we will create the configuration for the Jump Host. Create file `Terraform/05-jump_host.tf` as below:
+
 
 ```tf
-# ecs_ec2.tf
-resource "aws_security_group" "ECS_EC2_SG"{
-  name        = "ECS_EC2_SG"
-  description = "Allow traffic from ALB_SG and 22 from Bastion"
+# Security Group for EC2
+resource "aws_security_group" "JUMP_HOST_SG" {
+  name        = "JUMP_HOST_SG"
+  description = "Allow SSH inbound and all outbound traffic"
   vpc_id      = aws_vpc.main.id
 
   ingress = [
-  {
-    from_port        = 49153
-    to_port          = 65535
-    protocol         = "tcp"
-    cidr_blocks      = []
-    description      = "Allow all traffic coming from port 49153-65535 from ALB"
-    ipv6_cidr_blocks = []
-    prefix_list_ids   = []
-    security_groups   = [aws_security_group.ALB_SG.id]
-    self             = false
-  },
+    {
+      from_port        = -1
+      to_port          = -1
+      protocol         = "icmp"
+      cidr_blocks      = ["0.0.0.0/0"],
+      description      = "Allow inbound ICMP Traffic"
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    },
 
-  {
-    from_port        = 32768
-    to_port          = 61000
-    protocol         = "tcp"
-    cidr_blocks      = []
-    description      = "Allow all traffic coming from port 32768-61000 from ALB"
-    ipv6_cidr_blocks = []
-    prefix_list_ids   = []
-    security_groups   = [aws_security_group.ALB_SG.id]
-    self             = false
-  },
-
-  {
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = []
-    description      = "Allow SSH traffic from Bastion host"
-    ipv6_cidr_blocks = []
-    prefix_list_ids   = []
-    security_groups  = [aws_security_group.Bastion_SG.id]
-    self             = false
-  }
-]
+    {
+      from_port        = 22
+      to_port          = 22
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      description      = "Allow inbound traffic on port 22"
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    }
+  ]
 
   egress {
     from_port   = 0
@@ -64,115 +100,29 @@ resource "aws_security_group" "ECS_EC2_SG"{
   }
 
   tags = {
-    Name = "ECS EC2 SG"
-  }
-}
-```
-
-With the above Security Group, we have this configuration:
-
-- EC2 Cluster accepts all inbound traffic (from Load Balancer) on range ports 49153-65535
-- EC2 Cluster accepts all inbound traffic (from Load Balancer) on range ports 32768-61000
-- EC2 Cluster accepts SSH Protocol from Bastion Host
-- EC2 Cluster allows all outbound traffic
-
-You may wonder why we have ranges port 49153-65535 and 32768-61000. The answer is that the container will listen to these range ports after it is successfully launched on the EC2 Cluster. There is a terminology for these ports: ephemeral port.
-
-For example, given an ECS Cluster containing 2 EC2 (1) and (2), then:
-
-- On EC2 (1): there are 3 running containers, which listen on ports 49153, 49154, and 49155, respectively.
-- On EC2 (2): there are 3 running containers, which listen on ports 32769, 32770, and 32771, respectively.
-
-
-### Create IAM Role for EC2 Cluster
-
-We need to create IAM Role for EC2 Cluster to allow them communicating with the ECS Cluster. Create **iamrole.tf** with the configuration as below:
-
-
-```tf
-data "aws_iam_policy_document" "ec2_instance_role_policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    effect  = "Allow"
-
-    principals {
-      type        = "Service"
-      identifiers = [
-        "ec2.amazonaws.com",
-        "ecs.amazonaws.com"
-      ]
-    }
+    Name = "JUMP_HOST SG"
   }
 }
 
-resource "aws_iam_role_policy_attachment" "ec2_instance_role_policy" {
-  role       = aws_iam_role.ec2_instance_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
+resource "aws_instance" "Jump_host" {
 
-resource "aws_iam_role" "ec2_instance_role" {
-  name               = "ECS_EC2_InstanceRole"
-  assume_role_policy = data.aws_iam_policy_document.ec2_instance_role_policy.json
-}
+  ami                         = var.ec2_ami
+  instance_type               = var.ec2_instance_type
+  key_name                    = aws_key_pair.EC2key.key_name
+  monitoring                  = true
+  subnet_id                   = values(aws_subnet.public_subnets)[0].id
+  vpc_security_group_ids      = [aws_security_group.JUMP_HOST_SG.id]
+  associate_public_ip_address = true
 
-resource "aws_iam_instance_profile" "ec2_instance_role_profile" {
-  name  = "EC2_InstanceRoleProfile"
-  role  = aws_iam_role.ec2_instance_role.id
-}
-```
+  user_data = file("${path.module}/jump_host_install.sh")
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Name        = "Jump Host"
+  }
 
-
-### Create AMI for EC2 Cluster
-
-Next, we will create **user_data.sh** as below. Our EC2 Cluster need to execute the command line below during the process of initialization. We need to configure file **/etc/ecs/ecs.config** to register these instance into the ECS Cluster.
-
-```sh
-#!/bin/bash
-echo ECS_CLUSTER='${ecs_cluster_name}' >> /etc/ecs/ecs.config
-```
-
-Create **ecs_ec2.tf** as below:
-
-```tf
-data "aws_ami" "amazon_linux_2" {
-    most_recent = true
-
-    filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
-
-    filter {
-        name   = "owner-alias"
-        values = ["amazon"]
-    }
-
-    filter {
-        name   = "name"
-        values = ["amzn2-ami-ecs-hvm-*-x86_64-ebs"]
-    }
-
-    owners = ["amazon"]
-}
-
-## Launch template for all EC2 instances that are part of the ECS cluster
-resource "aws_launch_template" "ecs_launch_template" {
-    name                   = "ECS_EC2_LaunchTemplate"
-    image_id               = data.aws_ami.amazon_linux_2.id
-    instance_type          = var.ec2_instance_type
-    key_name               = aws_key_pair.EC2key.key_name
-    user_data              = base64encode(templatefile("${path.module}/user_data.sh", {ecs_cluster_name = aws_ecs_cluster.main.name})
-)
-    vpc_security_group_ids = [aws_security_group.ECS_EC2_SG.id]
-
-    iam_instance_profile {
-        arn = aws_iam_instance_profile.ec2_instance_role_profile.arn
-    }
-
-    monitoring {
-        enabled = true
-    }
+  root_block_device {
+    volume_size = 30
+  }
 }
 ```
-
-Now, `aws_ecs_cluster.main.name` is the name of our ECS Cluster, which will be specified in the next section.

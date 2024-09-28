@@ -350,6 +350,18 @@
                 href="//localhost:1313/8-cicd-test/8.5-app/"
                 />
   </url><url>
+    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/</loc>
     <xhtml:link
                 rel="alternate"
@@ -372,18 +384,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.2-create-subnet/"
-                />
-  </url><url>
-    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.2-jump-host/"
                 />
   </url><url>
     <loc>//localhost:1313/2-vpc-ec2/</loc>
@@ -554,18 +554,6 @@
                 href="//localhost:1313/7-argocd-autodeploy/7.1-ci-pipeline/"
                 />
   </url><url>
-    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
-                />
-  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/</loc>
     <xhtml:link
                 rel="alternate"
@@ -576,6 +564,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

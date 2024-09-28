@@ -1,159 +1,181 @@
 ---
-title : "Create ECS Cluster"
+title : "Create SonarQube Server"
 date :  "`r Sys.Date()`" 
 weight : 4 
 chapter : false
 pre : " <b> 2.2.4 </b> "
 ---
 
-### Create ECS Cluster
+Our code base will be analyzed by the SonarQube Server. You can deploy Jenkins and SonarQube Server on a single EC2 for saving budget. In this Workshop, I will use two EC2 Instances. Create file `Terraform/sonarqube_install.sh` as below:
 
-Create **ecs.tf** with the configuration below:
+```sh
+#!/bin/bash
+sudo apt update -y
+sudo apt install -y fontconfig openjdk-17-jre
+
+# Sonarqube
+sudo apt install curl ca-certificates
+sudo install -d /usr/share/postgresql-common/pgdg
+sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo apt update
+sudo apt install postgresql-15 -y
+sudo -i -u postgres bash << EOF
+# Create the user and database, and set the password
+createuser sonar
+createdb sonar -O sonar
+psql -c "ALTER USER sonar WITH ENCRYPTED PASSWORD 'your_password';"
+EOF
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip
+sudo apt install -y unzip
+sudo unzip sonarqube-10.5.1.90531.zip
+sudo mv sonarqube-10.5.1.90531 /opt/sonarqube
+sudo adduser --system --no-create-home --group --disabled-login sonarqube
+sudo chown -R sonarqube:sonarqube /opt/sonarqube
+
+sudo bash -c 'cat << EOF > /opt/sonarqube/conf/sonar.properties
+sonar.jdbc.username=sonar
+sonar.jdbc.password=your_password
+sonar.jdbc.url=jdbc:postgresql://localhost/sonar
+EOF'
+
+sudo bash -c 'cat << EOF > /etc/systemd/system/sonarqube.service
+[Unit]
+Description=SonarQube service
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+
+User=sonarqube
+Group=sonarqube
+Restart=always
+
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
+EOF'
+
+sudo systemctl daemon-reload
+sudo systemctl start sonarqube
+sudo systemctl enable sonarqube
+
+# Update limits.conf
+sudo bash -c 'cat << EOF >> /etc/security/limits.conf
+sonarqube   -   nofile   65536
+sonarqube   -   nproc    4096
+EOF'
+
+# Update sysctl.conf
+sudo bash -c 'cat << EOF >> /etc/sysctl.conf
+vm.max_map_count=262144
+EOF'
+sudo sysctl -p
+
+# install nginx
+sudo apt install -y nginx
+sudo systemctl start nginx
+
+sudo rm /etc/nginx/sites-enabled/default
+sudo tee /etc/nginx/sites-enabled/default > /dev/null << 'EOF'
+server {
+        listen 80;
+        server_name _;
+ 
+        location / {
+                proxy_pass http://localhost:9000; 
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+        }
+}
+EOF
+sudo systemctl reload nginx
+```
+Next, we will configure our Sonar Server. Creating file `Terraform/05-sonar_server.tf` as below:
 
 ```tf
-resource "aws_ecs_cluster" "main" {
-  name  = var.ecs_cluster_name
+# Security Group for EC2
+resource "aws_security_group" "SONAR_HOST_SG" {
+  name        = "SONAR_HOST_SG"
+  description = "Allow SSH, HTTP inbound and all outbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress = [
+    {
+      from_port        = 80
+      to_port          = 80
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      description      = "Allow inbound traffic on port 80"
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    },
+
+    {
+      from_port        = -1
+      to_port          = -1
+      protocol         = "icmp"
+      cidr_blocks      = ["0.0.0.0/0"],
+      description      = "Allow inbound ICMP Traffic"
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    },
+
+    {
+      from_port        = 22
+      to_port          = 22
+      protocol         = "tcp"
+      cidr_blocks      = ["0.0.0.0/0"]
+      description      = "Allow inbound traffic on port 22"
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false
+    }
+  ]
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   tags = {
-    Name     = var.ecs_cluster_name
+    Name = "SONAR_HOST SG"
+  }
+}
+
+resource "aws_instance" "Sonar_host" {
+
+  ami                         = var.ec2_ami
+  instance_type               = var.ec2_instance_type
+  key_name                    = aws_key_pair.EC2key.key_name
+  monitoring                  = true
+  subnet_id                   = values(aws_subnet.public_subnets)[1].id
+  vpc_security_group_ids      = [aws_security_group.SONAR_HOST_SG.id]
+  associate_public_ip_address = true
+
+  user_data = file("${path.module}/sonarqube_install.sh")
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+    Name        = "Sonar Host"
+  }
+
+  root_block_device {
+    volume_size = 30
   }
 }
 ```
-
-The name of the ECS Cluster is the variable `var.ecs_cluster_name`. Follow this link for checking all defined variables.
-
-### Create Task Definition
-
-Next, we will create Task Definition. In **ecs.tf**, adding the configuration as below:
-
-```tf
-resource "aws_ecs_task_definition" "my_ECS_TD" {
-  family             = "ECS_TaskDefinition"
-
-  container_definitions = jsonencode([
-    {
-      name         = var.container_name
-      image        = var.image_name
-      cpu          = 500
-      memory       = 500
-      essential    = true
-      portMappings = [
-        {
-          containerPort = var.container_port
-          hostPort      = 0
-          protocol      = "tcp"
-        }
-      ]
-    }
-  ])
-}
-```
-
-Our Task Definition contains a container, which is launched from a Docker Image from Docker Hub. This container exposes port `var.container_port` (3000). When a container running on an EC2 Cluster, it will bind the port of the container to the one of ports in range 49153-65535 or 32768-61000 on the EC2 Cluster. And the most important is we can allocate resources for the container:
-
-- 0.5 vCPU for the task (This task contains only one container)
-- 500 MiB of memory for this task (This task contains only one container container)
-
-So, we solved the problem of allocating computing resources.
-
-### Create ECS Service
-
-Next, we will crete ECS Service (Service will be responsible for launching task). But first, we need to create IAM Role for Service to allow them interacting with EC2 Cluster and Load Balancer. In **iamrole.tf**, adding the configuration as below:
-
-```tf
-# iamrole.tf
-data "aws_iam_policy_document" "ecs_service_policy" {
-  statement {
-    actions = ["sts:AssumeRole"]
-    effect  = "Allow"
-
-    principals {
-      type        = "Service"
-      identifiers = ["ecs.amazonaws.com",]
-    }
-  }
-}
-
-
-resource "aws_iam_role" "ecs_service_role" {
-  name               = "ECS_ServiceRole"
-  assume_role_policy = data.aws_iam_policy_document.ecs_service_policy.json
-}
-
-resource "aws_iam_role_policy" "ecs_service_role_policy" {
-  name   = "ECS_ServiceRolePolicy"
-  policy = data.aws_iam_policy_document.ecs_service_role_policy.json
-  role   = aws_iam_role.ecs_service_role.id
-}
-
-data "aws_iam_policy_document" "ecs_service_role_policy" {
-  statement {
-    effect  = "Allow"
-    actions = [
-      "ec2:AuthorizeSecurityGroupIngress",
-      "ec2:Describe*",
-      "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-      "elasticloadbalancing:DeregisterTargets",
-      "elasticloadbalancing:Describe*",
-      "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-      "elasticloadbalancing:RegisterTargets",
-      "ec2:DescribeTags",
-      "logs:CreateLogGroup",
-      "logs:CreateLogStream",
-      "logs:DescribeLogStreams",
-      "logs:PutSubscriptionFilter",
-      "logs:PutLogEvents"
-    ]
-    resources = ["*"]
-  }
-}
-```
-
-Finally, we will create ECS Service. In **ecs.tf**, adding the configuration as below:
-
-```tf
-resource "aws_ecs_service" "service" {
-  name                               = "ECS_Service"
-  iam_role                           = aws_iam_role.ecs_service_role.arn
-  cluster                            = aws_ecs_cluster.main.id
-  task_definition                     = aws_ecs_task_definition.my_ECS_TD.arn
-  desired_count                      = var.ecs_task_desired_count
-
-  load_balancer {
-    target_group_arn = aws_alb_target_group.alb_target_group.arn
-    container_name   = var.container_name
-    container_port   = var.container_port
-  }
-
-  ## Spread tasks evenly accross all Availability Zones for High Availability
-  ordered_placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
-  
-  ## Make use of all available space on the Container Instances
-  ordered_placement_strategy {
-    type  = "binpack"
-    field = "memory"
-  }
-
-  # Do not update desired count again to avoid a reset to this number on every deploymengit t
-  lifecycle {
-    ignore_changes = [desired_count]
-  }
-}
-```
-
-With the above configuration, we have:
-
-- ECS Service belonging to the defined ECS Cluster
-- IAM Role for ECS Service
-- Task Definition in ECS Service
-- Task (Container(s)) will be launched into EC2 Cluster and registered into the Target Group. So, Load Balancer can forward traffic to them.
-- Task will be distributed across Availability Zones to ensure the High Availability
-- In case of increasing the number of desired task, ECS Service guarantees using all available space on the EC2 Cluster.
-
-
-Now, we have a completed AWS Infrastructure.
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/arc-log.png) 
