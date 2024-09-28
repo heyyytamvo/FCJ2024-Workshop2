@@ -1,25 +1,41 @@
 ---
-title : "Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS"
+title : "A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS"
 date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
 ---
-# Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS
+# A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS
 
 ### Overview
 
-In this workshop, we will provide step-by-step instructions for deploying a ReactJS Application into AWS Infrastructure, specifically Elastic Container Service (ECS). However, we will not interact with the Console Management since we have to manage too many resources ourselves. Infrastructure as Code (IaC) provides us the ability to provision the infrastructure without manual operation. IaC improves productivity in the process of problem-addressing and troubleshooting since the configuration is well-defined. In this workshop, we will use Terraform to deploy our AWS Infrastructure.
+In this workshop, we will integrate DevSecOps Practice to a CI/CD for an application running on Amazon Elastic Kubernetes Service (EKS). To leverage our DevOps practice, we will apply the GitOps Principle during this workshop. You will begin with provisioning the AWS Infrastructure by Terraform, building a CI/CD Pipeline, and finally, you will integrate the DevSecOps practice to secure our software development life cycle.
 
 ![ConnectPrivate](/images/Workshop2.gif) 
 
 ### Expectation
 
-After deploying the ECS Cluster, end-users will use the DNS of the Load Balancer to access the application. Our application is a VLSM Solver, which is a classic problem in computer networking. You can follow this [link](http://vlsm.heyyytamvo.io.vn) to experience the deployed application. For your preference, below are the repositories for the Back End and Front End. 
+#### Cloud Infrastructure
 
-+ BackEnd Repo: [Link](https://github.com/heyyytamvo/VLSM-Solver-BE)
-+ FrontEnd Repo: [Link](https://github.com/heyyytamvo/VLSM-Solver-FE)
+Below is the final AWS Infrastructure and all the traffic after finishing this workshop.
 
-In case you want the entire source code, please follow this [link](https://github.com/heyyytamvo/AWS-DevOps/tree/main/ECS/AWS-FCJ-WORKSHOP).
+![ConnectPrivate](/images/Archi.gif)
+
+#### CI Pipeline
+CI Pipeline is described below.
+
+![ConnectPrivate](/images/CI_Pipeline.gif)
+
+
+#### CD Pipeline
+CD Pipeline is described below
+
+![ConnectPrivate](/images/CD_Pipeline.gif)
+
+For your preference, below are the repositories.
+
+- Dev Repository (where Dev team work): link
+- Ops Repository (Where Operations team work): link
+
 
 ### Content
 

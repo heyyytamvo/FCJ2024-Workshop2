@@ -1,5 +1,5 @@
 ---
-title : "Kiểm tra DevSecOps Pipeline"
+title : "Kiểm tra DevSecOps Pipeline (CI)"
 date :  "`r Sys.Date()`" 
 weight : 2 
 chapter : false

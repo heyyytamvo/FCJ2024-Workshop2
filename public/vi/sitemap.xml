@@ -86,6 +86,18 @@
                 href="//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.1-createvpc/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/8-cicd-test/8.1-change-code/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-cicd-test/8.1-change-code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-cicd-test/8.1-change-code/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/4-cicd/4.1-application/</loc>
     <xhtml:link
                 rel="alternate"
@@ -122,6 +134,18 @@
                 href="//localhost:1313/vi/2-vpc-ec2/2.1-vpc/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/7-argocd-autodeploy/7.2-ops-repo-update/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/7.2-ops-repo-update/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/7.2-ops-repo-update/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/4-cicd/4.2-jenkins/</loc>
     <xhtml:link
                 rel="alternate"
@@ -146,16 +170,16 @@
                 href="//localhost:1313/vi/6-devsecops/6.2-sonar/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/7-argocd-autodeploy/6.2-sonar/</loc>
+    <loc>//localhost:1313/vi/8-cicd-test/8.2-ci-sec/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/7-argocd-autodeploy/6.2-sonar/"
+                href="//localhost:1313/8-cicd-test/8.2-ci-sec/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/7-argocd-autodeploy/6.2-sonar/"
+                href="//localhost:1313/vi/8-cicd-test/8.2-ci-sec/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/5-finish-monitoring/5.2-efk/</loc>
@@ -230,6 +254,18 @@
                 href="//localhost:1313/vi/2-vpc-ec2/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/7-argocd-autodeploy/7.3-argocd/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/7.3-argocd/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/7.3-argocd/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/4-cicd/4.3-dev-repo/</loc>
     <xhtml:link
                 rel="alternate"
@@ -252,18 +288,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/6-devsecops/6.3-jenkins/"
-                />
-  </url><url>
-    <loc>//localhost:1313/vi/7-argocd-autodeploy/6.3-jenkins/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/7-argocd-autodeploy/6.3-jenkins/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/7-argocd-autodeploy/6.3-jenkins/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/</loc>
@@ -302,6 +326,18 @@
                 href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/8-cicd-test/8.3-change-code-ops/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-cicd-test/8.3-change-code-ops/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-cicd-test/8.3-change-code-ops/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/3-eks/</loc>
     <xhtml:link
                 rel="alternate"
@@ -338,18 +374,6 @@
                 href="//localhost:1313/vi/6-devsecops/6.4-trivy-owasp-zap/"
                 />
   </url><url>
-    <loc>//localhost:1313/vi/7-argocd-autodeploy/6.4-trivy-owasp-zap/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/7-argocd-autodeploy/6.4-trivy-owasp-zap/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/7-argocd-autodeploy/6.4-trivy-owasp-zap/"
-                />
-  </url><url>
     <loc>//localhost:1313/vi/4-cicd/</loc>
     <xhtml:link
                 rel="alternate"
@@ -360,6 +384,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/4-cicd/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/8-cicd-test/8.4-cd-sec/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-cicd-test/8.4-cd-sec/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-cicd-test/8.4-cd-sec/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-eks/3.4-eks-worker-node-create/</loc>
@@ -384,6 +420,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/7-argocd-autodeploy/7.4-app-access/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/7.4-app-access/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/7.4-app-access/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/4-cicd/4.5-prometheus-grafana/</loc>
@@ -420,6 +468,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/5-finish-monitoring/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/8-cicd-test/8.5-app/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-cicd-test/8.5-app/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-cicd-test/8.5-app/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/3-eks/3.5-ecr/</loc>
@@ -492,6 +552,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="//localhost:1313/vi/4-cicd/4.7-bashscript/"
+                />
+  </url><url>
+    <loc>//localhost:1313/vi/8-cicd-test/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/8-cicd-test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/8-cicd-test/"
                 />
   </url><url>
     <loc>//localhost:1313/vi/4-cicd/4.8-k8s/</loc>

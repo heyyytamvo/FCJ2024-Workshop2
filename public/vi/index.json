@@ -4,7 +4,7 @@
 	"title": "Cấu hình GitHub Repository (Ops Repo)",
 	"tags": [],
 	"description": "",
-	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Ops Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkins File Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Ops Repo.\n"
+	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Ops Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkinsfile Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Ops Repo.\n"
 },
 {
 	"uri": "//localhost:1313/vi/7-argocd-autodeploy/7.1-ci-pipeline/",
@@ -18,7 +18,7 @@
 	"title": "Đặt vấn đề",
 	"tags": [],
 	"description": "",
-	"content": "Tại sao là Microservices? Trước khi tìm hiểu về Microservice, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.\nNhư bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và việc update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.\nTuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservices. Nôm na, Microservices là chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.\nTriển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.\nTại sao là GitOps? Tại sao là DevSecOps? DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:\nEnd user sẽ được cập nhật phiên bản mới nhất của sản phẩm một cách nhanh chóng Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá. Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:\nSAST (Static Application Security Testing): thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.\nImage Scan và Secure IaC: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).\nDAST (Dynamic Application Security Testing): thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)\nMonitoring có cần thiết không? Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.\nTrong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:\nElastic Compute Service (EC2): Nơi ta sẽ host Jenkins Server, SonarQube Server. Chúng là một phần quan trọng trong CI/CD Pipeline của ta Elastic Kubernetes Service (EKS): Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS. Elastic Container Registry (ECR): Đóng vai trò như một \u0026ldquo;Private Docker Hub\u0026rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp. Bạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này\n"
+	"content": "Tại sao là Microservices? Trước khi tìm hiểu về Microservices, ta cần tìm hiểu về cách triển khai production truyền thống: Monolithic. Monolithic là cách ‘đóng gói’ (hay còn gọi là containerize) phần mềm thành một khối duy nhất và triển khai nó lên server. Công nghệ containerize phổ biến mà bạn đọc có thể nghe đến tiêu biểu là Docker. Tưởng tượng phần mềm của bạn được containerized thành một khối duy nhất (hay còn gọi là Image) và đã được triển khai lên server. Bây giờ, một tính năng mới đã được phát triển và sẵn sàng triển khai trên môi trường production. Quá trình update phần mềm sẽ được diễn ra như hình bên dưới.\nNhư bạn đọc có thể thấy, application bắt buộc phải bị tắt, sau đó, phiên bản mới nhất sẽ được khởi chạy. Lúc này đồng nghĩa với việc End User sẽ phải đối diện với downtime vì rõ ràng, phần mềm được ‘đóng gói’ thành một khối duy nhất và việc update một chức năng cũ lại ảnh hưởng cả tập thể. Tất nhiên, vấn đề này có thể giải quyết bằng các Deployment Strategy như Blue/Green Deployment, etc.\nTuy nhiên, có một kiến trúc phần mềm có thể giải quyết bài toán này: Microservices. Nôm na, Microservices là chia các chức năng (Service) trong Application thành các khối khác nhau và chúng giao tiếp với nhau thông qua các chuẩn giao tiếp như REST, v.v. Việc cập nhật một service sẽ không ảnh hưởng đến các service khác như hình bên dưới.\nTriển khai một ứng dụng Microservice trên Kubernetes (K8s) là một bài toán tiêu biểu. Lúc này ta cần triển khai hạ tầng, và cấu hình cho cụm K8s đòi hỏi sự hợp tác của Team Vận hành (hay Ops Team bao gồm các system engineer, system administrator, network engineer, etc). Và GitOps sẽ là câu trả lời để đảm bảo sự phối hợp đó.\nTại sao là GitOps? Tại sao là DevSecOps? DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:\nEnd user sẽ được cập nhật phiên bản mới nhất của sản phẩm một cách nhanh chóng Đội ngũ phát triển sẽ tập trung vào công việc phát triển phần mềm, khi những công đoạn thủ công như: kiểm thử, containerize, etc. đã được tự động hoá. Tuy nhiên, trong quá trình automation đó, liệu ta có muốn kiểm thử những lỗ hổng bảo mật của source code, built image, hay chính production của chúng ta một cách tự động? Và thế là DevSecOps ra đời để giải quyết những bài toán đó. Trong khuôn khổ của bài Workshop này, chúng ta sẽ triển khai các phương pháp kiểm thử trong DevSecOps như:\nSAST (Static Application Security Testing): thực hiện kiểm thử source code trước khi ‘release’. Ví dụ, nếu ứng dụng của bạn được viết bằng Python, ta sẽ kiểm thử các lỗ hổng bảo mật có thể xuất hiện trên Source Code Python của ta.\nImage Scan và Secure IaC: Tương tự như scan source code cho application, ta cũng sẽ thực hiện scan source code cho hạ tầng (Ví dụ: Liệu hạ tầng cloud của ta có cho phép public access không?) và built image (ví dụ: Image Base của ta có outdated không?).\nDAST (Dynamic Application Security Testing): thực hiện kiểm thử production của chúng ta (Ví dụ: Khi end user gửi một request đến production, liệu có những response không mong muốn nào được trả về không?)\nMonitoring có cần thiết không? Tưởng tượng bạn đọc là một thành viên trong team Dev và Application của chúng ta được triển khai trên cụm Kubernetes. Một khi có lỗi xảy ra ở Application, bạn phải biết cách truy cập vào cụm K8s để xem logs và debug. Nhưng rõ ràng, ta không muốn điều đó xảy ra tí nào vì K8s rất phức tạp, và thế ta cần centralized các logs tại một nơi và developer có thể dễ dàng truy cập cho việc debug. Với bài Workshop này, ta sẽ ứng dụng EFK Stack. Khi đó, Developers sẽ biết được logs thông qua Web Browser.\nTrong bài Workshop này, chúng ta sẽ tận dụng các dịch vụ từ AWS để giải quyết bài toán trên:\nElastic Compute Service (EC2): Nơi ta sẽ host Jenkins Server, SonarQube Server. Chúng là một phần quan trọng trong CI/CD Pipeline của ta Elastic Kubernetes Service (EKS): Thay vì tự tay setup một Kubernetes Cluster, chúng ta sẽ sử dụng dịch vụ từ AWS. Elastic Container Registry (ECR): Đóng vai trò như một \u0026ldquo;Private Docker Hub\u0026rdquo;. Rõ ràng, ta không muốn các Application Image bị lộ. Vì vậy, ta cần một nơi đủ tin cậy để chứa chúng và ECR là giải pháp. Bạn đọc cần cài đặt Terraform trước khi có thể hoàn thành bài Workshop này\n"
 },
 {
 	"uri": "//localhost:1313/vi/5-finish-monitoring/5.1-prome-grafana/",
@@ -49,6 +49,13 @@
 	"content": "Tạo Folder Terraform, tạo các file Terraform/terraform.tfvars và Terraform/variables.tf. Các file này sẽ định nghĩa các cấu hình hạ tầng của ta.\nBạn đọc tham khảo tại đây Terraform/terraform.tfvars và Terraform/variables.tf\nTạo file Terraform/00-main.tf để định nghĩa AWS Provider.\nterraform { required_providers { aws = { source = \u0026#34;hashicorp/aws\u0026#34; version = \u0026#34;~\u0026gt; 5.0\u0026#34; } } required_version = \u0026#34;\u0026gt;= 1.2.0\u0026#34; } provider \u0026#34;aws\u0026#34; { region = \u0026#34;us-east-1\u0026#34; } Tạo VPC, Internet Gateway, và NAT Gateway Tạo file Terraform/01-vpc.tf để tạo VPC, Internet Gateway, và NAT Gateway.\nresource \u0026#34;aws_vpc\u0026#34; \u0026#34;main\u0026#34; { cidr_block = var.vpc_cidr enable_dns_hostnames = true enable_dns_support = true tags = { Name = var.vpc_name } } resource \u0026#34;aws_internet_gateway\u0026#34; \u0026#34;defaultIGW\u0026#34; { vpc_id = aws_vpc.main.id tags = { Name = \u0026#34;Internet Gateway\u0026#34; } } resource \u0026#34;aws_eip\u0026#34; \u0026#34;my_elastic_ip\u0026#34; { domain = \u0026#34;vpc\u0026#34; } # NAT Gateway resource \u0026#34;aws_nat_gateway\u0026#34; \u0026#34;my_nat_gtw\u0026#34; { allocation_id = aws_eip.my_elastic_ip.id subnet_id = values(aws_subnet.public_subnets)[0].id tags = { Name = \u0026#34;NAT Gateway\u0026#34; } } Như trên, ta cần tạo một Elastic IP Address và gán nó vào NAT Gateway của ta.\n"
 },
 {
+	"uri": "//localhost:1313/vi/8-cicd-test/8.1-change-code/",
+	"title": "Thay đổi Source Code ở Dev Repository",
+	"tags": [],
+	"description": "",
+	"content": "Tại Local Dev Repository, thực hiện thay đổi Service API Gateway như hình bên dưới:\nSau đó, push lên Remote Repository. Ta sẽ có commit ID mới nhất như hình bên dưới:\nKiểm tra ở Registry, ta sẽ có image mới nhất như hình bên dưới:\n"
+},
+{
 	"uri": "//localhost:1313/vi/4-cicd/4.1-application/",
 	"title": "Tổng quan Application",
 	"tags": [],
@@ -57,10 +64,10 @@
 },
 {
 	"uri": "//localhost:1313/vi/",
-	"title": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS",
+	"title": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservices trên AWS EKS",
 	"tags": [],
 	"description": "",
-	"content": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS Tổng quan Trong bài Workshop này, bạn đọc sẽ tìm hiểu cách thức tích hợp DevSecOps và ứng dụng GitOps vào CI/CD Pipeline cho một ứng dụng Microservice được triển khai trên Amazon Elastic Kubernetes (EKS). Bạn đọc sẽ bắt đầu việc triển khai hạ tầng trên AWS bằng Terraform, triển khai CI/CD Pipeline, và cuối cùng tích hợp các phương pháp bảo mật trong DevOps, hay còn gọi là DevSecOps.\nKỳ vọng Kiến trúc hạ tầng Cloud Bên dưới là toàn bộ kiến trúc cho hạ tầng của chúng ta và các luồng traffic sau khi hoàn thành bài Workshop này\nCI Pipeline CI Pipeline được mô tả như hình bên dưới\nCD Pipeline CD Pipeline được mô tả như hình bên dưới\nToàn bộ Source Code cho Workshop này, bạn đọc có thể tham khảo:\nDev Repo (Nơi Dev Team sẽ làm việc): Link Ops Repo (Nơi Ops Team sẽ làm việc): Link Nội dung Đặt vấn đề Triển khai VPC, Jenkins, và SonarQube Server Triển khai Kubernetes Cluster Triển khai CI/CD Pipeline Triển khai DevSecOps Kiểm thử Dọn dẹp tài nguyên Tại mỗi phần, bạn đọc sẽ được hướng dẫn nên để Source Code ở Dev Repo hoặc Ops Repo\n"
+	"content": "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservices trên AWS EKS Tổng quan Trong bài Workshop này, bạn đọc sẽ tìm hiểu cách thức tích hợp DevSecOps và ứng dụng GitOps vào CI/CD Pipeline cho một ứng dụng Microservice được triển khai trên Amazon Elastic Kubernetes (EKS). Bạn đọc sẽ bắt đầu việc triển khai hạ tầng trên AWS bằng Terraform, triển khai CI/CD Pipeline, và cuối cùng tích hợp các phương pháp bảo mật trong DevOps, hay còn gọi là DevSecOps.\nKỳ vọng Kiến trúc hạ tầng Cloud Bên dưới là toàn bộ kiến trúc cho hạ tầng của chúng ta và các luồng traffic sau khi hoàn thành bài Workshop này\nCI Pipeline CI Pipeline được mô tả như hình bên dưới\nCD Pipeline CD Pipeline được mô tả như hình bên dưới\nToàn bộ Source Code cho Workshop này, bạn đọc có thể tham khảo:\nDev Repo (Nơi Dev Team sẽ làm việc): Link Ops Repo (Nơi Ops Team sẽ làm việc): Link Nội dung Đặt vấn đề Triển khai VPC, Jenkins, và SonarQube Server Triển khai Kubernetes Cluster Triển khai CI/CD Pipeline Triển khai DevSecOps Kiểm thử Dọn dẹp tài nguyên Tại mỗi phần, bạn đọc sẽ được hướng dẫn nên để Source Code ở Dev Repo hoặc Ops Repo\n"
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/",
@@ -74,7 +81,7 @@
 	"title": "Cập nhật Ops Repository",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "Ở file k8s/deployment.yaml ở Ops Repository, với các Image mà ta có ở Registry, cập nhật image cho từng Service và đẩy lên Remote Ops Repository như bên dưới:\nService API Gateway Info Service Order Service "
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.2-jenkins/",
@@ -89,6 +96,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Đăng nhập vào SonarQube Server Truy cập SonarQube Server thông qua EC2 DNS, bạn đọc đăng nhập vào SonarQube Server với tài khoản và mật khẩu là admin như hình bên dưới:\nTạo Local Project Tạo Local Project như hình bên dưới:\nĐặt tên Local Project là microservice như bên dưới:\nThiết lập Sonar File ở Dev Repository Tại Dev Repository, tạo file sonar-project.properties như bên dưới:\nsonar.projectKey=microservice Tạo Token để truy cập SonarQube Server Tại mục Administration \u0026gt; Security \u0026gt; Users, với user admin, tạo một Token cho Admin như hình bên dưới.\nĐây không phải là Best Practice vì chúng ta đang trao quyền admin cho Jenkins Server.\n"
+},
+{
+	"uri": "//localhost:1313/vi/8-cicd-test/8.2-ci-sec/",
+	"title": "Kiểm tra DevSecOps Pipeline (CI)",
+	"tags": [],
+	"description": "",
+	"content": "SAST (Static Application Security Testing) Tại Jenkins Server, ta thấy trong Pipeline của ta có phần SonarQube Analysis Source Code như bên dưới:\nKiểm tra tại Sonar Server, ta sẽ có được kết quả sau khi Scan Source Code. Vulnerabilities không nhiều vì Application của ta khá đơn giản:\nBên dưới là các kết quả khác:\nImage Scan Tại Jenkins Server, ta thấy trong Pipeline của ta có phần Scan Image như bên dưới:\nBên dưới là kết quả sau khi scan Built Image và Source Code Terraform:\n"
 },
 {
 	"uri": "//localhost:1313/vi/5-finish-monitoring/5.2-efk/",
@@ -137,7 +151,7 @@
 	"title": "Auto Deployment với Argo CD",
 	"tags": [],
 	"description": "",
-	"content": "Tại mục EC2 \u0026gt; Load Balancers, dùng DNS của Argo CD để truy cập đến trang web của Argo CD. Bạn đọc sẽ được yêu cầu đăng nhập với tài khoản là admin và Initial Password. Để lấy được Initial Password của Argo CD, bạn đọc thực hiện câu lệnh sau tại Jump Host (hãy chắc chắn rằng Jump Host có credentials để tương tác với K8s Cluster):\nkubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\u0026#34;{.data.password}\u0026#34; | base64 -d Kết nối đến Ops Repository Sau khi đăng nhập, tại phần Settings \u0026gt; Repositories, kết nối đến Ops Repository với cấu hình bên dưới:\nApplication Deployment Tại phần Applications, tạo một application mới với cấu hình bên dưới:\nKiểm tra Sau khi Create Application, Argo CD sẽ tự động deploy các application pods vào K8s Cluster của ta như hình bên dưới:\nTrở lại AWS Console Management, tại phần EC2 \u0026gt; Load Balancers, ta sẽ thấy có một Load Balancer mới được deployed (trước đó có 3 Load Balancers), đó chính là đường dẫn đến Production của ta.\n"
+	"content": "Tại mục EC2 \u0026gt; Load Balancers, dùng DNS của Argo CD để truy cập đến trang web của Argo CD. Bạn đọc sẽ được yêu cầu đăng nhập với tài khoản là admin và Initial Password. Để lấy được Initial Password của Argo CD, bạn đọc thực hiện câu lệnh sau tại Jump Host (hãy chắc chắn rằng Jump Host có credentials để tương tác với K8s Cluster):\nkubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath=\u0026#34;{.data.password}\u0026#34; | base64 -d Kết nối đến Ops Repository Sau khi đăng nhập, tại phần Settings \u0026gt; Repositories, kết nối đến Ops Repository với cấu hình bên dưới:\nApplication Deployment Tại phần Applications, tạo một application mới với cấu hình bên dưới:\nKiểm tra Sau khi Create Application, Argo CD sẽ tự động deploy các application pods vào K8s Cluster của ta như hình bên dưới:\nTrở lại AWS Console Management, tại phần EC2 \u0026gt; Load Balancers, ta sẽ thấy có một Load Balancer mới được deployed (trước đó chỉ có 3 Load Balancers), đó chính là đường dẫn đến Production của ta.\n"
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.3-dev-repo/",
@@ -151,7 +165,7 @@
 	"title": "Cấu hình Jenkins Server",
 	"tags": [],
 	"description": "",
-	"content": "Quay trở về Jenkins Server, tại phần Credentials, thêm vào một credential cho Sonar với Token mà ta lấy được ở phần trước. Tạo một credential như hình dưới:\nTại phần Dashboard \u0026gt; Manage Jenkins \u0026gt; System, ở mục SonarQube servers, thêm vào cấu hình bên dưới:\n"
+	"content": "Thiết lập SonarQube Server Quay trở về Jenkins Server, tại phần Credentials, thêm vào một credential cho Sonar với Token mà ta lấy được ở phần trước. Tạo một credential như hình dưới:\nTại phần Dashboard \u0026gt; Manage Jenkins \u0026gt; System, ở mục SonarQube servers, thêm vào cấu hình bên dưới:\nTạo Ops Pipeline Tạo Ops Pipeline tương tự như Service API Gateway Pipeline, tuy nhiên, GitHub Repository sẽ là URL dẫn đến remote Ops Repo.\n"
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/",
@@ -173,6 +187,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Jenkins Server sẽ là nơi thực hiện hầu hết các Pipeline của chúng ta: CI Pipeline và Pipeline cho DevSecOps. Mỗi lần có một commit mới ở Dev Repo hoặc Ops Repo, Jenkins sẽ tự động chạy các pipeline dựa vào cách mà ta cấu hình.\nTạo File Terraform/jenkins_install.sh như bên dưới để cài đặt các package cần thiết cho Jenkins Server.\n#!/bin/bash sudo apt update -y # install docker sudo apt-get install -y ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc echo \\ \u0026#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026amp;\u0026amp; echo \u0026#34;$VERSION_CODENAME\u0026#34;) stable\u0026#34; | \\ sudo tee /etc/apt/sources.list.d/docker.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin # install aws-cli sudo apt install -y unzip curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update # install java and jenkins sudo apt install -y fontconfig openjdk-17-jre sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \\ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key echo \u0026#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]\u0026#34; \\ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \\ /etc/apt/sources.list.d/jenkins.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y jenkins sudo systemctl start jenkins # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:8080; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx sudo usermod -aG docker jenkins sudo systemctl restart jenkins sudo systemctl restart docker sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable Kế tiếp, ta sẽ thiết lập cấu hình cho Jenkins Server. Tạo file Terraform/05-jenkins_server.tf như bên dưới:\n# Security Group for EC2\rresource \u0026#34;aws_security_group\u0026#34; \u0026#34;JENKINS_SG\u0026#34; {\rname = \u0026#34;JENKINS_SG\u0026#34;\rdescription = \u0026#34;Allow HTTP inbound and all outbound traffic\u0026#34;\rvpc_id = aws_vpc.main.id\ringress = [\r{\rfrom_port = 80\rto_port = 80\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 80\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = -1\rto_port = -1\rprotocol = \u0026#34;icmp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;],\rdescription = \u0026#34;Allow inbound ICMP Traffic\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = 22\rto_port = 22\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 22\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r}\r]\regress {\rfrom_port = 0\rto_port = 0\rprotocol = \u0026#34;-1\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\r}\rtags = {\rName = \u0026#34;Jenkins Server SG\u0026#34;\r}\r}\rresource \u0026#34;aws_instance\u0026#34; \u0026#34;Jenkins_server\u0026#34; {\rami = var.ec2_ami\rinstance_type = var.ec2_instance_type\rkey_name = aws_key_pair.EC2key.key_name\rmonitoring = true\rsubnet_id = values(aws_subnet.public_subnets)[2].id\rvpc_security_group_ids = [aws_security_group.JENKINS_SG.id]\rassociate_public_ip_address = true\ruser_data = file(\u0026#34;${path.module}/jenkins_install.sh\u0026#34;)\rtags = {\rTerraform = \u0026#34;true\u0026#34;\rEnvironment = \u0026#34;dev\u0026#34;\rName = \u0026#34;Jenkins Server\u0026#34;\r}\rroot_block_device {\rvolume_size = 30\r}\r} "
+},
+{
+	"uri": "//localhost:1313/vi/8-cicd-test/8.3-change-code-ops/",
+	"title": "Thay đổi Source Code ở Ops Repo",
+	"tags": [],
+	"description": "",
+	"content": "Bạn đọc tham khảo Ops Repository tại đây. Tại Jenkinsfile, chỉnh sửa PRODUCTION_LINK như bên dưới. Đây sẽ là đường liên kết để OWASP ZAP tiến hành kiểm tra lỗ hổng bảo mật.\nTại file k8s/deployment.yaml, sửa image của API Gateway như hình bên dưới:\nĐẩy source code lên Remote Github Repository để chạy DevSecOps Pipeline và Argo CD Auto Application Update.\n"
 },
 {
 	"uri": "//localhost:1313/vi/3-eks/",
@@ -203,6 +224,13 @@
 	"content": "\rSource code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo\nTại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.\nNội dung Tổng quan Application Cấu hình Jenkins Server Cấu hình GitHub Repository (Dev Repo) Cấu hình ArgoCD và Automation Deployment Cấu hình Prometheus và Grafana Cấu hình EFK Stack "
 },
 {
+	"uri": "//localhost:1313/vi/8-cicd-test/8.4-cd-sec/",
+	"title": "Kiểm tra DevSecOps Pipeline (CD)",
+	"tags": [],
+	"description": "",
+	"content": "Tại Jenkins Server, Ops Pipeline sẽ được trigger để tiến hành scan Source Code Terraform và dùng OWASP ZAP để kiểm tra bảo mật cho Website của chúng ta.\nSecure IaC DAST (Dynamic Application Security Testing) "
+},
+{
 	"uri": "//localhost:1313/vi/3-eks/3.4-eks-worker-node-create/",
 	"title": "Tạo EKS Worker Node",
 	"tags": [],
@@ -221,7 +249,7 @@
 	"title": "Truy cập Application",
 	"tags": [],
 	"description": "",
-	"content": "Truy cập Application Thông qua Load Balancer, truy cập Application của ta như hình bên dưới:\nThực hiện request đến Info Service, ta sẽ nhận được kết quả như bên dưới:\nDev Team Debug với EFK Stack Tại đường dẫn domain.com/get-orders, nếu thực hiện load nhiều lần, ta sẽ có lỗi như hình bên dưới:\nVấn đề đã xảy ra, chúng ta có bugs và cần fix sớm nhất có thể. Rất may là ta đã dùng EFK Stack để centralized các logs tại một nơi. Thông qua Kibana, Dev Team có thể biết được logs của các pods như bên dưới:\nĐây chính là do ta chưa implement các Queue để các Service giao tiếp với nhau khi chúng đang giao tiếp với cơ chế bất động bộ (asynchronous). Quả thật, triển khai một ứng dụng Microservices không hề dễ dàng.\n"
+	"content": "Truy cập Application Thông qua Load Balancer, truy cập Application của ta như hình bên dưới:\nThực hiện request đến Info Service, ta sẽ nhận được kết quả như bên dưới:\nDev Team Debug với EFK Stack Tại đường dẫn domain.com/get-orders, nếu thực hiện load nhiều lần, ta sẽ có lỗi như hình bên dưới:\nVấn đề đã xảy ra, chúng ta có bugs và cần fix sớm nhất có thể. Rất may là ta đã dùng EFK Stack để centralized các logs tại một nơi. Thông qua Kibana, Dev Team có thể biết được logs của các pods như bên dưới:\nĐây chính là do ta chưa implement các Queue để các Service giao tiếp với nhau khi chúng đang giao tiếp với cơ chế bất đồng bộ (asynchronous). Quả thật, triển khai một ứng dụng Microservices không hề dễ dàng.\n"
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.5-prometheus-grafana/",
@@ -243,6 +271,13 @@
 	"tags": [],
 	"description": "",
 	"content": "\rSource code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo\nTại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.\nNội dung Tổng quan Application Cấu hình Jenkins Server Cấu hình GitHub Repository (Dev Repo) Cấu hình ArgoCD và Automation Deployment Cấu hình Prometheus và Grafana Cấu hình EFK Stack "
+},
+{
+	"uri": "//localhost:1313/vi/8-cicd-test/8.5-app/",
+	"title": "Kiểm tra Application Auto Update",
+	"tags": [],
+	"description": "",
+	"content": "Old Version Trước khi commit ở Ops Repository, bên dưới là application của ta:\nNew Version Tại Argo CD, ta có thể thấy API Gateway Pods đang được cập nhật như hình bên dưới:\nCuối cùng, tại trang Production của ta đã được cập nhật với phiên bản mới nhất:\n"
 },
 {
 	"uri": "//localhost:1313/vi/3-eks/3.5-ecr/",
@@ -285,6 +320,13 @@
 	"tags": [],
 	"description": "",
 	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nChúng ta sẽ dùng bash script để tạo các stack Argo CD, Prometheus, Grafana, và EFK Stack. Tại Ops Repo, tạo file setup.sh như bên dưới.\n#!/bin/bash #set up argo cd kubectl apply -f argocd/namespace.yaml kubectl apply -f argocd/default.yaml -n argocd #set up efk stack kubectl apply -f EFK/. #set up Prometheus and Grafana kubectl create namespace monitoring helm repo add prometheus-community https://prometheus-community.github.io/helm-charts helm repo update helm install prometheus-operator prometheus-community/kube-prometheus-stack -n monitoring kubectl apply -f monitoring/grafana.yaml -n monitoring Bây giờ, Ops Repository của ta đã có hoàn chỉnh như hình:\nBây giờ, đẩy tất cả mọi thứ lên GitHub Repository với git push.\nFolder k8s sẽ không được đề cập ở đây, bạn đọc có thể tham khảo Source Code tại Ops Repository của tôi.\n"
+},
+{
+	"uri": "//localhost:1313/vi/8-cicd-test/",
+	"title": "Kiểm thử CI/CD Pipeline",
+	"tags": [],
+	"description": "",
+	"content": "terraform destroy Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:\n"
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/4.8-k8s/",

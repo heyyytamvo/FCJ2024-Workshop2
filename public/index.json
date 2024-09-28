@@ -1,5 +1,12 @@
 [
 {
+	"uri": "//localhost:1313/",
+	"title": "A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS",
+	"tags": [],
+	"description": "",
+	"content": "A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS Overview In this workshop, we will integrate DevSecOps Practice to a CI/CD for an application running on Amazon Elastic Kubernetes Service (EKS). To leverage our DevOps practice, we will apply the GitOps Principle during this workshop. You will begin with provisioning the AWS Infrastructure by Terraform, building a CI/CD Pipeline, and finally, you will integrate the DevSecOps practice to secure our software development life cycle.\nExpectation Cloud Infrastructure Below is the final AWS Infrastructure and all the traffic after finishing this workshop.\nCI Pipeline CI Pipeline is described below.\nCD Pipeline CD Pipeline is described below\nFor your preference, below are the repositories.\nDev Repository (where Dev team work): link Ops Repository (Where Operations team work): link Content Problem Definition Preparation Scaling Testing Cleanup "
+},
+{
 	"uri": "//localhost:1313/3-eks/3.1-eks-role/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
@@ -112,21 +119,28 @@
 	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
 },
 {
-	"uri": "//localhost:1313/7-argocd-autodeploy/6.2-sonar/",
+	"uri": "//localhost:1313/7-argocd-autodeploy/7.2-ops-repo-update/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
 	"description": "",
 	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
 },
 {
-	"uri": "//localhost:1313/7-argocd-autodeploy/6.3-jenkins/",
+	"uri": "//localhost:1313/7-argocd-autodeploy/7.3-argocd/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
 	"description": "",
 	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
 },
 {
-	"uri": "//localhost:1313/7-argocd-autodeploy/6.4-trivy-owasp-zap/",
+	"uri": "//localhost:1313/7-argocd-autodeploy/7.4-app-access/",
+	"title": "Connect to Bastion Host",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/8.1-change-code/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
 	"description": "",
@@ -154,18 +168,39 @@
 	"content": "Creating vpc.tf with the configuration below:\n# vpc.tf resource \u0026#34;aws_vpc\u0026#34; \u0026#34;main\u0026#34; { cidr_block = var.vpc_cidr enable_dns_hostnames = true enable_dns_support = true tags = { Name = var.vpc_name } } resource \u0026#34;aws_internet_gateway\u0026#34; \u0026#34;defaultIGW\u0026#34; { vpc_id = aws_vpc.main.id tags = { Name = \u0026#34;Workshop 1 Internet Gateway\u0026#34; } } # Elastic IP for NAT Gateway resource \u0026#34;aws_eip\u0026#34; \u0026#34;my_elastic_ip\u0026#34; { domain = \u0026#34;vpc\u0026#34; } # NAT Gateway resource \u0026#34;aws_nat_gateway\u0026#34; \u0026#34;my_nat_gtw\u0026#34; { allocation_id = aws_eip.my_elastic_ip.id subnet_id = aws_subnet.public_subnet_1.id tags = { Name = \u0026#34;NAT Gateway\u0026#34; } } First, we create a VPC with a defined CIDR Block (Please follow this link to check any defined variables). Then, we create an Internet Gateway and attach it to our VPC.\nFinally, an Elastic IP is created and attached to the NAT Gateway so that private instances can reach the internet.\n"
 },
 {
-	"uri": "//localhost:1313/",
-	"title": "Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS",
-	"tags": [],
-	"description": "",
-	"content": "Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS Overview In this workshop, we will provide step-by-step instructions for deploying a ReactJS Application into AWS Infrastructure, specifically Elastic Container Service (ECS). However, we will not interact with the Console Management since we have to manage too many resources ourselves. Infrastructure as Code (IaC) provides us the ability to provision the infrastructure without manual operation. IaC improves productivity in the process of problem-addressing and troubleshooting since the configuration is well-defined. In this workshop, we will use Terraform to deploy our AWS Infrastructure.\nExpectation After deploying the ECS Cluster, end-users will use the DNS of the Load Balancer to access the application. Our application is a VLSM Solver, which is a classic problem in computer networking. You can follow this link to experience the deployed application. For your preference, below are the repositories for the Back End and Front End.\nBackEnd Repo: Link FrontEnd Repo: Link In case you want the entire source code, please follow this link.\nContent Problem Definition Preparation Scaling Testing Cleanup "
-},
-{
 	"uri": "//localhost:1313/1-introduce/",
 	"title": "Problem Definition",
 	"tags": [],
 	"description": "",
 	"content": "Containerizing an application and deploying it into a server seems to solve the problem of dependencies since there is more than one application running on a single server. However, there are some issues:\nHow does the server handle hundreds or millions of incoming requests? Suppose there are 2 Services (A and B) operating on the same server. End-users tend to access Service A more than they do on Service B. So we need to provide computing resources for Service A to avoid any heavy workload. In this workshop, we will use these services from AWS to solve the problem above:\nAuto Scaling: Automatically Scale based on the CPU performance Load Balancer: Distribute incoming traffic to servers Elastic Container Service: Utilizing the container management "
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/8.2-ci-sec/",
+	"title": "Connect to Bastion Host",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/8.3-change-code-ops/",
+	"title": "Connect to Bastion Host",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/8.4-cd-sec/",
+	"title": "Connect to Bastion Host",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/8.5-app/",
+	"title": "Connect to Bastion Host",
+	"tags": [],
+	"description": "",
+	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
 },
 {
 	"uri": "//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/",
@@ -246,6 +281,13 @@
 },
 {
 	"uri": "//localhost:1313/7-argocd-autodeploy/",
+	"title": "Cleanup",
+	"tags": [],
+	"description": "",
+	"content": "Using Terminal and executing this command lines:\nterraform destroy Now, all resources will be removed as below:\n"
+},
+{
+	"uri": "//localhost:1313/8-cicd-test/",
 	"title": "Cleanup",
 	"tags": [],
 	"description": "",

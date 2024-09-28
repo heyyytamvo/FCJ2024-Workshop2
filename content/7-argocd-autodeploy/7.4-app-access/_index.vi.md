@@ -27,4 +27,4 @@ Vấn đề đã xảy ra, chúng ta có bugs và cần fix sớm nhất có th�
 
 ![ConnectPrivate](/images/7-argocd-autodeploy/7.4-app-access/ArgoCD_Deploy8.png)
 
-Đây chính là do ta chưa implement các Queue để các Service giao tiếp với nhau khi chúng đang giao tiếp với cơ chế bất động bộ (asynchronous). Quả thật, triển khai một ứng dụng Microservices không hề dễ dàng.
+Đây chính là do ta chưa implement các Queue để các Service giao tiếp với nhau khi chúng đang giao tiếp với cơ chế bất đồng bộ (asynchronous). Quả thật, triển khai một ứng dụng Microservices không hề dễ dàng.

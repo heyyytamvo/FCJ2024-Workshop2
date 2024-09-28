@@ -1,10 +1,10 @@
 ---
-title : "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS"
+title : "Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservices trên AWS EKS"
 date :  "`r Sys.Date()`" 
 weight : 1 
 chapter : false
 ---
-# Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS
+# Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservices trên AWS EKS
 
 
 ### Tổng quan
