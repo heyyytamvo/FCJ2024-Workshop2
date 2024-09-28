@@ -554,18 +554,6 @@
                 href="//localhost:1313/7-argocd-autodeploy/7.1-ci-pipeline/"
                 />
   </url><url>
-    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
-                />
-  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/</loc>
     <xhtml:link
                 rel="alternate"
@@ -576,6 +564,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

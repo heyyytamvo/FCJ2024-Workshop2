@@ -11,7 +11,7 @@ We use Ops Repo in this section
 {{% /notice %}}
 
 
-Trong phần này, chúng ta sẽ triển khai một VPC với:
+In this section, we will a VPC with:
 
 - 3 Availability Zones
 - 3 Public Subnets

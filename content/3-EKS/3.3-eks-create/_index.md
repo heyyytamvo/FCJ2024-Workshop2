@@ -1,34 +1,38 @@
 ---
-title : "Connect to Bastion Host"
+title : "Create EKS Cluster"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 3 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 3.3. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+Create file `Terraform/08-eks.tf` as below:
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+```tf
+module "eks" {
+  source          = "terraform-aws-modules/eks/aws"
+  cluster_name    = var.cluster_name
+  cluster_version = var.cluster_version
+  vpc_id          = aws_vpc.main.id
+  subnet_ids                               = [for subnet in aws_subnet.private_subnets : subnet.id]
+  cluster_endpoint_public_access           = true
+  iam_role_arn                             = aws_iam_role.ekse_role.arn
+  enable_cluster_creator_admin_permissions = true
 
+  cluster_addons = {
+    kube-proxy = {
+      most_recent = true
+    }
+    vpc-cni = {
+      most_recent = true
+    }
+  }
 
-```sh
-ssh-add EC2.pem
+  control_plane_subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id]
+
+  tags = {
+    Environment = "Development"
+  }
+  depends_on = [aws_iam_role_policy_attachment.AmazonEKSClusterPolicy]
+}
 ```
-
-Then, we connect to the Bastion Host by:
-
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
-
-We can connect to our EC2 Cluster by using this command line:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
