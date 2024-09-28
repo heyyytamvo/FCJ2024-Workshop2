@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Connect to Bastion Host :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
+    <title>Configure Jenkins Server :: Implementing DevSecOps Practice and GitOps Principal in CI/CD Pipeline for a Microservice Application running on AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727528848" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727528848" rel="stylesheet">
-    <link href="/css/hybrid.css?1727528848" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727528848" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727528848" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727528848" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727528848" rel="stylesheet">
-    <link href="/css/theme.css?1727528848" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727528848" rel="stylesheet">
+    <link href="/css/nucleus.css?1727531216" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727531216" rel="stylesheet">
+    <link href="/css/hybrid.css?1727531216" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727531216" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727531216" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727531216" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727531216" rel="stylesheet">
+    <link href="/css/theme.css?1727531216" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727531216" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727528848" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727531216" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727528848"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727531216"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727528848"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727528848"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727531216"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727531216"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727528848"></script>
+<script type="text/javascript" src="/js/search.js?1727531216"></script>
 
     
   </div>
@@ -226,13 +226,13 @@
  
   
     
-    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Association" class="dd-item 
+    <li data-nav-id="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/" title="Run Terraform" class="dd-item 
         
         
         
         ">
       <a href="/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/">
-           <b> 2.1.3 </b> Run Association
+           <b> 2.1.3 </b> Run Terraform
           
             <i class="fas fa-check read-icon"></i>
           
@@ -450,13 +450,13 @@
  
   
     
-    <li data-nav-id="/3-eks/" title="Validate Scaling" class="dd-item 
+    <li data-nav-id="/3-eks/" title="Deploy Kubernetes Cluster" class="dd-item 
         
         
         
         ">
       <a href="/3-eks/">
-           <b> 3. </b> Validate Scaling
+           <b> 3. </b> Deploy Kubernetes Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -481,13 +481,13 @@
  
   
     
-    <li data-nav-id="/3-eks/3.1-eks-role/" title="Connect to Bastion Host" class="dd-item 
+    <li data-nav-id="/3-eks/3.1-eks-role/" title="Role for EKS Cluster" class="dd-item 
         
         
         
         ">
       <a href="/3-eks/3.1-eks-role/">
-           <b> 3.1. </b> Connect to Bastion Host
+           <b> 3.1. </b> Role for EKS Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -509,191 +509,13 @@
  
   
     
-    <li data-nav-id="/3-eks/3.3-eks-create/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/3-eks/3.3-eks-create/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/3-eks/3.4-eks-worker-node-create/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/3-eks/3.4-eks-worker-node-create/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/3-eks/3.5-ecr/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/3-eks/3.5-ecr/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/3-eks/3.6-run-terraform/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/3-eks/3.6-run-terraform/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/3-eks/3.2-eks-worker-role/" title="Validate Scaling Ability" class="dd-item 
+    <li data-nav-id="/3-eks/3.2-eks-worker-role/" title="Role for EKS Worker Node" class="dd-item 
         
         
         
         ">
       <a href="/3-eks/3.2-eks-worker-role/">
-           <b> 3.2. </b> Validate Scaling Ability
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-cicd/" title="Cleanup" class="dd-item 
-        parent
-        
-        
-        ">
-      <a href="/4-cicd/">
-           <b> 4. </b> Cleanup
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-cicd/4.2-jenkins/" title="Connect to Bastion Host" class="dd-item 
-        
-        active
-        
-        ">
-      <a href="/4-cicd/4.2-jenkins/">
-           <b> 3.1. </b> Connect to Bastion Host
+           <b> 3.2. </b> Role for EKS Worker Node
           
             <i class="fas fa-check read-icon"></i>
           
@@ -715,13 +537,13 @@
  
   
     
-    <li data-nav-id="/4-cicd/4.3-dev-repo/" title="Connect to Bastion Host" class="dd-item 
+    <li data-nav-id="/3-eks/3.3-eks-create/" title="Create EKS Cluster" class="dd-item 
         
         
         
         ">
-      <a href="/4-cicd/4.3-dev-repo/">
-           <b> 3.1. </b> Connect to Bastion Host
+      <a href="/3-eks/3.3-eks-create/">
+           <b> 3.3. </b> Create EKS Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -743,13 +565,13 @@
  
   
     
-    <li data-nav-id="/4-cicd/4.4-argocd-autodeploy/" title="Connect to Bastion Host" class="dd-item 
+    <li data-nav-id="/3-eks/3.4-eks-worker-node-create/" title="Create EKS Worker Node" class="dd-item 
         
         
         
         ">
-      <a href="/4-cicd/4.4-argocd-autodeploy/">
-           <b> 3.1. </b> Connect to Bastion Host
+      <a href="/3-eks/3.4-eks-worker-node-create/">
+           <b> 3.4. </b> Create EKS Worker Node
           
             <i class="fas fa-check read-icon"></i>
           
@@ -771,13 +593,13 @@
  
   
     
-    <li data-nav-id="/4-cicd/4.5-prometheus-grafana/" title="Connect to Bastion Host" class="dd-item 
+    <li data-nav-id="/3-eks/3.5-ecr/" title="Create Elastic Container Registry" class="dd-item 
         
         
         
         ">
-      <a href="/4-cicd/4.5-prometheus-grafana/">
-           <b> 3.1. </b> Connect to Bastion Host
+      <a href="/3-eks/3.5-ecr/">
+           <b> 3.5. </b> Create Elastic Container Registry
           
             <i class="fas fa-check read-icon"></i>
           
@@ -799,97 +621,13 @@
  
   
     
-    <li data-nav-id="/4-cicd/4.6-efk/" title="Connect to Bastion Host" class="dd-item 
+    <li data-nav-id="/3-eks/3.6-run-terraform/" title="Run Terraform" class="dd-item 
         
         
         
         ">
-      <a href="/4-cicd/4.6-efk/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-cicd/4.7-bashscript/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-cicd/4.7-bashscript/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-cicd/4.8-k8s/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-cicd/4.8-k8s/">
-           <b> 3.1. </b> Connect to Bastion Host
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/4-cicd/4.1-application/" title="Connect to Bastion Host" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/4-cicd/4.1-application/">
-           <b> 3.1. </b> Connect to Bastion Host
+      <a href="/3-eks/3.6-run-terraform/">
+           <b> 3.6. </b> Run Terraform
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1482,6 +1220,268 @@
  
 
           
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/" title="Prepare CI/CD Pipeline" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/4-cicd/">
+           <b> 4. </b> Prepare CI/CD Pipeline
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.1-application/" title="Application Overall" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.1-application/">
+           <b> 4.1. </b> Application Overall
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.3-dev-repo/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.3-dev-repo/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.4-argocd-autodeploy/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.4-argocd-autodeploy/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.5-prometheus-grafana/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.5-prometheus-grafana/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.6-efk/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.6-efk/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.7-bashscript/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.7-bashscript/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.8-k8s/" title="Connect to Bastion Host" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/4-cicd/4.8-k8s/">
+           <b> 3.1. </b> Connect to Bastion Host
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/4-cicd/4.2-jenkins/" title="Configure Jenkins Server" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/4-cicd/4.2-jenkins/">
+           <b> 4.2. </b> Configure Jenkins Server
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
          
     </ul>
 
@@ -1620,7 +1620,7 @@
             
           
           
-            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/4-cicd/'>Cleanup</a> > Connect to Bastion Host
+            <a href='/'>A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS</a> > <a href='/4-cicd/'>Prepare CI/CD Pipeline</a> > Configure Jenkins Server
           
         
           
@@ -1637,8 +1637,9 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#ssh-agent-forwading">SSH Agent Forwading</a></li>
-        <li><a href="#validate-scaling-ability">Validate Scaling Ability</a></li>
+        <li><a href="#install-plugins-and-tools-on-jenkins-server">Install Plugins and Tools on Jenkins Server</a></li>
+        <li><a href="#create-credentials">Create Credentials</a></li>
+        <li><a href="#create-ci-pipelines">Create CI Pipelines</a></li>
       </ul>
     </li>
   </ul>
@@ -1658,7 +1659,7 @@
           
             <h1>
               
-              Connect to Bastion Host
+              Configure Jenkins Server
             </h1>
           
 
@@ -1666,16 +1667,43 @@
 
 
 
-	<p><img alt="SSMPublicinstance" src="/images/arc-log.png"></p>
-<h3 id="ssh-agent-forwading">SSH Agent Forwading</h3>
-<p>We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh-add EC2.pem
-</span></span></code></pre></div><p>Then, we connect to the Bastion Host by:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh -A ubuntu@&lt;your-bastion-host-public-IP&gt;
-</span></span></code></pre></div><p>We can connect to our EC2 Cluster by using this command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ssh ec2-user@&lt;your-EC2Cluster-private-IP&gt;
-</span></span></code></pre></div><h3 id="validate-scaling-ability">Validate Scaling Ability</h3>
-<p>Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let&rsquo;s validate the scaling ability by sending request to the Load Balancer.</p>
+	<h3 id="install-plugins-and-tools-on-jenkins-server">Install Plugins and Tools on Jenkins Server</h3>
+<p>Access Jenkins Server via the DNS of the Jenkins Server EC2, you will be required to type Initial Password. Connect to Jenkins Server via SSH Protocol and execute this command line to get the Initial Password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+</span></span></code></pre></div><p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/0_Jenkins.png"></p>
+<p>Installing all Suggested Plugins as below:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/1_Jenkins.png"></p>
+<p>Create admin user as below:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/2_Jenkins.png"></p>
+<p>At <code>Dashboard &gt; Manage Jenkins &gt; Plugins</code>, installing these Plugins:</p>
+<ul>
+<li>Docker Pipeline</li>
+<li>Amazon ECR</li>
+<li>SonarQube Scanner</li>
+</ul>
+<p>At <code>Dashboard &gt; Manage Jenkins &gt; Tools</code>, installing <strong>SonarQube Scanner</strong> as below:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/3_Jenkins.png"></p>
+<h3 id="create-credentials">Create Credentials</h3>
+<p>At <code>Dashboard &gt; Manage Jenkins &gt; Credentials &gt; System &gt; Global credentials (unrestricted)</code>, create these credentials as below:</p>
+<ul>
+<li>áocd</li>
+<li>ácdc</li>
+<li>ácd</li>
+<li>cálc</li>
+</ul>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/4_Jenkins.png"></p>
+<h3 id="create-ci-pipelines">Create CI Pipelines</h3>
+<p>Create Pipeline for <code>Service API Gateway</code> as below:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/5_Jenkins.png"></p>
+<p>At Build Triggers, choose <strong>GitHub hook trigger for GITScm polling</strong> as below:</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/6_Jenkins.png"></p>
+<p>At Pipeline section, configure as below to connect to the Dev Repository. Currently, our repository is publicly visible, so we will skip the Credentials.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/7_Jenkins.png"></p>
+<p>Configure Branch <strong>main</strong> as below. Pipeline only run when there is a change in branch <strong>main</strong>.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/8_Jenkins.png"></p>
+<p>At <strong>Script Path</strong> section, modify to <code>api-gateway/Jenkinsfile</code> as below. Whenever there is a change in the folder <code>api-gateway</code>, Jenkins Server will run the Pipeline based on the configuration in the file <code>api-gateway/Jenkinsfile</code>.</p>
+<p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/9_Jenkins.png"></p>
+<p>Creating Pipeline for <code>Info Service</code> and <code>Order Service</code> will be the same. However, at <strong>Script Path</strong> section, we modify to <code>info/Jenkinsfile</code> and <code>order/Jenkinsfile</code>, respectively.</p>
 
 
 
@@ -2031,157 +2059,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -2474,6 +2351,157 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -2498,10 +2526,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/4-cicd/" title="Cleanup"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/4-cicd/4.8-k8s/" title="Connect to Bastion Host"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/4-cicd/4.3-dev-repo/" title="Connect to Bastion Host" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/4-cicd/4.1-application/" title="Application Overall" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2511,19 +2539,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727528848"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727528848"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727528848"></script>
-    <script src="/js/jquery.sticky.js?1727528848"></script>
-    <script src="/js/featherlight.min.js?1727528848"></script>
-    <script src="/js/highlight.pack.js?1727528848"></script>
+    <script src="/js/clipboard.min.js?1727531216"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727531216"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727531216"></script>
+    <script src="/js/jquery.sticky.js?1727531216"></script>
+    <script src="/js/featherlight.min.js?1727531216"></script>
+    <script src="/js/highlight.pack.js?1727531216"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727528848"></script>
-    <script src="/js/learn.js?1727528848"></script>
-    <script src="/js/hugo-learn.js?1727528848"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727531216"></script>
+    <script src="/js/learn.js?1727531216"></script>
+    <script src="/js/hugo-learn.js?1727531216"></script>
 
-    <link href="/mermaid/mermaid.css?1727528848" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727528848"></script>
+    <link href="/mermaid/mermaid.css?1727531216" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727531216"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

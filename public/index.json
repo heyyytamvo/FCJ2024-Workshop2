@@ -7,41 +7,6 @@
 	"content": "A Secured CI/CD Pipeline by implementing DevSecOps practice and GitOps principal for a Microservices Application on AWS EKS Overview In this workshop, we will integrate DevSecOps Practice to a CI/CD for an application running on Amazon Elastic Kubernetes Service (EKS). To leverage our DevOps practice, we will apply the GitOps Principle during this workshop. You will begin with provisioning the AWS Infrastructure by Terraform, building a CI/CD Pipeline, and finally, you will integrate the DevSecOps practice to secure our software development life cycle.\nExpectation Cloud Infrastructure Below is the final AWS Infrastructure and all the traffic after finishing this workshop.\nCI Pipeline CI Pipeline is described below.\nCD Pipeline CD Pipeline is described below\nFor your preference, below are the repositories.\nDev Repository (where Dev team work): link Ops Repository (Where Operations team work): link Content Problem Definition Preparation Scaling Testing Cleanup "
 },
 {
-	"uri": "//localhost:1313/3-eks/3.1-eks-role/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
-	"uri": "//localhost:1313/3-eks/3.3-eks-create/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
-	"uri": "//localhost:1313/3-eks/3.4-eks-worker-node-create/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
-	"uri": "//localhost:1313/3-eks/3.5-ecr/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
-	"uri": "//localhost:1313/3-eks/3.6-run-terraform/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
 	"uri": "//localhost:1313/4-cicd/4.2-jenkins/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
@@ -175,6 +140,13 @@
 	"content": "Why Microservices? Before diving into Microservices, we will get into the traditional software architecture in the deployment stage: Monolithic. Monolithic is a software architecture in which all modules (features/services) are containerized in a single ‘block’. The most common containerization technology that you may have heard of is Docker. Supposedly your software has already been packaged into a ‘block’ and deployed to the Virtual Private Server (VPS). Now, your development team has released a new feature. Then, your application needs to be updated. With monolithic architecture, the software updating process is demonstrated below:\nAs you can see, you need to shut down the application for a while. Then, a new version will be deployed. In the meantime, end users can not access the application. With business consideration, this is a huge issue: updating a feature affects the entire application. Of course, we can solve the problem by implementing the blue/green deployment strategy, but it is out of scope in this workshop.\nThere is another software architecture that can handle this problem: Microservices. Microservices apply the theory of divide and conquer: Every service (feature) of the application will be packaged as a single \u0026lsquo;block\u0026rsquo; (or Image) and they communicate to each other by some standards such as REST, v.v. Updating a feature has no impact on other features as described below:\nKubernetes (K8s) is the most common tool for deploying a microservice application because of its utilization in allocating computing resources. In this workshop, we will use Kubernetes to deploy a simple microservices application. However, we will not set up the entire K8s Cluster. Instead, we will use Elastic Kubernetes Service (EKS) from AWS. The infrastructure deployment stage requires a smooth collaboration between the Operations Team (or Ops Team including System Engineer, System Administration, etc.). Hence, GitOps is the key point to guarantee that collaboration.\nWhy GitOps? Why DevSecOps? DevOps practice enhances an organization’s ability to deliver applications by using automation tools. Hence, the amount of required time to release a new feature will be effectively reduced, then:\nEnd users receive the latest version of the application as soon as possible The development team will focus on their tasks since other manual work (building, testing, deploying, etc.) is automated During the automation process, could we find out some security risks from the source code, built image, or even our production? DevSecOps is the answer to that question. In this workshop, we will integrate some simple DevSecOps techniques such as:\nSAST (Static Application Security Testing): A type of security testing that analyzes our code base before executing the program. Image Scan and Secure IaC: Scan and detect the vulnerabilities in the built image before deploying it to the production environment. Scan our infrastructure based on the IaC code base. DAST (Dynamic Application Security Testing): While SAST analyzes static code, DAST performs security testing while the application is operating. Monitoring Suppose you are a developer and our application is deployed in a Kubernetes (K8s) Cluster. One day, the application crashed and you need to fix it as soon as possible. The first thing that comes to your mind is checking the logs. However, you have no idea how to access the K8s Cluster because it is too complicated. Hence, we need to centralize all the application logs in one place. In this workshop, we will deploy a EFK Stack to solve this problem. After the EFK is successfully deployed, developers will use their web browser to read all the application logs. Below is the final practice.\nIn this workshop, we will use these services from Amazon Web Service to solve all the problems above:\nElastic Compute Service (EC2): Jenkins Server, and SonarQube Server will be hosted here. They played an essential part in our CI/CD Pipeline Elastic Kubernetes Service (EKS): Instead of setting up a Kubernetes Cluster, we will use service from AWS Elastic Container Registry (ECR): It serves as a “private Docker Registry” where we store our application image. You need to install Terraform to finish this Workshop\n"
 },
 {
+	"uri": "//localhost:1313/3-eks/3.1-eks-role/",
+	"title": "Role for EKS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "Create file Terraform/06-eks_role.tf as below:\nresource \u0026#34;aws_iam_role\u0026#34; \u0026#34;ekse_role\u0026#34; { name = \u0026#34;eks-cluster\u0026#34; assume_role_policy = \u0026lt;\u0026lt;POLICY { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Principal\u0026#34;: { \u0026#34;Service\u0026#34;: \u0026#34;eks.amazonaws.com\u0026#34; }, \u0026#34;Action\u0026#34;: \u0026#34;sts:AssumeRole\u0026#34; } ] } POLICY } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;AmazonEKSClusterPolicy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKSClusterPolicy\u0026#34; role = aws_iam_role.ekse_role.name } "
+},
+{
 	"uri": "//localhost:1313/8-cicd-test/8.2-ci-sec/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
@@ -232,10 +204,17 @@
 },
 {
 	"uri": "//localhost:1313/3-eks/3.2-eks-worker-role/",
-	"title": "Validate Scaling Ability",
+	"title": "Role for EKS Worker Node",
 	"tags": [],
 	"description": "",
-	"content": "Content: Send 100.000 requests to Load Balancer Send 1.000.000 requests to Load Balancer Scale up Desired Task "
+	"content": "Create file Terraform/07-eks_roles_worker.tf as below:\nresource \u0026#34;aws_iam_role\u0026#34; \u0026#34;nodes\u0026#34; { name = \u0026#34;eks-node-group-nodes\u0026#34; assume_role_policy = jsonencode({ Statement = [{ Action = \u0026#34;sts:AssumeRole\u0026#34; Effect = \u0026#34;Allow\u0026#34; Principal = { Service = \u0026#34;ec2.amazonaws.com\u0026#34; } }] Version = \u0026#34;2012-10-17\u0026#34; }) } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEKSWorkerNodePolicy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy\u0026#34; role = aws_iam_role.nodes.name } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEKS_CNI_Policy\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy\u0026#34; role = aws_iam_role.nodes.name } resource \u0026#34;aws_iam_role_policy_attachment\u0026#34; \u0026#34;nodes_AmazonEC2ContainerRegistryReadOnly\u0026#34; { policy_arn = \u0026#34;arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly\u0026#34; role = aws_iam_role.nodes.name } "
+},
+{
+	"uri": "//localhost:1313/3-eks/3.3-eks-create/",
+	"title": "Create EKS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "Create file Terraform/08-eks.tf as below:\nmodule \u0026#34;eks\u0026#34; { source = \u0026#34;terraform-aws-modules/eks/aws\u0026#34; cluster_name = var.cluster_name cluster_version = var.cluster_version vpc_id = aws_vpc.main.id subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] cluster_endpoint_public_access = true iam_role_arn = aws_iam_role.ekse_role.arn enable_cluster_creator_admin_permissions = true cluster_addons = { kube-proxy = { most_recent = true } vpc-cni = { most_recent = true } } control_plane_subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] tags = { Environment = \u0026#34;Development\u0026#34; } depends_on = [aws_iam_role_policy_attachment.AmazonEKSClusterPolicy] } "
 },
 {
 	"uri": "//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/",
@@ -245,18 +224,25 @@
 	"content": "All CI Pipeline will be executed on the Jenins Server. Everytime we have a new commit at Dev Repo or Ops Repo, Jenkins will automatically execute all pipelines depending on the configuration.\nCreate file Terraform/jenkins_install.sh as below to install packages for Jenkins Server.\n#!/bin/bash sudo apt update -y # install docker sudo apt-get install -y ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc echo \\ \u0026#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026amp;\u0026amp; echo \u0026#34;$VERSION_CODENAME\u0026#34;) stable\u0026#34; | \\ sudo tee /etc/apt/sources.list.d/docker.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin # install aws-cli sudo apt install -y unzip curl \u0026#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\u0026#34; -o \u0026#34;awscliv2.zip\u0026#34; unzip awscliv2.zip sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update # install java and jenkins sudo apt install -y fontconfig openjdk-17-jre sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \\ https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key echo \u0026#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]\u0026#34; \\ https://pkg.jenkins.io/debian-stable binary/ | sudo tee \\ /etc/apt/sources.list.d/jenkins.list \u0026gt; /dev/null sudo apt-get update sudo apt-get install -y jenkins sudo systemctl start jenkins # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:8080; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx sudo usermod -aG docker jenkins sudo systemctl restart jenkins sudo systemctl restart docker sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable Next, we will configure the Jenkins Server. Create file Terraform/05-jenkins_server.tf as below:\n# Security Group for EC2\rresource \u0026#34;aws_security_group\u0026#34; \u0026#34;JENKINS_SG\u0026#34; {\rname = \u0026#34;JENKINS_SG\u0026#34;\rdescription = \u0026#34;Allow HTTP inbound and all outbound traffic\u0026#34;\rvpc_id = aws_vpc.main.id\ringress = [\r{\rfrom_port = 80\rto_port = 80\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 80\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = -1\rto_port = -1\rprotocol = \u0026#34;icmp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;],\rdescription = \u0026#34;Allow inbound ICMP Traffic\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r},\r{\rfrom_port = 22\rto_port = 22\rprotocol = \u0026#34;tcp\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\rdescription = \u0026#34;Allow inbound traffic on port 22\u0026#34;\ripv6_cidr_blocks = []\rprefix_list_ids = []\rsecurity_groups = []\rself = false\r}\r]\regress {\rfrom_port = 0\rto_port = 0\rprotocol = \u0026#34;-1\u0026#34;\rcidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;]\r}\rtags = {\rName = \u0026#34;Jenkins Server SG\u0026#34;\r}\r}\rresource \u0026#34;aws_instance\u0026#34; \u0026#34;Jenkins_server\u0026#34; {\rami = var.ec2_ami\rinstance_type = var.ec2_instance_type\rkey_name = aws_key_pair.EC2key.key_name\rmonitoring = true\rsubnet_id = values(aws_subnet.public_subnets)[2].id\rvpc_security_group_ids = [aws_security_group.JENKINS_SG.id]\rassociate_public_ip_address = true\ruser_data = file(\u0026#34;${path.module}/jenkins_install.sh\u0026#34;)\rtags = {\rTerraform = \u0026#34;true\u0026#34;\rEnvironment = \u0026#34;dev\u0026#34;\rName = \u0026#34;Jenkins Server\u0026#34;\r}\rroot_block_device {\rvolume_size = 30\r}\r} "
 },
 {
+	"uri": "//localhost:1313/3-eks/",
+	"title": "Deploy Kubernetes Cluster",
+	"tags": [],
+	"description": "",
+	"content": "\rWorking with Ops Repo in this section\nIn this section, we will deploy the Kubernetes Cluster, where our microservices application operating. Next, we will create Elastic Container Registry, which serves as a private Docker hub.\nAfter finishing this section, we will have the completed infrastructure as below:\nContent Role for EKS Cluster Role for EKS Worker Node Create EKS Cluster Create EKS Worker Node Create Elastic Container Registry Run Terraform "
+},
+{
 	"uri": "//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/",
-	"title": "Run Association",
+	"title": "Run Terraform",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/3-eks/",
-	"title": "Validate Scaling",
+	"uri": "//localhost:1313/4-cicd/4.1-application/",
+	"title": "Application Overall",
 	"tags": [],
 	"description": "",
-	"content": "\rSource code tại phần này sẽ được triển khai tại Ops Repo\nTại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính là nơi mà application sẽ được deployed. Thêm vào đó, ta cũng sẽ tạo Elastic Container Registry, nơi đây sẽ chứa các built image của chúng ta.\nKết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.\nNội dung Tạo Role cho EKS Cluster Tạo Role cho EKS Worker Node Tạo EKS Cluster Tạo EKS Worker Node Tạo Elastic Container Registry Chạy Terraform để triển khai hạ tầng "
+	"content": "Our Application follows microservices architecture with 3 services:\nService API Gateway: Receiving traffic that comes from customer and forwarding traffic Order Service: Reponsible for Writing Database Info Service: Responsible for Reading Database We will have 3 API Endpoints:\ndomain.com/ domain.com/create-order domain.com/get-orders Traffic coming from customers will always reach the Customer API Gateway first (a Load Balancer of a Reverse Proxy). Below are the demonstration for all traffic in our application.\n"
 },
 {
 	"uri": "//localhost:1313/4-cicd/",
@@ -294,13 +280,6 @@
 	"content": "Using Terminal and executing this command lines:\nterraform destroy Now, all resources will be removed as below:\n"
 },
 {
-	"uri": "//localhost:1313/4-cicd/4.1-application/",
-	"title": "Connect to Bastion Host",
-	"tags": [],
-	"description": "",
-	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
-},
-{
 	"uri": "//localhost:1313/5-finish-monitoring/5.1-prome-grafana/",
 	"title": "Connect to Bastion Host",
 	"tags": [],
@@ -322,6 +301,13 @@
 	"content": "\nSSH Agent Forwading We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:\nssh-add EC2.pem Then, we connect to the Bastion Host by:\nssh -A ubuntu@\u0026lt;your-bastion-host-public-IP\u0026gt; We can connect to our EC2 Cluster by using this command line:\nssh ec2-user@\u0026lt;your-EC2Cluster-private-IP\u0026gt; Validate Scaling Ability Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let\u0026rsquo;s validate the scaling ability by sending request to the Load Balancer.\n"
 },
 {
+	"uri": "//localhost:1313/3-eks/3.4-eks-worker-node-create/",
+	"title": "Create EKS Worker Node",
+	"tags": [],
+	"description": "",
+	"content": "Create file Terraform/09-eks_worker_nodes.tf as below:\nresource \u0026#34;aws_eks_node_group\u0026#34; \u0026#34;my_nodes\u0026#34; { cluster_name = var.cluster_name node_group_name = \u0026#34;ClusterNode\u0026#34; node_role_arn = aws_iam_role.nodes.arn subnet_ids = [for subnet in aws_subnet.private_subnets : subnet.id] capacity_type = \u0026#34;ON_DEMAND\u0026#34; instance_types = [var.ec2_instance_type] scaling_config { desired_size = 3 max_size = 4 min_size = 2 } update_config { max_unavailable = 1 } labels = { role = \u0026#34;general\u0026#34; } depends_on = [ aws_iam_role_policy_attachment.nodes_AmazonEKSWorkerNodePolicy, aws_iam_role_policy_attachment.nodes_AmazonEKS_CNI_Policy, aws_iam_role_policy_attachment.nodes_AmazonEC2ContainerRegistryReadOnly, module.eks.cluster_id ] } "
+},
+{
 	"uri": "//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/",
 	"title": "Create SonarQube Server",
 	"tags": [],
@@ -329,7 +315,21 @@
 	"content": "Our code base will be analyzed by the SonarQube Server. You can deploy Jenkins and SonarQube Server on a single EC2 for saving budget. In this Workshop, I will use two EC2 Instances. Create file Terraform/sonarqube_install.sh as below:\n#!/bin/bash sudo apt update -y sudo apt install -y fontconfig openjdk-17-jre # Sonarqube sudo apt install curl ca-certificates sudo install -d /usr/share/postgresql-common/pgdg sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc sudo sh -c \u0026#39;echo \u0026#34;deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main\u0026#34; \u0026gt; /etc/apt/sources.list.d/pgdg.list\u0026#39; sudo apt update sudo apt install postgresql-15 -y sudo -i -u postgres bash \u0026lt;\u0026lt; EOF # Create the user and database, and set the password createuser sonar createdb sonar -O sonar psql -c \u0026#34;ALTER USER sonar WITH ENCRYPTED PASSWORD \u0026#39;your_password\u0026#39;;\u0026#34; EOF wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip sudo apt install -y unzip sudo unzip sonarqube-10.5.1.90531.zip sudo mv sonarqube-10.5.1.90531 /opt/sonarqube sudo adduser --system --no-create-home --group --disabled-login sonarqube sudo chown -R sonarqube:sonarqube /opt/sonarqube sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /opt/sonarqube/conf/sonar.properties sonar.jdbc.username=sonar sonar.jdbc.password=your_password sonar.jdbc.url=jdbc:postgresql://localhost/sonar EOF\u0026#39; sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt; /etc/systemd/system/sonarqube.service [Unit] Description=SonarQube service After=syslog.target network.target [Service] Type=forking ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop User=sonarqube Group=sonarqube Restart=always LimitNOFILE=65536 LimitNPROC=4096 [Install] WantedBy=multi-user.target EOF\u0026#39; sudo systemctl daemon-reload sudo systemctl start sonarqube sudo systemctl enable sonarqube # Update limits.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/security/limits.conf sonarqube - nofile 65536 sonarqube - nproc 4096 EOF\u0026#39; # Update sysctl.conf sudo bash -c \u0026#39;cat \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt; /etc/sysctl.conf vm.max_map_count=262144 EOF\u0026#39; sudo sysctl -p # install nginx sudo apt install -y nginx sudo systemctl start nginx sudo rm /etc/nginx/sites-enabled/default sudo tee /etc/nginx/sites-enabled/default \u0026gt; /dev/null \u0026lt;\u0026lt; \u0026#39;EOF\u0026#39; server { listen 80; server_name _; location / { proxy_pass http://localhost:9000; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header Host $http_host; proxy_redirect off; } } EOF sudo systemctl reload nginx Next, we will configure our Sonar Server. Creating file Terraform/05-sonar_server.tf as below:\n# Security Group for EC2 resource \u0026#34;aws_security_group\u0026#34; \u0026#34;SONAR_HOST_SG\u0026#34; { name = \u0026#34;SONAR_HOST_SG\u0026#34; description = \u0026#34;Allow SSH, HTTP inbound and all outbound traffic\u0026#34; vpc_id = aws_vpc.main.id ingress = [ { from_port = 80 to_port = 80 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 80\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = -1 to_port = -1 protocol = \u0026#34;icmp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;], description = \u0026#34;Allow inbound ICMP Traffic\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false }, { from_port = 22 to_port = 22 protocol = \u0026#34;tcp\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] description = \u0026#34;Allow inbound traffic on port 22\u0026#34; ipv6_cidr_blocks = [] prefix_list_ids = [] security_groups = [] self = false } ] egress { from_port = 0 to_port = 0 protocol = \u0026#34;-1\u0026#34; cidr_blocks = [\u0026#34;0.0.0.0/0\u0026#34;] } tags = { Name = \u0026#34;SONAR_HOST SG\u0026#34; } } resource \u0026#34;aws_instance\u0026#34; \u0026#34;Sonar_host\u0026#34; { ami = var.ec2_ami instance_type = var.ec2_instance_type key_name = aws_key_pair.EC2key.key_name monitoring = true subnet_id = values(aws_subnet.public_subnets)[1].id vpc_security_group_ids = [aws_security_group.SONAR_HOST_SG.id] associate_public_ip_address = true user_data = file(\u0026#34;${path.module}/sonarqube_install.sh\u0026#34;) tags = { Terraform = \u0026#34;true\u0026#34; Environment = \u0026#34;dev\u0026#34; Name = \u0026#34;Sonar Host\u0026#34; } root_block_device { volume_size = 30 } } "
 },
 {
+	"uri": "//localhost:1313/3-eks/3.5-ecr/",
+	"title": "Create Elastic Container Registry",
+	"tags": [],
+	"description": "",
+	"content": "Create file Terraform/10-ecr as below:\nresource \u0026#34;aws_ecr_repository\u0026#34; \u0026#34;ECR\u0026#34; { name = \u0026#34;fcjws2\u0026#34; image_tag_mutability = \u0026#34;IMMUTABLE\u0026#34; image_scanning_configuration { scan_on_push = false } } "
+},
+{
 	"uri": "//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/",
+	"title": "Run Terraform",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/3-eks/3.6-run-terraform/",
 	"title": "Run Terraform",
 	"tags": [],
 	"description": "",

@@ -1,5 +1,5 @@
 ---
-title : "Cleanup"
+title : "Prepare CI/CD Pipeline"
 date :  "`r Sys.Date()`" 
 weight : 4 
 chapter : false
@@ -7,13 +7,17 @@ pre : " <b> 4. </b> "
 ---
 
 
-Using Terminal and executing this command lines:
+{{% notice info %}}
+Working with Dev Repo and Ops Repo in this section
+{{% /notice %}}
 
-```sh
-terraform destroy
-```
+In this section, we will prepare the CI/CD Pipeline, creating Jenkinsfile, and interacting with the K8s Cluster
 
-Now, all resources will be removed as below:
+### Content
 
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
-
+- [Application Overall](3.1-connect-bastion/) 
+- [Configure Jenkins Server](3.2-scaling-check/) 
+- [Configure GitHub Repository (Dev Repo)](3.2-scaling-check/) 
+- [Configure ArgoCD and Automation Deployment](3.2-scaling-check/) 
+- [Configure Prometheus and Grafana](3.2-scaling-check/) 
+- [Configure EFK Stack](3.2-scaling-check/) 

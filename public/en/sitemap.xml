@@ -14,66 +14,6 @@
                 href="//localhost:1313/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-eks/3.1-eks-role/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-eks/3.1-eks-role/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-eks/3.1-eks-role/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-eks/3.3-eks-create/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-eks/3.3-eks-create/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-eks/3.3-eks-create/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-eks/3.4-eks-worker-node-create/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-eks/3.4-eks-worker-node-create/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-eks/3.4-eks-worker-node-create/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-eks/3.5-ecr/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-eks/3.5-ecr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-eks/3.5-ecr/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-eks/3.6-run-terraform/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-eks/3.6-run-terraform/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-eks/3.6-run-terraform/"
-                />
-  </url><url>
     <loc>//localhost:1313/4-cicd/4.2-jenkins/</loc>
     <xhtml:link
                 rel="alternate"
@@ -302,6 +242,18 @@
                 href="//localhost:1313/1-introduce/"
                 />
   </url><url>
+    <loc>//localhost:1313/3-eks/3.1-eks-role/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/3.1-eks-role/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/3.1-eks-role/"
+                />
+  </url><url>
     <loc>//localhost:1313/8-cicd-test/8.2-ci-sec/</loc>
     <xhtml:link
                 rel="alternate"
@@ -410,6 +362,18 @@
                 href="//localhost:1313/3-eks/3.2-eks-worker-role/"
                 />
   </url><url>
+    <loc>//localhost:1313/3-eks/3.3-eks-create/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/3.3-eks-create/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/3.3-eks-create/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/</loc>
     <xhtml:link
                 rel="alternate"
@@ -420,6 +384,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.3-jenkins/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-eks/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/"
                 />
   </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/</loc>
@@ -434,16 +410,16 @@
                 href="//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-eks/</loc>
+    <loc>//localhost:1313/4-cicd/4.1-application/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-eks/"
+                href="//localhost:1313/vi/4-cicd/4.1-application/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-eks/"
+                href="//localhost:1313/4-cicd/4.1-application/"
                 />
   </url><url>
     <loc>//localhost:1313/4-cicd/</loc>
@@ -506,18 +482,6 @@
                 href="//localhost:1313/8-cicd-test/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cicd/4.1-application/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/4.1-application/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cicd/4.1-application/"
-                />
-  </url><url>
     <loc>//localhost:1313/5-finish-monitoring/5.1-prome-grafana/</loc>
     <xhtml:link
                 rel="alternate"
@@ -554,6 +518,18 @@
                 href="//localhost:1313/7-argocd-autodeploy/7.1-ci-pipeline/"
                 />
   </url><url>
+    <loc>//localhost:1313/3-eks/3.4-eks-worker-node-create/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/3.4-eks-worker-node-create/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/3.4-eks-worker-node-create/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/</loc>
     <xhtml:link
                 rel="alternate"
@@ -566,6 +542,18 @@
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
                 />
   </url><url>
+    <loc>//localhost:1313/3-eks/3.5-ecr/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/3.5-ecr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/3.5-ecr/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/</loc>
     <xhtml:link
                 rel="alternate"
@@ -576,6 +564,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-eks/3.6-run-terraform/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-eks/3.6-run-terraform/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-eks/3.6-run-terraform/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

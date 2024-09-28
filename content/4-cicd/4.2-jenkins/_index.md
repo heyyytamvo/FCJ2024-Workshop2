@@ -1,34 +1,70 @@
 ---
-title : "Connect to Bastion Host"
+title : "Configure Jenkins Server"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 2 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 4.2. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Install Plugins and Tools on Jenkins Server
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
-
+Access Jenkins Server via the DNS of the Jenkins Server EC2, you will be required to type Initial Password. Connect to Jenkins Server via SSH Protocol and execute this command line to get the Initial Password:
 
 ```sh
-ssh-add EC2.pem
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Then, we connect to the Bastion Host by:
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/0_Jenkins.png)
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+Installing all Suggested Plugins as below:
 
-We can connect to our EC2 Cluster by using this command line:
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/1_Jenkins.png)
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+Create admin user as below:
 
-### Validate Scaling Ability
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/2_Jenkins.png)
 
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
+At `Dashboard > Manage Jenkins > Plugins`, installing these Plugins:
 
+- Docker Pipeline
+- Amazon ECR
+- SonarQube Scanner 
+
+At `Dashboard > Manage Jenkins > Tools`, installing **SonarQube Scanner** as below:
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/3_Jenkins.png)
+
+### Create Credentials
+
+At `Dashboard > Manage Jenkins > Credentials > System > Global credentials (unrestricted)`, create these credentials as below:
+
+- áocd
+- ácdc
+- ácd
+- cálc
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/4_Jenkins.png)
+
+### Create CI Pipelines
+
+Create Pipeline for `Service API Gateway` as below:
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/5_Jenkins.png)
+
+At Build Triggers, choose **GitHub hook trigger for GITScm polling** as below:
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/6_Jenkins.png)
+
+At Pipeline section, configure as below to connect to the Dev Repository. Currently, our repository is publicly visible, so we will skip the Credentials.
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/7_Jenkins.png)
+
+Configure Branch **main** as below. Pipeline only run when there is a change in branch **main**.
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/8_Jenkins.png)
+
+At **Script Path** section, modify to `api-gateway/Jenkinsfile` as below. Whenever there is a change in the folder `api-gateway`, Jenkins Server will run the Pipeline based on the configuration in the file `api-gateway/Jenkinsfile`.
+
+![ConnectPrivate](/images/4-cicd/4.2-jenkins/9_Jenkins.png)
+
+Creating Pipeline for `Info Service` and `Order Service` will be the same. However, at **Script Path** section, we modify to `info/Jenkinsfile` and `order/Jenkinsfile`, respectively.
