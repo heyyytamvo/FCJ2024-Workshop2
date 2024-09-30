@@ -81,7 +81,7 @@ docker pull zaproxy/zap-stable
 Kế tiếp, ta sẽ thiết lập cấu hình cho Jenkins Server. Tạo file `Terraform/05-jenkins_server.tf` như bên dưới:
 
 ```
-# Security Group for EC2
+# Security Group for Jenkins Server
 resource "aws_security_group" "JENKINS_SG" {
   name        = "JENKINS_SG"
   description = "Allow HTTP inbound and all outbound traffic"

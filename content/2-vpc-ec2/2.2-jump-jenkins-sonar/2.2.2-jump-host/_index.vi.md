@@ -60,7 +60,7 @@ Vì phiên bản Jump Host hiện tại là **Ubuntu 22.04**, nếu bạn đọc
 Kế tiếp, ta sẽ thiết lập cấu hình cho Jump Host. Tạo file `Terraform/05-jump_host.tf` như bên dưới:
 
 ```tf
-# Security Group for EC2
+# Security Group for EC2 JUMP_HOST
 resource "aws_security_group" "JUMP_HOST_SG" {
   name        = "JUMP_HOST_SG"
   description = "Allow SSH inbound and all outbound traffic"

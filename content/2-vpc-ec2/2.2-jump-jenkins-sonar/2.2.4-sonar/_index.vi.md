@@ -102,7 +102,7 @@ sudo systemctl reload nginx
 Kế tiếp, ta sẽ thiết lập cấu hình cho Sonar Server. Tạo file `Terraform/05-sonar_server.tf` như bên dưới:
 
 ```tf
-# Security Group for EC2
+# Security Group for SONAR_HOST
 resource "aws_security_group" "SONAR_HOST_SG" {
   name        = "SONAR_HOST_SG"
   description = "Allow SSH, HTTP inbound and all outbound traffic"

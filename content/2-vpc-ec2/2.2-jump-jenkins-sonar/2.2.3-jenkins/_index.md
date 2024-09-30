@@ -83,7 +83,7 @@ docker pull zaproxy/zap-stable
 Next, we will configure the Jenkins Server. Create file `Terraform/05-jenkins_server.tf` as below:
 
 ```
-# Security Group for EC2
+# Security Group for Jenkins Server
 resource "aws_security_group" "JENKINS_SG" {
   name        = "JENKINS_SG"
   description = "Allow HTTP inbound and all outbound traffic"

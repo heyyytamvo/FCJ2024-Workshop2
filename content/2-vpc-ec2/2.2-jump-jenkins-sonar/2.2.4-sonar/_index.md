@@ -101,7 +101,7 @@ sudo systemctl reload nginx
 Next, we will configure our Sonar Server. Creating file `Terraform/05-sonar_server.tf` as below:
 
 ```tf
-# Security Group for EC2
+# Security Group for SONAR_HOST
 resource "aws_security_group" "SONAR_HOST_SG" {
   name        = "SONAR_HOST_SG"
   description = "Allow SSH, HTTP inbound and all outbound traffic"
