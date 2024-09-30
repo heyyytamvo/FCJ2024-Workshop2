@@ -1,34 +1,38 @@
 ---
-title : "Connect to Bastion Host"
+title : "Auto Deployment with Argo CD"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 3 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 7.3. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
-
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
-
+In AWS Console Management, at `EC2 > Load Balancers`, using DNS of Argo CD to access the website of Argo CD. You will be required to login using the username of `admin` and Initial Password. To get the Initial Password, you will execute this command line at Jump Host (Make sure that AWS Credential is configured to access the K8s Cluster):
 
 ```sh
-ssh-add EC2.pem
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-Then, we connect to the Bastion Host by:
+#### Connect to Ops Repository
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+After login, at `Settings > Repositories`, connect to the Ops Repository with setting below:
 
-We can connect to our EC2 Cluster by using this command line:
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy0.png)
 
-### Validate Scaling Ability
+#### Application Deployment
 
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
+At `Applications`, create a new application with the configuration below:
 
+![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy1.png)
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy2.png)
+
+#### Checking
+
+After creating Application, Argo CD will automatically deploy our application to the K8s Cluster as below:
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy3.png)
+
+Going back to the AWS Console Management, at `EC2 > Load Balancers`, we will see a new load balancer (3 Load Balancer before). The new load balancer is our application.
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy4.png)

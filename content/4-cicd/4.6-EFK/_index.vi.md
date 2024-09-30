@@ -10,6 +10,6 @@ pre : " <b> 4.6. </b> "
 Source code tại phần này sẽ được triển khai tại Ops Repo
 {{% /notice %}}
 
-Tại Ops Repository, tạo Folder `EFK` với các files tại [đây](). Sơ qua, với các File như hình dưới,  EFK Stack sẽ được sẽ được deployed trong namespace `efklog`:
+Tại Ops Repository, tạo Folder `EFK` với các files tại [đây](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main/EFK). Sơ qua, với các File như hình dưới,  EFK Stack sẽ được sẽ được deployed trong namespace `efklog`:
 
 ![ConnectPrivate](/images/4-cicd/4.6-EFK/EFK.png)

@@ -14,4 +14,4 @@ At `Settings -> Webhooks` in your remote Ops Repository, choosing '**Add Webhook
 
 ### Write Jenkinsfile
 
-The DevSecOps Pipeline will be writen at Jenkinsfile. Please refer to my [Ops Repo]().
+The DevSecOps Pipeline will be writen at Jenkinsfile. Please refer to my [Ops Repo](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main).

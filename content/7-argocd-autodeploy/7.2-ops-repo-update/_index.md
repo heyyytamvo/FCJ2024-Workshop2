@@ -1,34 +1,21 @@
 ---
-title : "Connect to Bastion Host"
+title : "Update Ops Repository"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 2 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 7.2. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+At file `k8s/deployment.yaml` in Ops Repository, with all Image we had at Registry, updating image for each Service and push them to Remote Ops Repository as below:
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+#### Service API Gateway
 
+![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_0.png)
 
-```sh
-ssh-add EC2.pem
-```
+#### Info Service
 
-Then, we connect to the Bastion Host by:
+![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_1.png)
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+#### Order Service
 
-We can connect to our EC2 Cluster by using this command line:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_2.png)

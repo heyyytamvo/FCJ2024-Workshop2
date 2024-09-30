@@ -25,7 +25,7 @@
 	"title": "Set up Prometheus và Grafana",
 	"tags": [],
 	"description": "",
-	"content": "Đăng nhập vào Grafana Truy cập DNS của Grafana, bạn đọc đăng nhập với tài khoàn và mật khẩu như bên dưới:\nKế đến, bạn đọc thay đổi mật khẩu theo yêu cầu của Grafana\nTạo Data Source Chọn phần Connections \u0026gt; Data Sources như bên dưới để tạo data source:\nLựa chọn Prometheus làm Data Source như bên dưới:\nPrometheus Server URL sẽ là: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090\nTạo Dashboard Tại phần Home \u0026gt; Dashboards \u0026gt; Import Dashboard, tạo Dashboard với cấu hình như bên dưới:\nChọn Data Source là Prometheus như bên dưới:\nKiểm tra Metrics của các Worker Nodes Sau khi hoàn tất tạo Dashboard, ta sẽ thu thập được system metrics của các Worker Node như hình bên dưới. Worker Nodes trong K8s Cluster của chúng ta là 3 EC2 Instance nằm ở private subnet với địa chỉ IP như bên dưới:\nEC2 (1) với private IP là 10.0.4.56 EC2 (2) với private IP là 10.0.5.114 EC2 (3) với private IP là 10.0.6.202 "
+	"content": "Đăng nhập vào Grafana Truy cập DNS của Grafana, bạn đọc đăng nhập với tài khoản và mật khẩu như bên dưới:\nKế đến, bạn đọc thay đổi mật khẩu theo yêu cầu của Grafana\nTạo Data Source Chọn phần Connections \u0026gt; Data Sources như bên dưới để tạo data source:\nLựa chọn Prometheus làm Data Source như bên dưới:\nPrometheus Server URL sẽ là: http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090\nTạo Dashboard Tại phần Home \u0026gt; Dashboards \u0026gt; Import Dashboard, tạo Dashboard với cấu hình như bên dưới:\nChọn Data Source là Prometheus như bên dưới:\nKiểm tra Metrics của các Worker Nodes Sau khi hoàn tất tạo Dashboard, ta sẽ thu thập được system metrics của các Worker Node như hình bên dưới. Worker Nodes trong K8s Cluster của chúng ta là 3 EC2 Instance nằm ở private subnet với địa chỉ IP như bên dưới:\nEC2 (1) với private IP là 10.0.4.56 EC2 (2) với private IP là 10.0.5.114 EC2 (3) với private IP là 10.0.6.202 "
 },
 {
 	"uri": "//localhost:1313/vi/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.1-key/",
@@ -214,7 +214,7 @@
 	"title": "Cấu hình Trivy và OWASP ZAP",
 	"tags": [],
 	"description": "",
-	"content": "Trivy và OWASP ZAP đã được cài đặt ở Jenkins Server, thông qua file Terraform/jenkins_install.sh ở Ops Repository, bạn đọc có thể thấy chúng đã được cài đặt:\n... sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable "
+	"content": "Trivy và OWASP ZAP đã được cài đặt ở Jenkins Server, thông qua file Terraform/jenkins_install.sh ở Ops Repository, bạn đọc có thể thấy chúng đã được cài đặt:\n... sudo apt-get install -y wget apt-transport-https gnupg wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg \u0026gt; /dev/null echo \u0026#34;deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main\u0026#34; | sudo tee -a /etc/apt/sources.list.d/trivy.list sudo apt-get update # Install trivy sudo apt-get install -y trivy # Install OWASP ZAP docker pull zaproxy/zap-stable "
 },
 {
 	"uri": "//localhost:1313/vi/4-cicd/",
@@ -270,7 +270,7 @@
 	"title": "Hoàn thiện Monitoring",
 	"tags": [],
 	"description": "",
-	"content": "\rSource code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo\nTại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.\nNội dung Tổng quan Application Cấu hình Jenkins Server Cấu hình GitHub Repository (Dev Repo) Cấu hình ArgoCD và Automation Deployment Cấu hình Prometheus và Grafana Cấu hình EFK Stack "
+	"content": ""
 },
 {
 	"uri": "//localhost:1313/vi/8-cicd-test/8.5-app/",

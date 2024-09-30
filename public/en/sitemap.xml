@@ -374,18 +374,6 @@
                 href="//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/"
                 />
   </url><url>
-    <loc>//localhost:1313/7-argocd-autodeploy/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/7-argocd-autodeploy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/7-argocd-autodeploy/"
-                />
-  </url><url>
     <loc>//localhost:1313/8-cicd-test/</loc>
     <xhtml:link
                 rel="alternate"
@@ -552,6 +540,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/3-eks/3.6-run-terraform/"
+                />
+  </url><url>
+    <loc>//localhost:1313/7-argocd-autodeploy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/7-argocd-autodeploy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/7-argocd-autodeploy/"
                 />
   </url><url>
     <loc>//localhost:1313/4-cicd/4.7-bashscript/</loc>

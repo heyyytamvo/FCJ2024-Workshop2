@@ -18,7 +18,7 @@ We will have 3 API Endpoints:
 - domain.com/create-order
 - domain.com/get-orders
 
-Traffic coming from customers will always reach the  **Customer API Gateway** first (a Load Balancer of a Reverse Proxy). Below are the demonstration for all traffic in our application.
+Traffic coming from customers will always reach the  **Customer API Gateway** first (a Load Balancer or a Reverse Proxy). Below are the demonstration for all traffic in our application.
 
 
 ![ConnectPrivate](/images/4-cicd/4.1-application/Application.gif)

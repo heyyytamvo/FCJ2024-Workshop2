@@ -38,10 +38,13 @@ Tại phần `Dashboard > Manage Jenkins > Tools`, cài đặt **SonarQube Scann
 
 Tại phần: `Dashboard > Manage Jenkins > Credentials > System > Global credentials (unrestricted)`, tạo các credentials như hình bên dưới, trong đó:
 
-- áocd
-- ácdc
-- ácd
-- cálc
+- aws-cre: Gồm Access Key và Secret của AWS Account
+- DB_HOST: Endpoint của Database Server
+- DB_PORT: Port để connect với Database (3306 hoặc 5432)
+- DB_USERNAME: Username để login vào Database
+- DB_PASSWORD: Password để login vào Database
+- DB_DATABASE: Tên của Database
+
 
 ![ConnectPrivate](/images/4-cicd/4.2-jenkins/4_Jenkins.png)
 

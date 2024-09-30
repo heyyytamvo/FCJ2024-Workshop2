@@ -1,34 +1,31 @@
 ---
-title : "Connect to Bastion Host"
+title : "DevSecOps Pipeline (CI)"
 date :  "`r Sys.Date()`" 
 weight : 2
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 8.2. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+#### SAST (Static Application Security Testing)
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+At Jenkins Server, we can see there is a stage `SonarQube Analysis Source Code` in our pipeline as below:
 
+![ConnectPrivate](/images/8-cicd-test/8.2-ci-sec/CI_Pipeline_Sec0.png)
 
-```sh
-ssh-add EC2.pem
-```
+At the Sonar Server, we have the scanning result. Because the codebase is still simple, we do not have much vulnerabilities:
 
-Then, we connect to the Bastion Host by:
+![ConnectPrivate](/images/8-cicd-test/8.2-ci-sec/CI_Pipeline_Sec1.png)
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+Below are other results:
 
-We can connect to our EC2 Cluster by using this command line:
+![ConnectPrivate](/images/8-cicd-test/8.2-ci-sec/CI_Pipeline_Sec2.png)
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+#### Image Scan
 
-### Validate Scaling Ability
+At Jenkins Server, we can see there is a stage `Scan Image` in our pipeline as below:
 
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
+![ConnectPrivate](/images/8-cicd-test/8.2-ci-sec/CI_Pipeline_Sec3.png)
 
+Below is the result after scanning our built image:
+
+![ConnectPrivate](/images/8-cicd-test/8.2-ci-sec/CI_Pipeline_Sec4.png)

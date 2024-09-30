@@ -1,34 +1,33 @@
 ---
-title : "Connect to Bastion Host"
+title : "Run CI Pipeline"
 date :  "`r Sys.Date()`" 
-weight : 4
+weight : 1
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 7.1. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Trigger CI Pipeline
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+At Dev Repository, push code into Github Repository to trigger Jenkins Pipeline:
 
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline0.png)
 
-```sh
-ssh-add EC2.pem
-```
+At Jenkins Server, we can see that there are 3 running Pipeline
 
-Then, we connect to the Bastion Host by:
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline1.png)
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+After a while, CI Pipeline is completed as below:
 
-We can connect to our EC2 Cluster by using this command line:
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline2.png)
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+### Check Image at Private Registry
 
-### Validate Scaling Ability
+At remote Dev Repository, the latest commit is tagged with the ID of `d966430` as below:
 
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline3.png)
 
+Check your AWS Elastic Container Registry, we will see there are 3 Images with the tag of `d966430`:
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.1-ci-pipeline/CI_Pipeline4.png)
+
+Now, we will use Argo CD for Automation Deployment

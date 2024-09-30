@@ -35,5 +35,5 @@ Now, push everything to Github Repository with `git push`.
 
 {{% notice note %}}
 
-Folder k8s will not be mentioned here because it depends on the application. Please refer to my [Ops Repository]() to see the k8s folder.
+Folder k8s will not be mentioned here because it depends on the application. Please refer to my [Ops Repository](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main) to see the k8s folder.
 {{% /notice %}}

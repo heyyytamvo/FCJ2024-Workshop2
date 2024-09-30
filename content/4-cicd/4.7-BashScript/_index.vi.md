@@ -35,5 +35,5 @@ Bây giờ, Ops Repository của ta đã có hoàn chỉnh như hình:
 Bây giờ, đẩy tất cả mọi thứ lên GitHub Repository với `git push`.
 
 {{% notice note %}}
-Folder k8s sẽ không được đề cập ở đây, bạn đọc có thể tham khảo Source Code tại [Ops Repository]() của tôi.
+Folder k8s sẽ không được đề cập ở đây, bạn đọc có thể tham khảo Source Code tại [Ops Repository](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main) của tôi.
 {{% /notice %}}

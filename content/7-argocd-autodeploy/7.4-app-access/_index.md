@@ -1,34 +1,30 @@
 ---
-title : "Connect to Bastion Host"
+title : "Access the Application"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 4 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 7.4. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Access the Application
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+Via Load Balancer, access the application as below:
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.4-app-access/ArgoCD_Deploy5.png)
+
+Makine a request to Info Service, we will receive the response as below:
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.4-app-access/ArgoCD_Deploy6.png)
+
+### EFK Stack for debugging
+
+At the URL `domain.com/get-orders`, sometimes, we will receive the error as below:
+
+![ConnectPrivate](/images/7-argocd-autodeploy/7.4-app-access/ArgoCD_Deploy7.png)
+
+There is an error and we need to fix it as soon as possible. Fortunately, we used EFK Stack to centralize all logs at one place. Via Kibana, Development Team can know the logs of all K8s Pods. 
 
 
-```sh
-ssh-add EC2.pem
-```
+![ConnectPrivate](/images/7-argocd-autodeploy/7.4-app-access/ArgoCD_Deploy8.png)
 
-Then, we connect to the Bastion Host by:
-
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
-
-We can connect to our EC2 Cluster by using this command line:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+The issue comes from queue implementation. All the services communicate asynchronously, so we need to implement the queue. Obviously, it is quite complicated to deploy a microservices application.

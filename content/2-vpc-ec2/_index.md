@@ -11,7 +11,7 @@ We use Ops Repo in this section
 {{% /notice %}}
 
 
-In this section, we will a VPC with:
+In this section, we will create a VPC with:
 
 - 3 Availability Zones
 - 3 Public Subnets

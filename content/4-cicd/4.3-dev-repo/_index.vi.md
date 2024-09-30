@@ -14,4 +14,4 @@ Tại phần `Settings -> Webhooks` ở Dev Repository, chọn phần '**Add Web
 
 ### Viết Jenkinsfile
 
-Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại [Dev Repo]().
+Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại [Dev Repo](https://github.com/heyyytamvo/FCJ2024-WS2-DevRepo).

@@ -38,10 +38,12 @@ At `Dashboard > Manage Jenkins > Tools`, installing **SonarQube Scanner** as bel
 
 At `Dashboard > Manage Jenkins > Credentials > System > Global credentials (unrestricted)`, create these credentials as below:
 
-- áocd
-- ácdc
-- ácd
-- cálc
+- aws-cre: Access Key and Secret for AWS Account
+- DB_HOST: Endpoint of Database Server
+- DB_PORT: Port to connect Database (3306 or 5432)
+- DB_USERNAME: Username to login to Database
+- DB_PASSWORD: Password to login to Database
+- DB_DATABASE: Name of Database
 
 ![ConnectPrivate](/images/4-cicd/4.2-jenkins/4_Jenkins.png)
 

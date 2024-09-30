@@ -1,34 +1,17 @@
 ---
-title : "Connect to Bastion Host"
+title : "Changing Source Code at Ops Repository"
 date :  "`r Sys.Date()`" 
-weight : 2
+weight : 3
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 8.3. </b> "
 ---
+Please refer to this [Ops Repository](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main). At Jenkinsfile, modify the `PRODUCTION_LINK` as below. The OWASP ZAP will scan the website at `PRODUCTION_LINK` to check the security risks.
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+![ConnectPrivate](/images/8-cicd-test/8.3-change-code-ops/OWASP_0.png)
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+At file `k8s/deployment.yaml`, modify image of API Gateway as the picture below:
+
+![ConnectPrivate](/images/8-cicd-test/8.3-change-code-ops/UpdateK8s.png)
 
 
-```sh
-ssh-add EC2.pem
-```
-
-Then, we connect to the Bastion Host by:
-
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
-
-We can connect to our EC2 Cluster by using this command line:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+Push everything to Remote Github Repository to trigger DevSecOps Pipeline and Argo CD Auto Application Update.

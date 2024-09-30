@@ -12,21 +12,21 @@
     <title>Cấu hình Jenkins Server :: Triển khai DevSecOps và ứng dụng GitOps trong CI/CD Pipeline cho ứng dụng Microservice trên AWS EKS</title>
 
     
-    <link href="/css/nucleus.css?1727665223" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1727665223" rel="stylesheet">
-    <link href="/css/hybrid.css?1727665223" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1727665223" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1727665223" rel="stylesheet">
-    <link href="/css/auto-complete.css?1727665223" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1727665223" rel="stylesheet">
-    <link href="/css/theme.css?1727665223" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1727665223" rel="stylesheet">
+    <link href="/css/nucleus.css?1727672853" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1727672853" rel="stylesheet">
+    <link href="/css/hybrid.css?1727672853" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1727672853" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1727672853" rel="stylesheet">
+    <link href="/css/auto-complete.css?1727672853" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1727672853" rel="stylesheet">
+    <link href="/css/theme.css?1727672853" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1727672853" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1727665223" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1727672853" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1727665223"></script>
+    <script src="/js/jquery-3.3.1.min.js?1727672853"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1727665223"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1727665223"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1727672853"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1727672853"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1727665223"></script>
+<script type="text/javascript" src="/js/search.js?1727672853"></script>
 
     
   </div>
@@ -1686,10 +1686,12 @@
 <h3 id="thiết-lập-credentials">Thiết Lập Credentials</h3>
 <p>Tại phần: <code>Dashboard &gt; Manage Jenkins &gt; Credentials &gt; System &gt; Global credentials (unrestricted)</code>, tạo các credentials như hình bên dưới, trong đó:</p>
 <ul>
-<li>áocd</li>
-<li>ácdc</li>
-<li>ácd</li>
-<li>cálc</li>
+<li>aws-cre: Gồm Access Key và Secret của AWS Account</li>
+<li>DB_HOST: Endpoint của Database Server</li>
+<li>DB_PORT: Port để connect với Database (3306 hoặc 5432)</li>
+<li>DB_USERNAME: Username để login vào Database</li>
+<li>DB_PASSWORD: Password để login vào Database</li>
+<li>DB_DATABASE: Tên của Database</li>
 </ul>
 <p><img alt="ConnectPrivate" src="/images/4-cicd/4.2-jenkins/4_Jenkins.png"></p>
 <h3 id="thiết-lập-các-ci-pipelines">Thiết lập các CI Pipelines</h3>
@@ -2542,19 +2544,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1727665223"></script>
-    <script src="/js/perfect-scrollbar.min.js?1727665223"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1727665223"></script>
-    <script src="/js/jquery.sticky.js?1727665223"></script>
-    <script src="/js/featherlight.min.js?1727665223"></script>
-    <script src="/js/highlight.pack.js?1727665223"></script>
+    <script src="/js/clipboard.min.js?1727672853"></script>
+    <script src="/js/perfect-scrollbar.min.js?1727672853"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1727672853"></script>
+    <script src="/js/jquery.sticky.js?1727672853"></script>
+    <script src="/js/featherlight.min.js?1727672853"></script>
+    <script src="/js/highlight.pack.js?1727672853"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1727665223"></script>
-    <script src="/js/learn.js?1727665223"></script>
-    <script src="/js/hugo-learn.js?1727665223"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1727672853"></script>
+    <script src="/js/learn.js?1727672853"></script>
+    <script src="/js/hugo-learn.js?1727672853"></script>
 
-    <link href="/mermaid/mermaid.css?1727665223" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1727665223"></script>
+    <link href="/mermaid/mermaid.css?1727672853" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1727672853"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
