@@ -1,9 +1,9 @@
 ---
-title : "Cleanup"
+title : "Integrate DevSecOps"
 date :  "`r Sys.Date()`" 
-weight : 4 
+weight : 6 
 chapter : false
-pre : " <b> 4. </b> "
+pre : " <b> 6. </b> "
 ---
 
 

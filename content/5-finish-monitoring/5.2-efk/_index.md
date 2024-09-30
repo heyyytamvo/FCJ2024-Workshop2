@@ -1,34 +1,28 @@
 ---
-title : "Connect to Bastion Host"
+title : "Set up EFK Stack"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 2 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 5.2. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Access Kibana 
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+Access the DNS of Kibana, choose `Explore on my own` as the picture below:
+
+![ConnectPrivate](/images/5-finish-monitoring/5.2-efk/efk_0.png)
+
+### Set up Index Pattern
+
+At `Management > Index Patterns > Create Index Pattern`, create the configuration as below:
+
+![ConnectPrivate](/images/5-finish-monitoring/5.2-efk/efk_1.png)
+
+![ConnectPrivate](/images/5-finish-monitoring/5.2-efk/efk_2.png)
+
+### Check Kibana
 
 
-```sh
-ssh-add EC2.pem
-```
+Go to the homepage of Kibana, we will collect all logs from the K8s Pods as the picture below:
 
-Then, we connect to the Bastion Host by:
-
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
-
-We can connect to our EC2 Cluster by using this command line:
-
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+![ConnectPrivate](/images/5-finish-monitoring/5.2-efk/efk_3.png)

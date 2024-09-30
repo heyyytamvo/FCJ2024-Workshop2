@@ -1,34 +1,41 @@
 ---
-title : "Connect to Bastion Host"
+title : "Configure SonarQube Server"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 2 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 6.2. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Login SonarQube Server
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+Access the SonarQube Server via EC2 DNS, you will be required to login to SonarQube Server with username (`admin`) and password (`admin`)
 
+![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar0.png)
 
-```sh
-ssh-add EC2.pem
+### Create Local Project
+
+Create Local Project as the picture below:
+
+![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar1.png)
+
+Naming Local Project `microservice` as below:
+
+![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar2.png)
+
+### Create Sonar File at Dev Repository
+
+At `Dev Repository`, create file `sonar-project.properties` as below:
+
+```properties
+sonar.projectKey=microservice
 ```
 
-Then, we connect to the Bastion Host by:
+### Create Token to access SonarQube Server
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+At `Administration > Security > Users`, with user admin, create a Token for Admin as below.
 
-We can connect to our EC2 Cluster by using this command line:
+![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar3.png)
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
-
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+{{% notice info %}}
+This is not best practice because we gave the Admin Rights to Jenkins Server.
+{{% /notice %}}

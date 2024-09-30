@@ -210,13 +210,6 @@
 	"content": ""
 },
 {
-	"uri": "//localhost:1313/5-finish-monitoring/",
-	"title": "Cleanup",
-	"tags": [],
-	"description": "",
-	"content": "Using Terminal and executing this command lines:\nterraform destroy Now, all resources will be removed as below:\n"
-},
-{
 	"uri": "//localhost:1313/6-devsecops/",
 	"title": "Cleanup",
 	"tags": [],
@@ -303,6 +296,13 @@
 {
 	"uri": "//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.5-run-terraform/",
 	"title": "Run Terraform",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/5-finish-monitoring/",
+	"title": "Set up Monitoring",
 	"tags": [],
 	"description": "",
 	"content": ""

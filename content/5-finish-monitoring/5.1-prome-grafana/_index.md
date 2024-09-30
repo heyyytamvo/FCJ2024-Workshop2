@@ -1,34 +1,53 @@
 ---
-title : "Connect to Bastion Host"
+title : "Set up Prometheus and Grafana"
 date :  "`r Sys.Date()`" 
-weight : 4
+weight : 1
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 5.1. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+### Login Grafana
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
+Access the DNS of Grafana, you will be required to login with username and password as below:
 
 
-```sh
-ssh-add EC2.pem
-```
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
 
-Then, we connect to the Bastion Host by:
+Next, you need to change the password of Grafana
 
-```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
-```
+### Create Data Source
 
-We can connect to our EC2 Cluster by using this command line:
+Choosing `Connections > Data Sources` as below to create Data Source:
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_1.png)
 
-### Validate Scaling Ability
+Choosing Prometheus as Data Source:
 
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_2.png)
 
+{{% notice info %}}
+Prometheus Server URL is: `http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090`
+{{% /notice %}}
+
+### Create Dashboard
+
+At `Home > Dashboards > Import Dashboard`, create Dashboard with settings as below:
+
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_3.png)
+
+Choosing Data Source *Prometheus* as below:
+
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_4.png)
+
+### Check Metrics of Worker Nodes
+
+After creating Dashboard, we will collect all system metrics of Worker Node as the picture below. In our K8s Cluster, Worker Nodes are 3 EC2 Instances with private IP as below:
+
+#### EC2 (1) with private IP `10.0.4.56`
+
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_5.png)
+#### EC2 (2) with private IP `10.0.5.114`
+
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_6.png)
+#### EC2 (3) with private IP `10.0.6.202`
+![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_7.png)

@@ -8,7 +8,7 @@ pre : " <b> 5.1. </b> "
 
 ### Đăng nhập vào Grafana
 
-Truy cập DNS của Grafana, bạn đọc đăng nhập với tài khoàn và mật khẩu như bên dưới:
+Truy cập DNS của Grafana, bạn đọc đăng nhập với tài khoản và mật khẩu như bên dưới:
 
 ![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
 
