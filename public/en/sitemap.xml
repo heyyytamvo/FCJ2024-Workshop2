@@ -14,40 +14,16 @@
                 href="//localhost:1313/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cicd/4.2-jenkins/</loc>
+    <loc>//localhost:1313/4-cicd/4.1-application/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/4.2-jenkins/"
+                href="//localhost:1313/vi/4-cicd/4.1-application/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-cicd/4.2-jenkins/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-cicd/4.3-dev-repo/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/4.3-dev-repo/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cicd/4.3-dev-repo/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-cicd/4.4-argocd-autodeploy/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/4.4-argocd-autodeploy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cicd/4.4-argocd-autodeploy/"
+                href="//localhost:1313/4-cicd/4.1-application/"
                 />
   </url><url>
     <loc>//localhost:1313/4-cicd/4.5-prometheus-grafana/</loc>
@@ -254,6 +230,18 @@
                 href="//localhost:1313/3-eks/3.1-eks-role/"
                 />
   </url><url>
+    <loc>//localhost:1313/4-cicd/4.2-jenkins/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-cicd/4.2-jenkins/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-cicd/4.2-jenkins/"
+                />
+  </url><url>
     <loc>//localhost:1313/8-cicd-test/8.2-ci-sec/</loc>
     <xhtml:link
                 rel="alternate"
@@ -362,6 +350,18 @@
                 href="//localhost:1313/3-eks/3.2-eks-worker-role/"
                 />
   </url><url>
+    <loc>//localhost:1313/4-cicd/4.3-dev-repo/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-cicd/4.3-dev-repo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-cicd/4.3-dev-repo/"
+                />
+  </url><url>
     <loc>//localhost:1313/3-eks/3.3-eks-create/</loc>
     <xhtml:link
                 rel="alternate"
@@ -410,30 +410,6 @@
                 href="//localhost:1313/2-vpc-ec2/2.1-vpc/2.1.3-run-terraform/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cicd/4.1-application/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/4.1-application/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cicd/4.1-application/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-cicd/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cicd/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cicd/"
-                />
-  </url><url>
     <loc>//localhost:1313/5-finish-monitoring/</loc>
     <xhtml:link
                 rel="alternate"
@@ -480,6 +456,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/8-cicd-test/"
+                />
+  </url><url>
+    <loc>//localhost:1313/4-cicd/4.4-argocd-autodeploy/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-cicd/4.4-argocd-autodeploy/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-cicd/4.4-argocd-autodeploy/"
                 />
   </url><url>
     <loc>//localhost:1313/5-finish-monitoring/5.1-prome-grafana/</loc>
@@ -540,6 +528,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-vpc-ec2/2.2-jump-jenkins-sonar/2.2.4-sonar/"
+                />
+  </url><url>
+    <loc>//localhost:1313/4-cicd/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/4-cicd/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/4-cicd/"
                 />
   </url><url>
     <loc>//localhost:1313/3-eks/3.5-ecr/</loc>

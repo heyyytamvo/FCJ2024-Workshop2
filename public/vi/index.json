@@ -158,7 +158,7 @@
 	"title": "Cấu hình GitHub Repository (Dev Repo)",
 	"tags": [],
 	"description": "",
-	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Dev Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkins File Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Dev Repo.\n"
+	"content": "Thiết lập Webhook Tại phần Settings -\u0026gt; Webhooks ở Dev Repository, chọn phần \u0026lsquo;Add Webhooks’ với setting ở bên dưới:\nViết Jenkinsfile Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại Dev Repo.\n"
 },
 {
 	"uri": "//localhost:1313/vi/6-devsecops/6.3-jenkins/",

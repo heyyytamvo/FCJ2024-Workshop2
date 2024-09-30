@@ -1,34 +1,39 @@
 ---
-title : "Connect to Bastion Host"
+title : "Automation Deployment with Bash Scripting"
 date :  "`r Sys.Date()`" 
-weight : 1 
+weight : 7 
 chapter : false
-pre : " <b> 3.1. </b> "
+pre : " <b> 4.7. </b> "
 ---
 
-![SSMPublicinstance](/images/arc-log.png)
-### SSH Agent Forwading
+{{% notice info %}}
+Working with Ops Repo in this section 
+{{% /notice %}}
 
-We can connect to EC2 Cluster in private subnet through Bastion Host. However, the last thing we want to do is placing our private key on the Bastion Host. So, we need to use SSH Agent Forwarding. At the folder containing the private key, executing the command line below:
-
-
-```sh
-ssh-add EC2.pem
-```
-
-Then, we connect to the Bastion Host by:
+We will use Bash Script to deploy Argo CD, Prometheus and Grafana, and EFK Stack. At Ops Repository, create file `setup.sh` as below.
 
 ```sh
-ssh -A ubuntu@<your-bastion-host-public-IP>
+#!/bin/bash
+#set up argo cd
+kubectl apply -f argocd/namespace.yaml
+kubectl apply -f argocd/default.yaml -n argocd
+
+#set up efk stack
+kubectl apply -f EFK/.
+
+#set up Prometheus and Grafana
+kubectl create namespace monitoring
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus-operator prometheus-community/kube-prometheus-stack -n monitoring
+kubectl apply -f monitoring/grafana.yaml -n monitoring
 ```
+Below is the final Ops Repository
+![ConnectPrivate](/images/4-cicd/4.7-BashScript/tree.png)
 
-We can connect to our EC2 Cluster by using this command line:
+Now, push everything to Github Repository with `git push`.
 
-```sh
-ssh ec2-user@<your-EC2Cluster-private-IP>
-```
+{{% notice note %}}
 
-### Validate Scaling Ability
-
-Although this is not the main function of the bastion host. However, you can use Bastion Host to test the scaling ability because of its convenience. Let's validate the scaling ability by sending request to the Load Balancer.
-
+Folder k8s will not be mentioned here because it depends on the application. Please refer to my [Ops Repository]() to see the k8s folder.
+{{% /notice %}}

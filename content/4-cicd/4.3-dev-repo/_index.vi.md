@@ -12,6 +12,6 @@ Tại phần `Settings -> Webhooks` ở Dev Repository, chọn phần '**Add Web
 
 ![ConnectPrivate](/images/4-cicd/4.3-dev-repo/webhooks.png)
 
-### Viết Jenkins File
+### Viết Jenkinsfile
 
 Bài Workshop này sẽ không hướng dẫn viết Jenkinsfile, bạn đọc tham khảo tại [Dev Repo]().
