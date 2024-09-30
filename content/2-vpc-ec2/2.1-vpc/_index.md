@@ -14,4 +14,4 @@ pre : " <b> 2.1 </b> "
 
 After finishing this section, below is the architecture:
 
-![ConnectPrivate](/images/1.Intro/00problem.png) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/2-vpc-ec2/2.1-vpc/archi.png) 

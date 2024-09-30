@@ -15,7 +15,7 @@ In this section, we will deploy the Kubernetes Cluster, where our microservices 
 
 After finishing this section, we will have the completed infrastructure as below:
 
-![ConnectPrivate](/images/1.Intro/00problem.png) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/3-EKS/Archi.png) 
 
 ### Content
 

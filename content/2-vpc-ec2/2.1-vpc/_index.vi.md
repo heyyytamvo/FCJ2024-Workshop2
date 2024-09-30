@@ -14,4 +14,4 @@ pre : " <b> 2.1 </b> "
 
 Sau khi hoàn thành phần này, hình bên dưới sẽ là hạ tầng của chúng ta:
 
-![ConnectPrivate](/images/1.Intro/00problem.png) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/2-vpc-ec2/2.1-vpc/archi.png) 

@@ -13,7 +13,7 @@ Tại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính l
 
 Kết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.
 
-![ConnectPrivate](/images/1.Intro/00problem.png) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/3-EKS/Archi.png)  
 ### Nội dung
 
 - [Tạo Role cho EKS Cluster](3.1-eks-role/) 
