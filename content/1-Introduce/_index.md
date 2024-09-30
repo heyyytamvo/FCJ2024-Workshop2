@@ -11,13 +11,13 @@ pre : " <b> 1. </b> "
 Before diving into Microservices, we will get into the traditional software architecture in the deployment stage: Monolithic. Monolithic is a software architecture in which all modules (features/services) are containerized in a single *‘block’*. The most common containerization technology that you may have heard of is Docker. Supposedly your software has already been packaged into a ‘block’ and deployed to the Virtual Private Server (VPS). Now, your development team has released a new feature. Then, your application needs to be updated. With monolithic architecture, the software updating process is demonstrated below:
 
 
-![ConnectPrivate](/images/1.Intro/mono.gif) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/mono.gif) 
 
 As you can see, you need to shut down the application for a while. Then, a new version will be deployed. In the meantime, end users can not access the application. With business consideration, this is a huge issue: updating a feature affects the entire application. Of course, we can solve the problem by implementing the blue/green deployment strategy, but it is out of scope in this workshop.
 
 There is another software architecture that can handle this problem: Microservices. Microservices apply the theory of divide and conquer: Every service (feature) of the application will be packaged as a single '*block*' (or Image) and they communicate to each other by some standards such as REST, v.v. Updating a feature has no impact on other features as described below:
 
-![ConnectPrivate](/images/1.Intro/Micro.gif) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/Micro.gif) 
 
 Kubernetes (K8s) is the most common tool for deploying a microservice application because of its utilization in allocating computing resources. In this workshop, we will use Kubernetes to deploy a simple microservices application. However, we will not set up the entire K8s Cluster. Instead, we will use Elastic Kubernetes Service (EKS) from AWS. The infrastructure deployment stage requires a smooth collaboration between the Operations Team (or Ops Team including System Engineer, System Administration, etc.). Hence, GitOps is the key point to guarantee that collaboration. 
 
@@ -34,13 +34,13 @@ During the automation process, could we find out some security risks from the so
 - **Image Scan and Secure IaC**: Scan and detect the vulnerabilities in the built image before deploying it to the production environment. Scan our infrastructure based on the IaC code base.
 - **DAST (Dynamic Application Security Testing)**: While SAST analyzes static code, DAST performs security testing while the application is operating.
 
-![ConnectPrivate](/images/1.Intro/DevSecOps.gif) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/DevSecOps.gif) 
 
 ### Monitoring
 
 Suppose you are a developer and our application is deployed in a Kubernetes (K8s) Cluster. One day, the application crashed and you need to fix it as soon as possible. The first thing that comes to your mind is checking the logs. However, you have no idea how to access the K8s Cluster because it is too complicated. Hence, we need to centralize all the application logs in one place. In this workshop, we will deploy a EFK Stack to solve this problem. After the EFK is successfully deployed, developers will use their web browser to read all the application logs. Below is the final practice.
 
-![ConnectPrivate](/images/1.Intro/Monitor.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/Monitor.gif)
 
 In this workshop, we will use these services from Amazon Web Service to solve all the problems above:
 
