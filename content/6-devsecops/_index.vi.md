@@ -7,13 +7,9 @@ pre : " <b> 6. </b> "
 ---
 
 
-Dùng Terminal và trỏ vào thư mục chứa source code terraform ở trên. Thực hiện command line sau:
+### Nội dung
 
-```sh
-terraform destroy
-```
-
-Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
-
+- [Cấu hình Github Repository (Ops Repo)](6.1-ops-repo/)
+- [Cấu hình SonarQube Server](6.2-sonar/)
+- [Cấu hình Jenkins Server](6.3-jenkins/)
+- [Cấu hình Trivy và OWASP ZAP](6.4-trivy-owasp-zap/)

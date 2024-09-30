@@ -15,9 +15,11 @@ In this section, we will prepare the CI/CD Pipeline, creating Jenkinsfile, and i
 
 ### Content
 
-- [Application Overall](3.1-connect-bastion/) 
-- [Configure Jenkins Server](3.2-scaling-check/) 
-- [Configure GitHub Repository (Dev Repo)](3.2-scaling-check/) 
-- [Configure ArgoCD and Automation Deployment](3.2-scaling-check/) 
-- [Configure Prometheus and Grafana](3.2-scaling-check/) 
-- [Configure EFK Stack](3.2-scaling-check/) 
+- [Application Overall](4.1-application/) 
+- [Configure Jenkins Server](4.2-jenkins/) 
+- [Configure GitHub Repository (Dev Repo)](4.3-dev-repo/) 
+- [Configure ArgoCD and Automation Deployment](4.4-argocd-autodeploy/) 
+- [Configure Prometheus and Grafana](4.5-prometheus-grafana/) 
+- [Configure EFK Stack](4.6-EFK/)
+- [Bash Script for automation deployment](4.7-BashScript/)
+- [Deploy to K8s Cluster](4.8-k8s/)

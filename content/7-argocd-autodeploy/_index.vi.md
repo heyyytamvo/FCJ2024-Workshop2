@@ -8,11 +8,9 @@ pre : " <b> 7. </b> "
 
 
 
-```sh
-terraform destroy
-```
+### Nội dung
 
-Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
-
+- [Chạy CI Pipeline](7.1-ci-pipeline/)
+- [Cập nhật Ops Repository](7.2-ops-repo-update/)
+- [Auto Deployment với Argo CD](7.3-argocd/)
+- [Truy cập Application](7.4-app-access/)

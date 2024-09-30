@@ -8,12 +8,12 @@ pre : " <b> 2.2 </b> "
 
 
 ### Content
-  - [Create Public and Private Key at Local Machine](2.2.1-loadbalancer/)
-  - [Create Jump Host](2.2.2-ecsec2/)
-  - [Create Jenkins Server](2.2.3-asg/)
-  - [Create SonarQube Server](2.2.4-ecs/)
-  - [Run Terraform](2.2.4-ecs/)
+  - [Create Public and Private Key at Local Machine](2.2.1-key/)
+  - [Create Jump Host](2.2.2-jump-host/)
+  - [Create Jenkins Server](2.2.3-jenkins/)
+  - [Create SonarQube Server](2.2.4-sonar/)
+  - [Run Terraform](2.2.4-run-terraform/)
 
 After finishing this section, below is the architecture:
 
-![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/00problem.png) 
+![ConnectPrivate](/images/1.Intro/00problem.png) 

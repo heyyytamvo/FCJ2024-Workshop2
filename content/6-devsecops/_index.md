@@ -7,13 +7,10 @@ pre : " <b> 6. </b> "
 ---
 
 
-Using Terminal and executing this command lines:
+### Content
 
-```sh
-terraform destroy
-```
-
-Now, all resources will be removed as below:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
+- [Configure Github Repository (Ops Repo)](6.1-ops-repo/)
+- [Configure SonarQube Server](6.2-sonar/)
+- [Configure Jenkins Server](6.3-jenkins/)
+- [Configure Trivy and OWASP ZAP](6.4-trivy-owasp-zap/)
 

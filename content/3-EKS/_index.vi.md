@@ -13,11 +13,12 @@ Tại phần này, ta sẽ triển khai cụm Kubernetes Cluster, cũng chính l
 
 Kết thúc phần này, ta sẽ có hoàn chỉnh phần Infrastructure, việc còn lại là triển khai CI/CD Pipeline và DevSecOps. Hình bên dưới sẽ là hạ tầng của chúng ta sau khi hoàn thành phần này.
 
+![ConnectPrivate](/images/1.Intro/00problem.png) 
 ### Nội dung
 
-- [Tạo Role cho EKS Cluster](3.1-connect-bastion/) 
-- [Tạo Role cho EKS Worker Node](3.2-scaling-check/) 
-- [Tạo EKS Cluster](3.2-scaling-check/) 
-- [Tạo EKS Worker Node](3.2-scaling-check/) 
-- [Tạo Elastic Container Registry](3.2-scaling-check/) 
-- [Chạy Terraform để triển khai hạ tầng](3.2-scaling-check/) 
+- [Tạo Role cho EKS Cluster](3.1-eks-role/) 
+- [Tạo Role cho EKS Worker Node](3.2-eks-worker-role/) 
+- [Tạo EKS Cluster](3.3-eks-create/)
+- [Tạo EKS Worker Node](3.4-eks-worker-node-create/) 
+- [Tạo Elastic Container Registry](3.5-ecr/) 
+- [Chạy Terraform để triển khai hạ tầng](3.6-run-terraform/) 

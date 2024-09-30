@@ -7,13 +7,11 @@ pre : " <b> 8. </b> "
 ---
 
 
-Using Terminal and executing this command lines:
+### Content
 
-```sh
-terraform destroy
-```
-
-Now, all resources will be removed as below:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
+- [Changing Source Code at Dev Repository](8.1-change-code/)
+- [DevSecOps Pipeline (CI)](8.2-ci-sec/)
+- [Changing Source Code at Ops Repository](8.3-change-code-ops/)
+- [DevSecOps Pipeline (CD)](8.4-cd-sec/)
+- [Application Auto Update](8.5-app/)
 

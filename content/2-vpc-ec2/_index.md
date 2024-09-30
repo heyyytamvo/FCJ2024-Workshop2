@@ -26,5 +26,5 @@ In this section, we will create a VPC with:
 
 
 ### Content
-  - [Create VPC](2.1-basic/)
-  - [Create Jump Host, Jenkins Server, and SonarQube Server](2.2-createalb-asg-ecs/)
+  - [Create VPC](2.1-vpc/)
+  - [Create Jump Host, Jenkins Server, and SonarQube Server](2.2-jump-jenkins-sona/)

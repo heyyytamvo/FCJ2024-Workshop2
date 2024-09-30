@@ -1,5 +1,5 @@
 ---
-title : "Deploy K8s Cluster"
+title : "Deploy to K8s Cluster"
 date :  "`r Sys.Date()`" 
 weight : 8 
 chapter : false

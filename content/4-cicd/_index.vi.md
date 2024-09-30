@@ -10,13 +10,15 @@ pre : " <b> 4. </b> "
 Source code tại phần này sẽ được triển khai tại Dev Repo và Ops Repo
 {{% /notice %}}
 
-Tại phần này, chúng ta sẽ hoàn thiện CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.
+Tại phần này, chúng ta sẽ chuẩn bị CI/CD Pipeline. Chúng ta sẽ tạo các Jenkinsfile và bắt đầu tương tác với cụm K8s.
 
 ### Nội dung
 
-- [Tổng quan Application](3.1-connect-bastion/) 
-- [Cấu hình Jenkins Server](3.2-scaling-check/) 
-- [Cấu hình GitHub Repository (Dev Repo)](3.2-scaling-check/) 
-- [Cấu hình ArgoCD và Automation Deployment](3.2-scaling-check/) 
-- [Cấu hình Prometheus và Grafana](3.2-scaling-check/) 
-- [Cấu hình EFK Stack](3.2-scaling-check/) 
+- [Tổng quan Application](4.1-application/) 
+- [Cấu hình Jenkins Server](4.2-jenkins/) 
+- [Cấu hình GitHub Repository (Dev Repo)](4.3-dev-repo/) 
+- [Cấu hình ArgoCD và Automation Deployment](4.4-argocd-autodeploy/) 
+- [Cấu hình Prometheus và Grafana](4.5-prometheus-grafana/) 
+- [Cấu hình EFK Stack](4.6-EFK/) 
+- [Bash Script cho Automation Deployment](4.7-BashScript/)
+- [Triển khai K8s Cluster](4.8-k8s/)

@@ -6,13 +6,10 @@ chapter : false
 pre : " <b> 8. </b> "
 ---
 
+### Nội dung
 
-
-```sh
-terraform destroy
-```
-
-Tất cả các tài nguyên sẽ được tự động dọn dẹp như hình bên dưới:
-
-![ConnectPrivate](/FCJ2024-Workshop1/images/4.cleanup/cleanup.png)
-
+- [Thay đổi Source Code ở Dev Repository](8.1-change-code/)
+- [Kiểm tra DevSecOps Pipeline (CI)](8.2-ci-sec/)
+- [Thay đổi Source Code ở Ops Repository](8.3-change-code-ops/)
+- [Kiểm tra DevSecOps Pipeline (CD)](8.4-cd-sec/)
+- [Kiểm tra Application Auto Update](8.5-app/)

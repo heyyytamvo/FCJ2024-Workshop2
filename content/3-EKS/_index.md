@@ -15,13 +15,13 @@ In this section, we will deploy the Kubernetes Cluster, where our microservices 
 
 After finishing this section, we will have the completed infrastructure as below:
 
-
+![ConnectPrivate](/images/1.Intro/00problem.png) 
 
 ### Content
 
-- [Role for EKS Cluster](3.1-connect-bastion/) 
-- [Role for EKS Worker Node](3.2-scaling-check/) 
-- [Create EKS Cluster](3.2-scaling-check/) 
-- [Create EKS Worker Node](3.2-scaling-check/) 
-- [Create Elastic Container Registry](3.2-scaling-check/) 
-- [Run Terraform](3.2-scaling-check/) 
+- [Role for EKS Cluster](3.1-eks-role/) 
+- [Role for EKS Worker Node](3.2-eks-worker-role/) 
+- [Create EKS Cluster](3.3-eks-create/) 
+- [Create EKS Worker Node](3.4-eks-worker-node-create/) 
+- [Create Elastic Container Registry](3.5-ecr/) 
+- [Run Terraform](3.6-run-terraform/) 

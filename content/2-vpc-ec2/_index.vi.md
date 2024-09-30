@@ -25,5 +25,5 @@ Trong phần này, chúng ta sẽ triển khai một VPC với:
 
 
 ### Nội dung
-  - [Triển khai VPC](2.1-basic/)
-  - [Tạo Jump Host, Jenkins Server, và SonarQube Server](2.2-createalb-asg-ecs/)
+  - [Triển khai VPC](2.1-vpc/)
+  - [Tạo Jump Host, Jenkins Server, và SonarQube Server](2.2-jump-jenkins-sonar/)
