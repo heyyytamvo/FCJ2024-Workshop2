@@ -33,6 +33,12 @@ CD Pipeline is described below
 
 For your preference, below are the repositories.
 
+- Dev Repository (where Dev team work): [link](https://github.com/heyyytamvo/FCJ2024-WS2-DevRepo)
+- Ops Repository (Where Operations team work): [link](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo)
+
+
+### Content
+
  1. [Problem Definition](1-Introduce)
  2. [Deploy VPC, Jenkins, and SonarQube Server](2-vpc-ec2/)
  3. [Deploy Kubernetes Cluster](3-EKS/)
@@ -41,11 +47,3 @@ For your preference, below are the repositories.
  6. [Integrate DevSecOps](6-devsecops/)
  7. [Application Deployment](7-argocd-autodeploy/)
  8. [Testing CI/CD Pipeline](8-cicd-test/)
-
-
-### Content
-
- 1. [Problem Definition](1-introduce/)
- 2. [Preparation](2-Prerequiste/)
- 3. [Scaling Testing](3-Scaling-Check/)
- 4. [Cleanup](4-cleanup/)

@@ -11,7 +11,7 @@ pre : " <b> 1. </b> "
 Before diving into Microservices, we will get into the traditional software architecture in the deployment stage: Monolithic. Monolithic is a software architecture in which all modules (features/services) are containerized in a single *‘block’*. The most common containerization technology that you may have heard of is Docker. Supposedly your software has already been packaged into a ‘block’ and deployed to the Virtual Private Server (VPS). Now, your development team has released a new feature. Then, your application needs to be updated. With monolithic architecture, the software updating process is demonstrated below:
 
 
-![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/mono.gif) 
+![ConnectPrivate](/FCJ2024-Workshop2/images/1.Intro/Mono.gif) 
 
 As you can see, you need to shut down the application for a while. Then, a new version will be deployed. In the meantime, end users can not access the application. With business consideration, this is a huge issue: updating a feature affects the entire application. Of course, we can solve the problem by implementing the blue/green deployment strategy, but it is out of scope in this workshop.
 
