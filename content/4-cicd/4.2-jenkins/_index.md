@@ -14,15 +14,15 @@ Access Jenkins Server via the DNS of the Jenkins Server EC2, you will be require
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/0_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/0_Jenkins.png)
 
 Installing all Suggested Plugins as below:
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/1_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/1_Jenkins.png)
 
 Create admin user as below:
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/2_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/2_Jenkins.png)
 
 At `Dashboard > Manage Jenkins > Plugins`, installing these Plugins:
 
@@ -32,7 +32,7 @@ At `Dashboard > Manage Jenkins > Plugins`, installing these Plugins:
 
 At `Dashboard > Manage Jenkins > Tools`, installing **SonarQube Scanner** as below:
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/3_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/3_Jenkins.png)
 
 ### Create Credentials
 
