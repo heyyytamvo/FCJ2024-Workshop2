@@ -9,9 +9,9 @@ pre : " <b> 4.8. </b> "
 ### Kết nối đến Jump Host
 Dùng Console Management, tại phần `EC2 > Security Group`, ta cần sửa Security Group cho EKS Control Plane sao cho EKS Control Plane sẽ chấp nhận traffic đến từ Jump Host ở Port 443.
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/des.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/des.png)
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/sg.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/sg.png)
 
 Bây giờ, dùng private key để kết nối đến **Jump Host** thông qua giao thức SSH. Sau đó, tại **Jump Host**, ta cần thiết lập AWS Credentials để có thể truy cập Cluster. 
 
@@ -53,4 +53,4 @@ Nếu bạn đọc truy cập phần `EC2 > Load Balancers`, ta sẽ có tổng 
 - Grafana Web
 - Kibana Web
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/3ELB.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/3ELB.png)

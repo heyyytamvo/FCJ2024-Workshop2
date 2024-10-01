@@ -10,9 +10,9 @@ pre : " <b> 4.8. </b> "
 
 Using Console Management, at `EC2 > Security Group`, modify the Security Group of the EKS Control Plane such that it accepts traffic from Jump Host on port 443.
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/des.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/des.png)
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/sg.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/sg.png)
 
 
 Now, use the private key to connect to **Jump Host** via SSH Protocol. Next, at **Jump Host**, we need to configure AWS Credentials to access the cluster.
@@ -57,4 +57,4 @@ In the AWS Console Management, at `EC2 > Load Balancers`, we can see there are 3
 - Grafana Web
 - Kibana Web
 
-![ConnectPrivate](/images/4-cicd/4.8-k8s/3ELB.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.8-k8s/3ELB.png)
