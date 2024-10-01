@@ -10,7 +10,7 @@ pre : " <b> 6.1. </b> "
 
 At `Settings -> Webhooks` in your remote Ops Repository, choosing '**Add Webhooks**’ with setting as below:
 
-![ConnectPrivate](/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
 
 ### Write Jenkinsfile
 

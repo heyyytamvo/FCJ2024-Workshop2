@@ -10,7 +10,7 @@ pre : " <b> 5.1. </b> "
 
 Truy cập DNS của Grafana, bạn đọc đăng nhập với tài khoản và mật khẩu như bên dưới:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
 
 Kế đến, bạn đọc thay đổi mật khẩu theo yêu cầu của Grafana
 
@@ -18,11 +18,11 @@ Kế đến, bạn đọc thay đổi mật khẩu theo yêu cầu của Grafana
 
 Chọn phần `Connections > Data Sources` như bên dưới để tạo data source:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_1.png)
 
 Lựa chọn Prometheus làm Data Source như bên dưới:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_2.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_2.png)
 
 {{% notice info %}}
 Prometheus Server URL sẽ là: `http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090`
@@ -32,11 +32,11 @@ Prometheus Server URL sẽ là: `http://prometheus-operator-kube-p-prometheus.mo
 
 Tại phần `Home > Dashboards > Import Dashboard`, tạo Dashboard với cấu hình như bên dưới:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_3.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_3.png)
 
 Chọn Data Source là *Prometheus* như bên dưới:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_4.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_4.png)
 
 ### Kiểm tra Metrics của các Worker Nodes
 
@@ -44,9 +44,9 @@ Sau khi hoàn tất tạo Dashboard, ta sẽ thu thập được system metrics 
 
 #### EC2 (1) với private IP là `10.0.4.56`
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_5.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_5.png)
 #### EC2 (2) với private IP là `10.0.5.114`
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_6.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_6.png)
 #### EC2 (3) với private IP là `10.0.6.202`
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_7.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_7.png)

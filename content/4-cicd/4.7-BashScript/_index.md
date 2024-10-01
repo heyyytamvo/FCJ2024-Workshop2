@@ -29,7 +29,7 @@ helm install prometheus-operator prometheus-community/kube-prometheus-stack -n m
 kubectl apply -f monitoring/grafana.yaml -n monitoring
 ```
 Below is the final Ops Repository
-![ConnectPrivate](/images/4-cicd/4.7-BashScript/tree.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.7-BashScript/tree.png)
 
 Now, push everything to Github Repository with `git push`.
 

@@ -10,7 +10,7 @@ pre : " <b> 4.3. </b> "
 
 Tại phần `Settings -> Webhooks` ở Dev Repository, chọn phần '**Add Webhooks**’ với setting ở bên dưới:
 
-![ConnectPrivate](/images/4-cicd/4.3-dev-repo/webhooks.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.3-dev-repo/webhooks.png)
 
 ### Viết Jenkinsfile
 

@@ -30,7 +30,7 @@ kubectl apply -f monitoring/grafana.yaml -n monitoring
 ```
 Bây giờ, Ops Repository của ta đã có hoàn chỉnh như hình:
 
-![ConnectPrivate](/images/4-cicd/4.7-BashScript/tree.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.7-BashScript/tree.png)
 
 Bây giờ, đẩy tất cả mọi thứ lên GitHub Repository với `git push`.
 

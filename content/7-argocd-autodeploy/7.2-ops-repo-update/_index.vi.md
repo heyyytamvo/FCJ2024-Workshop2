@@ -11,12 +11,12 @@ pre : " <b> 7.2. </b> "
 
 #### Service API Gateway
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_0.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_0.png)
 
 #### Info Service
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_1.png)
 
 #### Order Service
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_2.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.2-ops-repo-update/updateOps_2.png)

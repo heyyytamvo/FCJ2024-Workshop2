@@ -10,7 +10,7 @@ pre : " <b> 6.1. </b> "
 
 Tại phần `Settings -> Webhooks` ở Ops Repository, chọn phần '**Add Webhooks**’ với setting ở bên dưới:
 
-![ConnectPrivate](/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/6-devsecops/6.1-ops-repo/OpsWebhook.png)
 
 ### Viết Jenkinsfile
 

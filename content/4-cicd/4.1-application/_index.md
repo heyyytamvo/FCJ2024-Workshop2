@@ -21,8 +21,8 @@ We will have 3 API Endpoints:
 Traffic coming from customers will always reach the  **Customer API Gateway** first (a Load Balancer or a Reverse Proxy). Below are the demonstration for all traffic in our application.
 
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Application.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Application.gif)
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Order.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Order.gif)
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Info.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Info.gif)

@@ -11,7 +11,7 @@ pre : " <b> 5.1. </b> "
 Access the DNS of Grafana, you will be required to login with username and password as below:
 
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_0.png)
 
 Next, you need to change the password of Grafana
 
@@ -19,11 +19,11 @@ Next, you need to change the password of Grafana
 
 Choosing `Connections > Data Sources` as below to create Data Source:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_1.png)
 
 Choosing Prometheus as Data Source:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_2.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_2.png)
 
 {{% notice info %}}
 Prometheus Server URL is: `http://prometheus-operator-kube-p-prometheus.monitoring.svc.cluster.local:9090`
@@ -33,11 +33,11 @@ Prometheus Server URL is: `http://prometheus-operator-kube-p-prometheus.monitori
 
 At `Home > Dashboards > Import Dashboard`, create Dashboard with settings as below:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_3.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_3.png)
 
 Choosing Data Source *Prometheus* as below:
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_4.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_4.png)
 
 ### Check Metrics of Worker Nodes
 
@@ -45,9 +45,9 @@ After creating Dashboard, we will collect all system metrics of Worker Node as t
 
 #### EC2 (1) with private IP `10.0.4.56`
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_5.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_5.png)
 #### EC2 (2) with private IP `10.0.5.114`
 
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_6.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_6.png)
 #### EC2 (3) with private IP `10.0.6.202`
-![ConnectPrivate](/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_7.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/5-finish-monitoring/5.1-prome-grafana/pro_gra_7.png)

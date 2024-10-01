@@ -20,8 +20,8 @@ Tổng cộng ta sẽ có 3 API Endpoints:
 
 Traffic từ User sẽ luôn đi đến **Customer API Gateway** (là Load Balancer hoặc một Reverse Proxy) và được điều hướng đến **Service API Gateway**. Bên dưới là minh hoạ các luồng traffic cho 3 API Endpoints.
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Application.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Application.gif)
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Order.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Order.gif)
 
-![ConnectPrivate](/images/4-cicd/4.1-application/Info.gif)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.1-application/Info.gif)

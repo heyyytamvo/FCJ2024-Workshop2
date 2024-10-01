@@ -10,12 +10,12 @@ At Jenkins Server, `Ops Pipeline` is triggered to scan our Terraform Source and 
 
 ### Secure IaC
 
-![ConnectPrivate](/images/8-cicd-test/8.4-cd-sec/terraform_0.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/8-cicd-test/8.4-cd-sec/terraform_0.png)
 
-![ConnectPrivate](/images/8-cicd-test/8.4-cd-sec/terraform_1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/8-cicd-test/8.4-cd-sec/terraform_1.png)
 
 ### DAST (Dynamic Application Security Testing)
 
-![ConnectPrivate](/images/8-cicd-test/8.4-cd-sec/OWASP_1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/8-cicd-test/8.4-cd-sec/OWASP_1.png)
 
-![ConnectPrivate](/images/8-cicd-test/8.4-cd-sec/OWASP_2.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/8-cicd-test/8.4-cd-sec/OWASP_2.png)

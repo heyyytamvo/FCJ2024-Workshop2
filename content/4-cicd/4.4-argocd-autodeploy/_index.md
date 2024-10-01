@@ -12,4 +12,4 @@ Working with Ops Repo in this section
 
 At Ops Repository, creating folder `argocd` with these [files](https://github.com/heyyytamvo/FCJ2024-WS2-OpsRepo/tree/main/argocd). With the YAML files as below, Argo CD will be deployed into namespace `argocd` :
 
-![ConnectPrivate](/images/4-cicd/4.4-argocd-autodeploy/argo.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.4-argocd-autodeploy/argo.png)

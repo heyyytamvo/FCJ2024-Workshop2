@@ -17,22 +17,22 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 After login, at `Settings > Repositories`, connect to the Ops Repository with setting below:
 
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy0.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy0.png)
 
 #### Application Deployment
 
 At `Applications`, create a new application with the configuration below:
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy1.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy1.png)
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy2.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy2.png)
 
 #### Checking
 
 After creating Application, Argo CD will automatically deploy our application to the K8s Cluster as below:
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy3.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy3.png)
 
 Going back to the AWS Console Management, at `EC2 > Load Balancers`, we will see a new load balancer (3 Load Balancer before). The new load balancer is our application.
 
-![ConnectPrivate](/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy4.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/7-argocd-autodeploy/7.3-argocd/ArgoCD_Deploy4.png)

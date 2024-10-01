@@ -10,11 +10,11 @@ pre : " <b> 6.3. </b> "
 
 Back to Jenkins Server, at **Credentials**, adding a new credential for Sonar Server with the created Token in the previous section. Creating a new credential as the picture below:
 
-![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar4.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/6-devsecops/6.2-sonar/sonar4.png)
 
 Go to `Dashboard > Manage Jenkins > System`, at the **SonarQube servers**, adding a new setting as below:
 
-![ConnectPrivate](/images/6-devsecops/6.2-sonar/sonar5.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/6-devsecops/6.2-sonar/sonar5.png)
 
 ### Create Ops Pipeline
 

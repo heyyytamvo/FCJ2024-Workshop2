@@ -45,28 +45,28 @@ At `Dashboard > Manage Jenkins > Credentials > System > Global credentials (unre
 - DB_PASSWORD: Password to login to Database
 - DB_DATABASE: Name of Database
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/4_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/4_Jenkins.png)
 
 ### Create CI Pipelines
 
 Create Pipeline for `Service API Gateway` as below:
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/5_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/5_Jenkins.png)
 
 At Build Triggers, choose **GitHub hook trigger for GITScm polling** as below:
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/6_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/6_Jenkins.png)
 
 At Pipeline section, configure as below to connect to the Dev Repository. Currently, our repository is publicly visible, so we will skip the Credentials.
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/7_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/7_Jenkins.png)
 
 Configure Branch **main** as below. Pipeline only run when there is a change in branch **main**.
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/8_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/8_Jenkins.png)
 
 At **Script Path** section, modify to `api-gateway/Jenkinsfile` as below. Whenever there is a change in the folder `api-gateway`, Jenkins Server will run the Pipeline based on the configuration in the file `api-gateway/Jenkinsfile`.
 
-![ConnectPrivate](/images/4-cicd/4.2-jenkins/9_Jenkins.png)
+![ConnectPrivate](/FCJ2024-Workshop2/images/4-cicd/4.2-jenkins/9_Jenkins.png)
 
 Creating Pipeline for `Info Service` and `Order Service` will be the same. However, at **Script Path** section, we modify to `info/Jenkinsfile` and `order/Jenkinsfile`, respectively.
