@@ -21,6 +21,8 @@ Triển khai một ứng dụng Microservice trên Kubernetes (K8s) là một b�
 
 ### Tại sao là GitOps?
 
+GitOps là một framework sử dụng Git làm nguồn thông tin duy nhất để quản lý việc triển khai hạ tầng và ứng dụng. Tận dụng khả năng Version Control của Git để tự động hóa và hợp lý hóa quy trình triển khai, giúp quản lý các hệ thống phức tạp dễ dàng hơn. Với GitOps, ứng dụng phổ biến nhất mà ta có thể triển khai là Infrastructure as Code (hay IaC). Như vậy, team Ops sẽ dựa vào Github Repository để có thể biết được cấu hình hiện tại của hạ tầng.
+
 ### Tại sao là DevSecOps?
 
 DevOps đã tối ưu hoá quy trình phát triển phần mềm bằng việc ứng dụng các công cụ automation và làm giảm thiểu thời gian ‘release’ sản phẩm. Từ đó, end users và đội ngũ phát triển sẽ được lợi, khi đó:

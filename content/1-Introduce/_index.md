@@ -23,6 +23,9 @@ Kubernetes (K8s) is the most common tool for deploying a microservice applicatio
 
 ### Why GitOps?
 
+GitOps is a framework that uses Git as a single source of truth to manage infrastructure and application deployments. Leverage Git's Version Control capabilities to automate and streamline the deployment process, making complex systems easier to manage. With GitOps, the most common practice we can apply is Infrastructure as Code (or IaC). Thus, the Ops team will rely on Github Repository to know the current configuration of the infrastructure.
+
+
 ### Why DevSecOps?
 
 DevOps practice enhances an organization’s ability to deliver applications by using automation tools. Hence, the amount of required time to release a new feature will be effectively reduced, then:
